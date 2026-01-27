@@ -127,18 +127,7 @@ export function TrainHero() {
             {/* Carriage Container */}
             <div className="relative flex items-stretch gap-2 h-80">
               
-              {/* Left Outer Door (Decorative) */}
-              <motion.div
-                className="flex-shrink-0 w-16 bg-[#B8003D] rounded-xl relative overflow-hidden shadow-inner z-20"
-                animate={{ x: doorsOpen ? -10 : 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="absolute inset-2 border-2 border-[#8B0030] rounded-lg" />
-                <div className="absolute inset-y-4 left-1/2 w-[2px] bg-[#8B0030] -translate-x-1/2" />
-                <div className="absolute top-1/2 left-3 w-1.5 h-10 bg-slate-400 rounded-full -translate-y-1/2 shadow" />
-                <div className="absolute top-8 left-3 right-3 h-20 bg-slate-700/40 rounded-lg border-2 border-[#8B0030]" />
-              </motion.div>
-
+              
               {/* Main Window Section (The Stage) */}
               <div className="flex-1 relative rounded-2xl overflow-hidden border-4 border-slate-700 shadow-inner bg-black">
                 
@@ -201,17 +190,6 @@ export function TrainHero() {
 
               </div>
 
-              {/* Right Outer Door (Decorative) */}
-              <motion.div
-                className="flex-shrink-0 w-16 bg-[#B8003D] rounded-xl relative overflow-hidden shadow-inner z-20"
-                animate={{ x: doorsOpen ? 10 : 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="absolute inset-2 border-2 border-[#8B0030] rounded-lg" />
-                <div className="absolute inset-y-4 left-1/2 w-[2px] bg-[#8B0030] -translate-x-1/2" />
-                <div className="absolute top-1/2 right-3 w-1.5 h-10 bg-slate-400 rounded-full -translate-y-1/2 shadow" />
-                <div className="absolute top-8 left-3 right-3 h-20 bg-slate-700/40 rounded-lg border-2 border-[#8B0030]" />
-              </motion.div>
             </div>
 
             {/* Bottom Carriage Details */}
