@@ -129,7 +129,7 @@ export default function GemMap({ station, onBack }: GemMapProps) {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-[#E0004D] bg-[#E0004D]/10 rounded-full pointer-events-none transition-all duration-300"
             style={{
                 width: `${(radius / 1500) * 80}%`, 
-                height: `${(radius / 1500) * 80}%`
+                aspectRatio: '1 / 1' // <--- CHANGE THIS: Forces height to equal width
             }}
         />
 
