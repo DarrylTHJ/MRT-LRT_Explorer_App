@@ -69,7 +69,7 @@ export function RouteMap({ currentStation, onStationSelect }: RouteMapProps) {
       <div 
         ref={scrollRef}
         // 3. Layout Update: Reduced top padding (pt-10) to match new height
-        className="flex items-start gap-0 overflow-x-auto scrollbar-hide pt-10 px-[50vw] h-full"
+        className="flex items-start gap-0 overflow-x-auto overflow-y-hidden scrollbar-hide pt-10 px-[50vw] h-full"
         style={{ scrollSnapType: 'x mandatory' }}
       >
         {STATIONS.map((station, index) => {
