@@ -1,19 +1,9 @@
 import { useState, useMemo } from 'react';
-import { GoogleMap, useLoadScript, Marker, Circle, InfoWindow } from '@react-google-maps/api';
-import { ArrowLeft, MapPin, Filter } from 'lucide-react'; // Assuming you have lucide-react installed
-
-const mapContainerStyle = { width: '100%', height: '100%' };
-const options = { 
-  disableDefaultUI: true, 
-  zoomControl: false, // We hide default controls for a cleaner "App" feel
-  styles: [ // Optional: A cleaner map style (silver)
-    { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] }
-  ]
-};
+import { ArrowLeft, MapPin } from 'lucide-react'; // Ensure you have lucide-react
 
 export default function GemMap({ station, onBack }) {
-  const { isLoaded } = useLoadScript({ googleMapsApiKey: "YOUR_API_KEY_HERE" });
-
+  // 1. Remove Google Maps LoadScript (No API Key needed)
+  
   const [radius, setRadius] = useState(500);
   const [category, setCategory] = useState("all");
   const [selectedGem, setSelectedGem] = useState(null);
@@ -21,16 +11,28 @@ export default function GemMap({ station, onBack }) {
   const filteredGems = useMemo(() => {
     if (!station || !station.gems) return [];
     return station.gems.filter((gem) => {
-      // In a real app, you would verify distance here. 
-      // For prototype, we assume the data provided is relevant.
       return category === "all" || gem.category === category;
     });
   }, [category, radius, station]);
 
-  if (!isLoaded) return <div className="flex items-center justify-center h-full text-gray-500">Loading Map...</div>;
+  // 2. Mock Coordinates to CSS Percentage Conversion
+  // Since we are using a static image, we map Lat/Lng to Top/Left %
+  // This is a "Hack" for the prototype to make pins appear in roughly right spots relative to the center
+  const getPositionStyle = (gemLat, gemLng) => {
+    const centerLat = station.location.lat;
+    const centerLng = station.location.lng;
+    
+    // Scale factor: How much to move per degree difference (adjust to match your zoom level)
+    const scale = 4000; 
+    
+    const top = 50 - (gemLat - centerLat) * scale;
+    const left = 50 + (gemLng - centerLng) * scale;
+
+    return { top: `${top}%`, left: `${left}%` };
+  };
 
   return (
-    <div className="relative h-full w-full bg-gray-100">
+    <div className="relative h-full w-full bg-gray-100 overflow-hidden">
       
       {/* 1. Top Navigation Bar (Glassmorphism) */}
       <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-12 pb-4 bg-white/80 backdrop-blur-md shadow-sm rounded-b-3xl">
@@ -83,58 +85,70 @@ export default function GemMap({ station, onBack }) {
         />
       </div>
 
-      {/* 3. The Map */}
-      <GoogleMap
-        zoom={16}
-        center={station.location}
-        mapContainerStyle={mapContainerStyle}
-        options={options}
+      {/* 3. The "Fake" Map Container */}
+      {/* We use a Google Maps Screenshot as the background image */}
+      <div 
+        className="w-full h-full relative transition-transform duration-500"
+        style={{
+          backgroundImage: 'url("C:\Users\darry\Downloads\Futuristic Travel Discovery App (1)\public")', // Replace this with a screenshot of YOUR specific station area
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: `scale(${1 + (1500 - radius) / 2000})` // Fake Zoom Effect based on slider
+        }}
       >
-        {/* Station Marker */}
-        <Marker 
-            position={station.location} 
-            // Default red marker is fine, or use a custom icon
+        
+        {/* Center Station Marker */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="w-8 h-8 bg-blue-500 border-4 border-white rounded-full shadow-lg flex items-center justify-center animate-pulse">
+            <div className="w-2 h-2 bg-white rounded-full" />
+          </div>
+        </div>
+
+        {/* The Radius Circle (CSS Border) */}
+        <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-[#E0004D] bg-[#E0004D]/10 rounded-full pointer-events-none transition-all duration-300"
+            style={{
+                width: `${(radius / 1500) * 80}%`, // Fake size scaling
+                height: `${(radius / 1500) * 80}%` // Fake size scaling
+            }}
         />
 
-        {/* Radius Circle */}
-        <Circle
-          center={station.location}
-          radius={radius}
-          options={{
-            fillColor: "#E0004D",
-            fillOpacity: 0.08,
-            strokeColor: "#E0004D",
-            strokeOpacity: 0.4,
-            strokeWeight: 1,
-            clickable: false,
-          }}
-        />
+        {/* Filtered Gem Markers */}
+        {filteredGems.map((gem) => {
+          const style = getPositionStyle(gem.lat, gem.lng);
+          return (
+            <button
+              key={gem.id}
+              onClick={() => setSelectedGem(gem)}
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+              style={style}
+            >
+               {/* Pin Icon */}
+               <MapPin className="w-8 h-8 text-[#E0004D] fill-white drop-shadow-md hover:scale-110 transition-transform" />
+               
+               {/* Tiny Label on Hover */}
+               <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-black/70 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">
+                 {gem.name}
+               </span>
+            </button>
+          );
+        })}
 
-        {/* Gem Markers */}
-        {filteredGems.map((gem) => (
-          <Marker
-            key={gem.id}
-            position={{ lat: gem.lat, lng: gem.lng }}
-            onClick={() => setSelectedGem(gem)}
-          />
-        ))}
-
-        {/* Info Window */}
+        {/* Info Popup (Bottom of Map) */}
         {selectedGem && (
-          <InfoWindow
-            position={{ lat: selectedGem.lat, lng: selectedGem.lng }}
-            onCloseClick={() => setSelectedGem(null)}
-          >
-            <div className="p-1 min-w-[150px]">
-              <h3 className="font-bold text-sm text-gray-800">{selectedGem.name}</h3>
-              <p className="text-xs text-gray-500 capitalize">{selectedGem.category}</p>
-              <div className="mt-2 flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded w-fit">
-                <span>🌱 {gem.co2Saved || "0.4kg"} CO2</span>
-              </div>
-            </div>
-          </InfoWindow>
+          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-white p-3 rounded-xl shadow-xl w-64 animate-in slide-in-from-bottom-4">
+             <div className="flex justify-between items-start">
+                <h3 className="font-bold text-sm text-gray-900">{selectedGem.name}</h3>
+                <button onClick={() => setSelectedGem(null)} className="text-gray-400 hover:text-gray-600">×</button>
+             </div>
+             <p className="text-xs text-gray-500 capitalize mb-2">{selectedGem.category}</p>
+             <div className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded w-fit">
+                <span>🌱 {gem.co2Saved || "0.4kg"} CO2 Saved</span>
+             </div>
+          </div>
         )}
-      </GoogleMap>
+
+      </div>
     </div>
   );
 }
