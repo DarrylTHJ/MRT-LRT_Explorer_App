@@ -9,7 +9,8 @@ import { motion, AnimatePresence } from "motion/react";
 
 import GemMap from "./components/GemMap";
 import { stationData } from "../data/stationData";
-import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines";
+// Ensure this file exists at src/data/lines.ts
+import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
 
 const allAttractions: Attraction[] = [
@@ -56,7 +57,7 @@ export default function App() {
   const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kelana");
   const [currentStationName, setCurrentStationName] = useState("Abdullah Hukum");
   
-  // FIX: Explicitly list ALL possible states here
+  // States: dashboard (default), zooming (animation), map (fullscreen map), impact (eco page)
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
 
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
@@ -71,9 +72,9 @@ export default function App() {
         );
 
   const handleTrainClick = () => {
-    setViewState("zooming");
+    setViewState("zooming"); // 1. Start Zoom Animation
     setTimeout(() => {
-      setViewState("map");
+      setViewState("map");   // 2. Switch to Map after animation ends
     }, 800);
   };
 
@@ -107,14 +108,23 @@ export default function App() {
           )}
 
           {/* === DASHBOARD VIEW === */}
-          {viewState === "dashboard" && (
+          {/* FIX: Keep dashboard visible during 'zooming' state so the train doesn't disappear */}
+          {(viewState === "dashboard" || viewState === "zooming") && (
             <motion.div
               key="dashboard"
               className="relative z-10 h-full w-full bg-[#F5F5F7] overflow-y-auto"
               initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={
+                viewState === "zooming" 
+                ? { 
+                    scale: 5, // Zoom In Effect
+                    opacity: 0, 
+                    pointerEvents: "none" 
+                  } 
+                : { scale: 1, opacity: 1, x: 0, pointerEvents: "auto" }
+              }
               exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.8, ease: [0.32, 0, 0.67, 0] }}
             >
               <div className="pb-28">
                 <header className="px-6 pt-8 pb-6 relative">
@@ -180,11 +190,12 @@ export default function App() {
                   themeColor={themeColor}
                 />
 
+                {/* Train Hero */}
                 <div 
                   className="cursor-pointer transition-transform active:scale-95 origin-center"
                   onClick={handleTrainClick}
                 >
-                
+                  <TrainHero isZooming={viewState === "zooming"} />
                   <p className="text-center text-xs text-gray-400 mt-2">
                     Tap train to explore map
                   </p>
