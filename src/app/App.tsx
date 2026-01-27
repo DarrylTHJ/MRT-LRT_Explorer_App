@@ -6,10 +6,9 @@ import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
 import { MapPin } from "lucide-react";
 
-// Import the Map and Data
-import GemMap from "../../components/GemMap"; // Adjust path if needed based on your folder structure
-import { stationData } from "../../data/stationData"; // Adjust path if needed
-
+// FIXED IMPORTS:
+import GemMap from "./components/GemMap"; // Points to the new .tsx file in the same folder
+import { stationData } from "../data/stationData"; // Go up one level from 'app', into 'data'
 // ... [Keep your 'allAttractions' array exactly as it is] ...
 const allAttractions: Attraction[] = [ 
   // ... (Paste your existing attractions data here)

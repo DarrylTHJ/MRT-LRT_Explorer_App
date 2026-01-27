@@ -210,9 +210,12 @@ export function TrainHero() {
           <div className="h-3 bg-[#E0004D] rounded-b-[32px]" />
         </div>
 
-        {/* Navigation Buttons (Fallback for Desktop) */}
+{/* Navigation Buttons */}
         <button
-          onClick={() => handleTransition("prev")}
+          onClick={(e) => {
+            e.stopPropagation(); // <--- ADD THIS LINE
+            handleTransition("prev");
+          }}
           className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-30"
           disabled={isTransitioning}
         >
@@ -220,7 +223,10 @@ export function TrainHero() {
         </button>
         
         <button
-          onClick={() => handleTransition("next")}
+          onClick={(e) => {
+            e.stopPropagation(); // <--- ADD THIS LINE
+            handleTransition("next");
+          }}
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-30"
           disabled={isTransitioning}
         >
