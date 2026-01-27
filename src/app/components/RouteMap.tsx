@@ -49,38 +49,40 @@ export function RouteMap({ currentStation, onStationSelect }: RouteMapProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const activeIndex = STATIONS.findIndex(s => s.name === currentStation);
-    if (activeIndex !== -1 && scrollRef.current) {
-      const container = scrollRef.current;
-      const cardWidth = 64; 
-      const screenCenter = container.offsetWidth / 2;
-      const itemCenter = (activeIndex * cardWidth) + (cardWidth / 2);
-      
-      container.scrollTo({
-        left: itemCenter - screenCenter,
-        behavior: "smooth"
+    // 1. Logic Update: Use scrollIntoView for perfect centering on ALL devices
+    const safeId = currentStation.replace(/[^a-zA-Z0-9]/g, '-');
+    const activeElement = document.getElementById(`station-${safeId}`);
+    
+    if (activeElement) {
+      activeElement.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest", // Prevents vertical page jumping
+        inline: "center"  // Forces horizontal centering
       });
     }
   }, [currentStation]);
 
   return (
-    // CHANGE 1: Increased height to h-64 to prevent text clipping
+    // 2. Height Update: Reduced to h-32 (128px) for a much more compact look
     <div className="relative w-full h-32 bg-white/90 backdrop-blur-md border-y border-gray-200 shadow-sm z-20 overflow-hidden">
       
       <div 
         ref={scrollRef}
-        // CHANGE 2: Used 'items-start' and 'pt-20' to push the line down to a fixed position
-        className="flex items-start gap-0 overflow-x-auto scrollbar-hide pt-20 px-[50vw] h-full"
+        // 3. Layout Update: Reduced top padding (pt-10) to match new height
+        className="flex items-start gap-0 overflow-x-auto scrollbar-hide pt-10 px-[50vw] h-full"
         style={{ scrollSnapType: 'x mandatory' }}
       >
         {STATIONS.map((station, index) => {
           const isActive = station.name === currentStation;
+          const safeId = station.name.replace(/[^a-zA-Z0-9]/g, '-');
           
           return (
             <div 
               key={station.name} 
+              id={`station-${safeId}`}
               onClick={() => onStationSelect(station.name)}
-              className="relative flex flex-col items-center flex-shrink-0 w-16 cursor-pointer group snap-center"
+              // 4. Width Update: Reduced to w-9 (36px) for tighter gap space
+              className="relative flex flex-col items-center flex-shrink-0 w-9 cursor-pointer group snap-center"
             >
               {/* Connector Line */}
               <div className="absolute top-[5px] left-[-50%] right-[-50%] h-[4px] bg-[#E0004D]" 
@@ -108,16 +110,17 @@ export function RouteMap({ currentStation, onStationSelect }: RouteMapProps) {
               {/* Slanted Text */}
               <div 
                 className={`
-                  absolute top-6 left-1/2 
+                  absolute top-5 left-1/2 
                   origin-top-left 
-                  whitespace-nowrap text-[11px] font-semibold tracking-wide transition-all duration-300
+                  whitespace-nowrap text-[9px] font-semibold tracking-wide transition-all duration-300
                   ${isActive
                     ? "text-[#E0004D] font-bold scale-110 z-20"
-                    : "text-gray-500 group-hover:text-gray-700" // CHANGE 3: Darker gray for better visibility
+                    : "text-gray-500 group-hover:text-gray-700"
                   }
                 `}
                 style={{
-                    transform: 'rotate(45deg) translate(-2px, -2px)' 
+                    // Adjusted translate to align with the new w-9 center
+                    transform: 'rotate(45deg) translate(-2px, 0px)' 
                 }}
               >
                 {station.name}
