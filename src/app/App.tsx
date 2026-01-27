@@ -27,6 +27,7 @@ const allAttractions: Attraction[] = [
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [currentStationName, setCurrentStationName] = useState("Abdullah Hukum");
   
   // NEW: State to control which view is active
   const [currentView, setCurrentView] = useState<"dashboard" | "map">("dashboard");
@@ -39,6 +40,8 @@ export default function App() {
         );
 
   return (
+
+    
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
       {/* iPhone 14/15 Pro Container */}
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
@@ -48,9 +51,9 @@ export default function App() {
           <>
             <div className="pb-28 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {/* Header */}
-              <header className="px-6 pt-8 pb-6">
+<header className="px-6 pt-8 pb-6">
                 <h1 className="text-3xl font-bold text-gray-900 mb-3 leading-tight">
-                  Abdullah Hukum
+                  {currentStationName} {/* <-- 3. Update Title to match selection */}
                 </h1>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E0004D] shadow-lg shadow-[#E0004D]/20">
                   <MapPin className="w-4 h-4 text-white" fill="currentColor" />
@@ -58,8 +61,11 @@ export default function App() {
                 </div>
               </header>
 
-              {/* Dynamic Route Map Strip */}
-              <RouteMap />
+              {/* 4. Pass props to RouteMap */}
+              <RouteMap 
+                currentStation={currentStationName}
+                onStationSelect={(name) => setCurrentStationName(name)}
+              />
 
               {/* Train Hero Section - NOW CLICKABLE */}
               {/* This mimics the "Zoom into Station" you asked for */}
