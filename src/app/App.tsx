@@ -62,7 +62,6 @@ export default function App() {
 
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
-  const lineName = activeLine === "kelana" ? "Kelana Jaya Line" : "MRT Kajang Line";
 
   const filteredAttractions =
     activeFilter === "all"
@@ -144,7 +143,7 @@ export default function App() {
                   </button>
 
                   {/* Line Switcher */}
-                  <div className="flex gap-2 mb-4 p-1 bg-gray-200/50 rounded-full w-fit">
+                  <div className="flex gap-1 mb-1 p-1 bg-gray-200/50 rounded-full w-fit">
                     <button
                         onClick={() => handleLineSwitch("kelana")}
                         className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
@@ -167,20 +166,11 @@ export default function App() {
                     </button>
                   </div>
 
-                  <h1 className="text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                  <h1 className="text-3xl font-bold text-gray-900 mb-0 leading-tight">
                     {currentStationName}
                   </h1>
                   
-                  <div 
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full shadow-lg transition-colors duration-500"
-                    style={{ 
-                        backgroundColor: themeColor, 
-                        boxShadow: `0 10px 15px -3px ${themeColor}33` 
-                    }}
-                  >
-                    <MapPin className="w-4 h-4 text-white" fill="currentColor" />
-                    <span className="text-white text-sm font-semibold">{lineName}</span>
-                  </div>
+      
                 </header>
 
                 <RouteMap 

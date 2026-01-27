@@ -124,8 +124,7 @@ export function TrainHero({ isZooming }: { isZooming?: boolean }) {
                   
                   <div className="absolute top-4 left-4 z-0">
                     <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                      <span className="text-xs font-semibold text-gray-600">NEXT:</span>
-                      <span className="text-sm font-bold text-[#E0004D]">{currentStation.nextStation}</span>
+
                       <ChevronRight className="w-4 h-4 text-[#E0004D]" />
                     </div>
                   </div>
