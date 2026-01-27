@@ -4,15 +4,15 @@ import { TrainHero } from "./components/TrainHero";
 import { AttractionCard, Attraction } from "./components/AttractionCard";
 import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
-import { MapPin } from "lucide-react";
+import { MapPin, Leaf } from "lucide-react"; 
+import { motion, AnimatePresence } from "motion/react";
 
-// FIXED IMPORTS:
-import GemMap from "./components/GemMap"; // Points to the new .tsx file in the same folder
-import { stationData } from "../data/stationData"; // Go up one level from 'app', into 'data'
-// ... [Keep your 'allAttractions' array exactly as it is] ...
-const allAttractions: Attraction[] = [ 
-  // ... (Paste your existing attractions data here)
-  // Food
+import GemMap from "./components/GemMap";
+import { stationData } from "../data/stationData";
+import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines";
+import ImpactPage from "./components/ImpactPage"; 
+
+const allAttractions: Attraction[] = [
   {
     id: 1,
     name: "Artisan Coffee House",
@@ -22,15 +22,46 @@ const allAttractions: Attraction[] = [
     isSheltered: true,
     co2Saved: "0.4kg",
   },
-  // ... (keep the rest)
+  {
+    id: 2,
+    name: "Traditional Malaysian Bistro",
+    category: "Food",
+    image: "https://images.unsplash.com/photo-1755589494214-3e48817a4c9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFkaXRpb25hbCUyMG1hbGF5c2lhbiUyMHJlc3RhdXJhbnQlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njk1MDY2MDh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    walkTime: "5 min walk",
+    isSheltered: true,
+    co2Saved: "0.7kg",
+  },
+  {
+    id: 3,
+    name: "Street Food Market",
+    category: "Food",
+    image: "https://images.unsplash.com/photo-1759299710388-690bf2305e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHN0cmVldCUyMGZvb2QlMjBtYXJrZXQlMjB2aWJyYW50fGVufDF8fHx8MTc2OTUwNTcyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    walkTime: "2 min walk",
+    isSheltered: false,
+    co2Saved: "0.3kg",
+  },
+  {
+    id: 4,
+    name: "National Heritage Gallery",
+    category: "Cultural",
+    image: "https://images.unsplash.com/photo-1647792845543-a8032c59cbdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNldW0lMjBnYWxsZXJ5JTIwY29udGVtcG9yYXJ5JTIwYXJ0fGVufDF8fHx8MTc2OTUwNTcyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    walkTime: "4 min walk",
+    isSheltered: true,
+    co2Saved: "0.5kg",
+  }
 ];
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kelana");
   const [currentStationName, setCurrentStationName] = useState("Abdullah Hukum");
   
-  // NEW: State to control which view is active
-  const [currentView, setCurrentView] = useState<"dashboard" | "map">("dashboard");
+  // FIX: Explicitly list ALL possible states here
+  const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
+
+  const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
+  const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
+  const lineName = activeLine === "kelana" ? "Kelana Jaya Line" : "MRT Kajang Line";
 
   const filteredAttractions =
     activeFilter === "all"
@@ -39,85 +70,154 @@ export default function App() {
           (attraction) => attraction.category.toLowerCase() === activeFilter
         );
 
-  return (
+  const handleTrainClick = () => {
+    setViewState("zooming");
+    setTimeout(() => {
+      setViewState("map");
+    }, 800);
+  };
 
-    
+  const handleLineSwitch = (line: "kelana" | "kajang") => {
+      setActiveLine(line);
+      if (line === "kelana") setCurrentStationName("Abdullah Hukum");
+      else setCurrentStationName("Pasar Seni");
+  };
+
+  return (
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
-      {/* iPhone 14/15 Pro Container */}
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
         
-        {/* === VIEW 1: THE DASHBOARD === */}
-        {currentView === "dashboard" && (
-          <>
-            <div className="pb-28 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              {/* Header */}
-<header className="px-6 pt-8 pb-6">
-                <h1 className="text-3xl font-bold text-gray-900 mb-3 leading-tight">
-                  {currentStationName} {/* <-- 3. Update Title to match selection */}
-                </h1>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E0004D] shadow-lg shadow-[#E0004D]/20">
-                  <MapPin className="w-4 h-4 text-white" fill="currentColor" />
-                  <span className="text-white text-sm font-semibold">Kelana Jaya Line</span>
-                </div>
-              </header>
+        <AnimatePresence mode="popLayout">
+            
+          {/* === IMPACT PAGE === */}
+          {viewState === "impact" && (
+             <div className="absolute inset-0 z-50 h-full w-full">
+                <ImpactPage onBack={() => setViewState("dashboard")} />
+             </div>
+          )}
 
-              {/* 4. Pass props to RouteMap */}
-              <RouteMap 
-                currentStation={currentStationName}
-                onStationSelect={(name) => setCurrentStationName(name)}
+          {/* === MAP VIEW === */}
+          {(viewState === "zooming" || viewState === "map") && (
+            <div className="absolute inset-0 z-0 h-full w-full">
+              <GemMap 
+                station={stationData} 
+                onBack={() => setViewState("dashboard")} 
               />
-
-              {/* Train Hero Section - NOW CLICKABLE */}
-              {/* This mimics the "Zoom into Station" you asked for */}
-              <div 
-                className="cursor-pointer transition-transform active:scale-95"
-                onClick={() => setCurrentView("map")}
-              >
-                <TrainHero />
-                <p className="text-center text-xs text-gray-400 mt-2">Tap train to explore map</p>
-              </div>
-
-              {/* Discovery Deck - Nearby Gems */}
-              <div className="px-6 py-6">
-                <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">
-                  Nearby Gems
-                </h2>
-
-                <div className="mb-4">
-                  <FilterTabs
-                    activeFilter={activeFilter}
-                    onFilterChange={setActiveFilter}
-                  />
-                </div>
-                
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
-                   {/* ... [Keep scrollbar style block] ... */}
-                   <style>{`
-                    .scrollbar-hide::-webkit-scrollbar { display: none; }
-                    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-                  `}</style>
-                  {filteredAttractions.map((attraction) => (
-                    <AttractionCard key={attraction.id} attraction={attraction} />
-                  ))}
-                </div>
-              </div>
             </div>
+          )}
 
-            {/* Floating Glass Search Bar */}
-            <GlassSearchBar />
-          </>
-        )}
+          {/* === DASHBOARD VIEW === */}
+          {viewState === "dashboard" && (
+            <motion.div
+              key="dashboard"
+              className="relative z-10 h-full w-full bg-[#F5F5F7] overflow-y-auto"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="pb-28">
+                <header className="px-6 pt-8 pb-6 relative">
+                  
+                  {/* Sustainability Bookmark */}
+                  <button
+                    onClick={() => setViewState("impact")}
+                    className="absolute -top-1 right-8 z-20 group"
+                  >
+                    <div className="w-12 h-16 bg-[#15803d] rounded-b-lg shadow-lg flex flex-col items-center justify-center gap-1 transition-all duration-300 group-hover:h-18 group-hover:translate-y-1 hover:shadow-green-900/30">
+                        <Leaf className="w-5 h-5 text-[#4ade80]" fill="currentColor" />
+                        <div className="flex flex-col items-center leading-none">
+                            <span className="text-[8px] text-green-200 uppercase font-bold tracking-wider">LVL</span>
+                            <span className="text-sm font-bold text-white">5</span>
+                        </div>
+                    </div>
+                  </button>
 
-        {/* === VIEW 2: THE GEM MAP === */}
-        {currentView === "map" && (
-          <div className="h-full w-full absolute inset-0 z-50 animate-in zoom-in-95 duration-300">
-            <GemMap 
-              station={stationData} 
-              onBack={() => setCurrentView("dashboard")} 
-            />
-          </div>
-        )}
+                  {/* Line Switcher */}
+                  <div className="flex gap-2 mb-4 p-1 bg-gray-200/50 rounded-full w-fit">
+                    <button
+                        onClick={() => handleLineSwitch("kelana")}
+                        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+                            activeLine === "kelana" 
+                            ? "bg-white text-[#E0004D] shadow-sm" 
+                            : "text-gray-400 hover:text-gray-600"
+                        }`}
+                    >
+                        LRT Kelana Jaya
+                    </button>
+                    <button
+                        onClick={() => handleLineSwitch("kajang")}
+                        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+                            activeLine === "kajang" 
+                            ? "bg-white text-[#007A33] shadow-sm" 
+                            : "text-gray-400 hover:text-gray-600"
+                        }`}
+                    >
+                        MRT Kajang
+                    </button>
+                  </div>
 
+                  <h1 className="text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                    {currentStationName}
+                  </h1>
+                  
+                  <div 
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full shadow-lg transition-colors duration-500"
+                    style={{ 
+                        backgroundColor: themeColor, 
+                        boxShadow: `0 10px 15px -3px ${themeColor}33` 
+                    }}
+                  >
+                    <MapPin className="w-4 h-4 text-white" fill="currentColor" />
+                    <span className="text-white text-sm font-semibold">{lineName}</span>
+                  </div>
+                </header>
+
+                <RouteMap 
+                  stations={currentLineData}
+                  currentStation={currentStationName}
+                  onStationSelect={setCurrentStationName}
+                  themeColor={themeColor}
+                />
+
+                <div 
+                  className="cursor-pointer transition-transform active:scale-95 origin-center"
+                  onClick={handleTrainClick}
+                >
+                
+                  <p className="text-center text-xs text-gray-400 mt-2">
+                    Tap train to explore map
+                  </p>
+                </div>
+
+                <div className="px-6 py-6">
+                  <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">
+                    Nearby Gems
+                  </h2>
+                  <div className="mb-4">
+                    <FilterTabs
+                      activeFilter={activeFilter}
+                      onFilterChange={setActiveFilter}
+                    />
+                  </div>
+                  
+                  <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
+                     <style>{`
+                      .scrollbar-hide::-webkit-scrollbar { display: none; }
+                      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+                    `}</style>
+                    {filteredAttractions.map((attraction) => (
+                      <AttractionCard key={attraction.id} attraction={attraction} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <GlassSearchBar />
+            </motion.div>
+          )}
+
+        </AnimatePresence>
       </div>
     </div>
   );
