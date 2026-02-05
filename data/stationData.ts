@@ -16,6 +16,7 @@ export interface Station {
   gems: Gem[];
 }
 
+// 1. Define your main station data (Pasar Seni)
 export const stationData: Station = {
   name: "Pasar Seni",
   location: { lat: 3.1424, lng: 101.6954 },
@@ -38,11 +39,11 @@ export const stationData: Station = {
       description: "Fusion Cafe",
       co2Saved: "0.4kg"
     }
+    // Paste more CSV data here if you have it
   ]
 };
 
-// 👇 THIS LINE BELOW IS THE FIX. 
-// CHECK THAT ": Record<string, Station>" IS PRESENT IN YOUR FILE.
+// 2. THIS IS THE FIX: We explicitly tell TS that this object accepts any string key
 export const allStationsData: Record<string, Station> = {
   "Pasar Seni": stationData,
   "Abdullah Hukum": {

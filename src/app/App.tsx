@@ -6,12 +6,11 @@ import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
 import { MapPin, Leaf } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
+// FIX 1: Import only what we need
 import { allStationsData } from "../data/stationData";
 import { toast, Toaster } from "sonner";
 import { askRailRonda } from "../services/gemini";
 import GemMap from "./components/GemMap";
-import { stationData } from "../data/stationData";
-// Ensure this file exists at src/data/lines.ts
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
 
@@ -59,9 +58,11 @@ export default function App() {
   const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kelana");
   const [currentStationName, setCurrentStationName] = useState("Pasar Seni");
   const [isThinking, setIsThinking] = useState(false);
-  // States: dashboard (default), zooming (animation), map (fullscreen map), impact (eco page)
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
+  
+  // FIX 2: Correctly accessing data with the type fix from stationData.ts
   const currentStationData = allStationsData[currentStationName] || allStationsData["Pasar Seni"];
+  
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
 
@@ -73,9 +74,9 @@ export default function App() {
         );
 
   const handleTrainClick = () => {
-    setViewState("zooming"); // 1. Start Zoom Animation
+    setViewState("zooming"); 
     setTimeout(() => {
-      setViewState("map");   // 2. Switch to Map after animation ends
+      setViewState("map");   
     }, 800);
   };
 
@@ -88,26 +89,19 @@ export default function App() {
   const handleAISearch = async (userQuery: string) => {
     setIsThinking(true);
     
-    // We pass the currently active station's gems to the AI
-    // We assume 'stationData.gems' is your list of places
-    const recommendation = await askRailRonda(userQuery, stationData.gems);
+    // FIX 3: Passing the correct gems for the ACTIVE station
+    const recommendation = await askRailRonda(userQuery, currentStationData.gems);
     
     setIsThinking(false);
 
     if (recommendation) {
-      // 1. Find the full object of the recommended Gem
-      const gem = stationData.gems.find(g => g.id === recommendation.recommendedGemId);
+      const gem = currentStationData.gems.find(g => g.id === recommendation.recommendedGemId);
       
       if (gem) {
-        // 2. Show the result (You can animate this later!)
         toast.success(`RailRonda suggests: ${gem.name}`, {
           description: recommendation.reason,
           duration: 5000,
         });
-        
-        // 3. Optional: Automatically select/highlight it on the map
-        // You might need to add a setSelectedGem state to App.tsx and pass it down
-        // setViewState("map"); 
       }
     } else {
       toast.error("RailRonda got lost on the tracks. Try again!");
@@ -118,29 +112,25 @@ export default function App() {
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
         
+        {/* FIX 4: Toaster added here so popups actually show up */}
         <Toaster position="top-center" richColors />
         
         <AnimatePresence mode="popLayout">
-            
-          {/* === IMPACT PAGE === */}
           {viewState === "impact" && (
              <div className="absolute inset-0 z-50 h-full w-full">
                 <ImpactPage onBack={() => setViewState("dashboard")} />
              </div>
           )}
 
-          {/* === MAP VIEW === */}
           {(viewState === "zooming" || viewState === "map") && (
             <div className="absolute inset-0 z-0 h-full w-full">
-<GemMap 
-        station={currentStationData} 
-        onBack={() => setViewState("dashboard")} 
-     />
+              <GemMap 
+                station={currentStationData} 
+                onBack={() => setViewState("dashboard")} 
+              />
             </div>
           )}
 
-          {/* === DASHBOARD VIEW === */}
-          {/* FIX: Keep dashboard visible during 'zooming' state so the train doesn't disappear */}
           {(viewState === "dashboard" || viewState === "zooming") && (
             <motion.div
               key="dashboard"
@@ -148,11 +138,7 @@ export default function App() {
               initial={{ opacity: 0, x: -100 }}
               animate={
                 viewState === "zooming" 
-                ? { 
-                    scale: 5, // Zoom In Effect
-                    opacity: 0, 
-                    pointerEvents: "none" 
-                  } 
+                ? { scale: 5, opacity: 0, pointerEvents: "none" } 
                 : { scale: 1, opacity: 1, x: 0, pointerEvents: "auto" }
               }
               exit={{ opacity: 0, x: -100 }}
@@ -160,12 +146,7 @@ export default function App() {
             >
               <div className="pb-28">
                 <header className="px-6 pt-8 pb-6 relative">
-                  
-                  {/* Sustainability Bookmark */}
-                  <button
-                    onClick={() => setViewState("impact")}
-                    className="absolute -top-1 right-8 z-20 group"
-                  >
+                  <button onClick={() => setViewState("impact")} className="absolute -top-1 right-8 z-20 group">
                     <div className="w-12 h-16 bg-[#15803d] rounded-b-lg shadow-lg flex flex-col items-center justify-center gap-1 transition-all duration-300 group-hover:h-18 group-hover:translate-y-1 hover:shadow-green-900/30">
                         <Leaf className="w-5 h-5 text-[#4ade80]" fill="currentColor" />
                         <div className="flex flex-col items-center leading-none">
@@ -175,35 +156,14 @@ export default function App() {
                     </div>
                   </button>
 
-                  {/* Line Switcher */}
                   <div className="flex gap-1 mb-1 p-1 bg-gray-200/50 rounded-full w-fit">
-                    <button
-                        onClick={() => handleLineSwitch("kelana")}
-                        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
-                            activeLine === "kelana" 
-                            ? "bg-white text-[#E0004D] shadow-sm" 
-                            : "text-gray-400 hover:text-gray-600"
-                        }`}
-                    >
-                        LRT Kelana Jaya
-                    </button>
-                    <button
-                        onClick={() => handleLineSwitch("kajang")}
-                        className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
-                            activeLine === "kajang" 
-                            ? "bg-white text-[#007A33] shadow-sm" 
-                            : "text-gray-400 hover:text-gray-600"
-                        }`}
-                    >
-                        MRT Kajang
-                    </button>
+                    <button onClick={() => handleLineSwitch("kelana")} className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${activeLine === "kelana" ? "bg-white text-[#E0004D] shadow-sm" : "text-gray-400 hover:text-gray-600"}`}>LRT Kelana Jaya</button>
+                    <button onClick={() => handleLineSwitch("kajang")} className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${activeLine === "kajang" ? "bg-white text-[#007A33] shadow-sm" : "text-gray-400 hover:text-gray-600"}`}>MRT Kajang</button>
                   </div>
 
                   <h1 className="text-3xl font-bold text-gray-900 mb-0 leading-tight">
                     {currentStationName}
                   </h1>
-                  
-      
                 </header>
 
                 <RouteMap 
@@ -213,33 +173,19 @@ export default function App() {
                   themeColor={themeColor}
                 />
 
-                {/* Train Hero */}
-                <div 
-                  className="cursor-pointer transition-transform active:scale-95 origin-center"
-                  onClick={handleTrainClick}
-                >
+                <div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
                   <TrainHero isZooming={viewState === "zooming"} />
-                  <p className="text-center text-xs text-gray-400 mt-2">
-                    Tap train to explore map
-                  </p>
+                  <p className="text-center text-xs text-gray-400 mt-2">Tap train to explore map</p>
                 </div>
 
                 <div className="px-6 py-6">
-                  <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">
-                    Nearby Gems
-                  </h2>
+                  <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">Nearby Gems</h2>
                   <div className="mb-4">
-                    <FilterTabs
-                      activeFilter={activeFilter}
-                      onFilterChange={setActiveFilter}
-                    />
+                    <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
                   </div>
                   
                   <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
-                     <style>{`
-                      .scrollbar-hide::-webkit-scrollbar { display: none; }
-                      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-                    `}</style>
+                     <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; } .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
                     {filteredAttractions.map((attraction) => (
                       <AttractionCard key={attraction.id} attraction={attraction} />
                     ))}
@@ -250,7 +196,6 @@ export default function App() {
               <GlassSearchBar onSearch={handleAISearch} isThinking={isThinking} />
             </motion.div>
           )}
-
         </AnimatePresence>
       </div>
     </div>

@@ -16,22 +16,20 @@ export interface Station {
   gems: Gem[];
 }
 
-// FOR TESTING: We are loading all your CSV data into "Pasar Seni" for now.
+// 1. Define your main station data (Pasar Seni)
 export const stationData: Station = {
   name: "Pasar Seni",
   location: { lat: 3.1424, lng: 101.6954 },
   gems: [
-    // --- MANUAL ENTRY 1 (From your CSV) ---
     {
       id: 1,
-      name: "Ho Kow Hainam Kopitiam", // Paste 'Name' from CSV
-      category: "food",               // Paste 'Category' or default to 'food'
-      lat: 3.1415,                    // Paste 'lat' from CSV
-      lng: 101.6975,                  // Paste 'lng' from CSV
-      description: "Hainanese Chicken Rice", // Paste 'Cuisine' from CSV
-      co2Saved: "0.5kg"               // Hardcode this for now
+      name: "Ho Kow Hainam Kopitiam",
+      category: "food",
+      lat: 3.1415,
+      lng: 101.6975,
+      description: "Hainanese Chicken Rice",
+      co2Saved: "0.5kg"
     },
-    // --- MANUAL ENTRY 2 ---
     {
       id: 2,
       name: "Merchant's Lane",
@@ -40,13 +38,28 @@ export const stationData: Station = {
       lng: 101.6960,
       description: "Fusion Cafe",
       co2Saved: "0.4kg"
-    },
-    // ... Copy paste more blocks here as needed
+    }
+    // Add more gems here as needed from your CSV
   ]
 };
 
-// Exporting it as 'allStationsData' to satisfy the App.tsx if you updated it previously
-export const allStationsData = {
+// 2. THIS IS THE CRITICAL FIX
+// Explicitly typing this as a Record allows 'any string' to be used as a key.
+export const allStationsData: Record<string, Station> = {
   "Pasar Seni": stationData,
-  // Add other stations if you want to test switching
+  "Abdullah Hukum": {
+      name: "Abdullah Hukum",
+      location: { lat: 3.1187, lng: 101.6762 },
+      gems: [] 
+  },
+  "Kajang": { 
+      name: "Kajang", 
+      location: { lat: 2.9934, lng: 101.7904 }, 
+      gems: [] 
+  },
+  "Tun Razak Exchange": { 
+      name: "Tun Razak Exchange", 
+      location: { lat: 3.1420, lng: 101.7206 }, 
+      gems: [] 
+  }
 };
