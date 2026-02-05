@@ -1,6 +1,6 @@
-import overpy
-import pandas as pd
-import time
+import overpy           #Used for access Overpass API
+import pandas as pd     #Used for organize the datas
+import time             #Used for pause between time
 
 api = overpy.Overpass()
 
@@ -20,7 +20,7 @@ api = overpy.Overpass()
 
 station_names = "Kwasa Damansara|Kwasa Sentral|Kota Damansara|Surian|Mutiara Damansara|Bandar Utama|Taman Tun Dr Ismail|Phileo Damansara|Pusat Bandar Damansara|Semantan|Muzium Negara|Pasar Seni|Merdeka|Bukit Bintang|Tun Razak Exchange|Cochrane|Maluri|Taman Pertama|Taman Midah|Taman Mutiara|Taman Connaught|Taman Suntex|Sri Raya|Bandar Tun Hussein Onn|Batu 11 Cheras|Bukit Dukung|Sungai Jernih|Stadium Kajang|Kajang"
 
-query = f"""
+query = f"""                
 [out:json][timeout:180];
 (
   node["railway"="station"]["name"~"{station_names}"];
@@ -65,7 +65,7 @@ if response:
             "lng": lon
         })
 
-    df = pd.DataFrame(data).drop_duplicates(subset=['Name', 'Lat', 'Lon'])
+    df = pd.DataFrame(data).drop_duplicates(subset=['Name', 'lat', 'lng'])
     
     if not df.empty:
         df.to_csv("mrt_kajang_food_complete.csv", index=False)
