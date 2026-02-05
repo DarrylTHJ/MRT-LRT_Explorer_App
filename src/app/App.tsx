@@ -6,7 +6,9 @@ import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
 import { MapPin, Leaf } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
-
+import { allStationsData } from "../data/stationData";
+import { toast } from "sonner";
+import { askRailRonda } from "../services/gemini";
 import GemMap from "./components/GemMap";
 import { stationData } from "../data/stationData";
 // Ensure this file exists at src/data/lines.ts
@@ -55,11 +57,11 @@ const allAttractions: Attraction[] = [
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kelana");
-  const [currentStationName, setCurrentStationName] = useState("Abdullah Hukum");
-  
+  const [currentStationName, setCurrentStationName] = useState("Pasar Seni");
+  const [isThinking, setIsThinking] = useState(false);
   // States: dashboard (default), zooming (animation), map (fullscreen map), impact (eco page)
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
-
+  const currentStationData = allStationsData[currentStationName] || allStationsData["Pasar Seni"];
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
 
@@ -83,6 +85,35 @@ export default function App() {
       else setCurrentStationName("Pasar Seni");
   };
 
+  const handleAISearch = async (userQuery: string) => {
+    setIsThinking(true);
+    
+    // We pass the currently active station's gems to the AI
+    // We assume 'stationData.gems' is your list of places
+    const recommendation = await askRailRonda(userQuery, stationData.gems);
+    
+    setIsThinking(false);
+
+    if (recommendation) {
+      // 1. Find the full object of the recommended Gem
+      const gem = stationData.gems.find(g => g.id === recommendation.recommendedGemId);
+      
+      if (gem) {
+        // 2. Show the result (You can animate this later!)
+        toast.success(`RailRonda suggests: ${gem.name}`, {
+          description: recommendation.reason,
+          duration: 5000,
+        });
+        
+        // 3. Optional: Automatically select/highlight it on the map
+        // You might need to add a setSelectedGem state to App.tsx and pass it down
+        // setViewState("map"); 
+      }
+    } else {
+      toast.error("RailRonda got lost on the tracks. Try again!");
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
@@ -99,10 +130,10 @@ export default function App() {
           {/* === MAP VIEW === */}
           {(viewState === "zooming" || viewState === "map") && (
             <div className="absolute inset-0 z-0 h-full w-full">
-              <GemMap 
-                station={stationData} 
-                onBack={() => setViewState("dashboard")} 
-              />
+<GemMap 
+        station={currentStationData} 
+        onBack={() => setViewState("dashboard")} 
+     />
             </div>
           )}
 
@@ -214,7 +245,7 @@ export default function App() {
                 </div>
               </div>
 
-              <GlassSearchBar />
+              <GlassSearchBar onSearch={handleAISearch} isThinking={isThinking} />
             </motion.div>
           )}
 
