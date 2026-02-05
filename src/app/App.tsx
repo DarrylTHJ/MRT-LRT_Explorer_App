@@ -7,7 +7,7 @@ import { FilterTabs } from "./components/FilterTabs";
 import { MapPin, Leaf } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
 import { allStationsData } from "../data/stationData";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { askRailRonda } from "../services/gemini";
 import GemMap from "./components/GemMap";
 import { stationData } from "../data/stationData";
@@ -117,6 +117,8 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
+        
+        <Toaster position="top-center" richColors />
         
         <AnimatePresence mode="popLayout">
             
