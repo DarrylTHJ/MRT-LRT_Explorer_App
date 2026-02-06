@@ -126,11 +126,9 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
   const isAIMode = highlightedGemIds.length > 0;
 
   // --- DYNAMIC RESTRICTION BOUNDS ---
-  // Calculates a "jail box" based on the current radius
   const mapRestriction = useMemo(() => {
     // Rule: Allow panning up to 2.5x the radius distance
-    // 1 degree lat is approx 111,000 meters
-    const bufferMeters = Math.max(radius * 2.5, 600); // Min 600m buffer so it doesn't break at 0
+    const bufferMeters = Math.max(radius * 2.5, 600); 
     const delta = bufferMeters / 111000;
 
     return {
@@ -140,7 +138,7 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
         east: station.location.lng + delta,
         west: station.location.lng - delta,
       },
-      strictBounds: false, // "False" allows a smooth elastic bounce effect
+      strictBounds: false, 
     };
   }, [station, radius]);
 
@@ -187,8 +185,8 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
         </div>
       </div>
 
-      {/* Bottom Slider */}
-      <div className="absolute bottom-8 left-6 right-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100">
+      {/* Bottom Slider (MOVED UP to bottom-28) */}
+      <div className="absolute bottom-28 left-6 right-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100">
         <div className="flex justify-between mb-2">
             <span className="text-xs font-semibold text-gray-500">Walking Radius</span>
             <span className="text-xs font-bold text-[#E0004D]">{radius}m</span>
@@ -213,9 +211,9 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
         mapId="DEMO_MAP_ID"
         defaultCenter={station.location}
         defaultZoom={15}
-        minZoom={14} // Locked: Can't zoom out too far
-        maxZoom={20} // Free: Can zoom in to see street details
-        restriction={mapRestriction} // 🔒 Dynamic Jail Box
+        minZoom={14}
+        maxZoom={20}
+        restriction={mapRestriction}
         gestureHandling={'greedy'}
         disableDefaultUI={true}
         className="w-full h-full"
