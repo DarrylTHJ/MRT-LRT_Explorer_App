@@ -54,8 +54,8 @@ const allAttractions: Attraction[] = [
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kelana");
-  const [currentStationName, setCurrentStationName] = useState("Pasar Seni");
+  const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kajang");
+  const [currentStationName, setCurrentStationName] = useState("Kajang");
   const [isThinking, setIsThinking] = useState(false);
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
   
@@ -183,12 +183,13 @@ export default function App() {
                 />
 
 <div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
-  <TrainHero 
-    isZooming={viewState === "zooming"} 
-    currentStation={currentStationName}
-    stationsList={currentLineData}
-    onStationChange={setCurrentStationName}
-  />
+<TrainHero 
+  isZooming={viewState === "zooming"} 
+  currentStation={currentStationName}
+  stationsList={currentLineData}
+  onStationChange={setCurrentStationName}
+  themeColor={themeColor} // <--- ADD THIS
+/>
   <p className="text-center text-xs text-gray-400 mt-2">Tap image to explore map</p>
 </div>
 
