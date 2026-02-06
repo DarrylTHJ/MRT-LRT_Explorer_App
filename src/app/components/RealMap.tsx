@@ -143,7 +143,8 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
   }, [station, radius]);
 
   return (
-    <div className="relative h-full w-full bg-gray-100">
+    // ✅ FIX: Use 100dvh to perfectly fit the mobile viewport without scrolling
+<div className="relative h-full w-full bg-gray-100 overflow-hidden">
       
       {/* Top Bar */}
       <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-12 pb-4 bg-gradient-to-b from-white/90 to-white/0 pointer-events-none">
@@ -185,8 +186,8 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
         </div>
       </div>
 
-      {/* Bottom Slider (MOVED UP to bottom-28) */}
-      <div className="absolute bottom-28 left-6 right-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100">
+      {/* Bottom Slider - ✅ FIXED: Pinned to bottom-10 for easy thumb access */}
+      <div className="absolute bottom-10 left-6 right-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100">
         <div className="flex justify-between mb-2">
             <span className="text-xs font-semibold text-gray-500">Walking Radius</span>
             <span className="text-xs font-bold text-[#E0004D]">{radius}m</span>

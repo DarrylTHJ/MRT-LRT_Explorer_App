@@ -15,7 +15,6 @@ import ImpactPage from "./components/ImpactPage";
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
-  // 1. DEFAULT TO KAJANG (As requested)
   const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kajang");
   const [currentStationName, setCurrentStationName] = useState("Kajang");
   
@@ -27,18 +26,16 @@ export default function App() {
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
 
-  // 2. DYNAMIC GEMS MAPPING
-  // We convert the Station's real 'gems' into the format AttractionCard needs
+  // Dynamic Gems Mapping
   const displayedAttractions = currentStationData.gems
     .filter((gem) => activeFilter === "all" || gem.category === activeFilter)
     .map((gem) => ({
       id: gem.id,
       name: gem.name,
-      category: gem.category.replace("_", " "), // "fast_food" -> "fast food"
-      // Random placeholder logic since we don't have real images for all 1000 gems yet
+      category: gem.category.replace("_", " "), 
       image: `https://source.unsplash.com/400x300/?${gem.category},food`, 
-      walkTime: "5 min", // Placeholder or calculate from distance
-      isSheltered: Math.random() > 0.5, // Mock data
+      walkTime: "5 min", 
+      isSheltered: Math.random() > 0.5, 
       co2Saved: gem.co2Saved,
     }));
 
@@ -51,7 +48,6 @@ export default function App() {
 
   const handleLineSwitch = (line: "kelana" | "kajang") => {
       setActiveLine(line);
-      // Reset to start of line
       if (line === "kelana") setCurrentStationName("Abdullah Hukum");
       else setCurrentStationName("Kajang");
   };
@@ -75,8 +71,11 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
-      <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
+    // 🔴 FIX 1: Use h-[100dvh] instead of min-h-screen to lock to viewport
+    <div className="relative h-[100dvh] w-full bg-[#F5F5F7] overflow-hidden flex justify-center">
+      
+      {/* 🔴 FIX 2: Use h-full to fill the parent, removing the fixed 852px height */}
+      <div className="w-full max-w-[393px] h-full bg-[#F5F5F7] relative shadow-2xl overflow-hidden flex flex-col">
         
         <Toaster position="top-center" richColors />
         
@@ -150,7 +149,6 @@ export default function App() {
                     onStationChange={setCurrentStationName}
                     themeColor={themeColor}
                   />
-                  {/* 3. REMOVED THE "TAP TO EXPLORE" <p> TAG HERE */}
                 </div>
 
                 <div className="px-6 py-6">
@@ -161,7 +159,6 @@ export default function App() {
                   
                   <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
                      <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; } .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
-                    {/* 4. RENDER REAL DYNAMIC ATTRACTIONS */}
                     {displayedAttractions.map((attraction) => (
                       <AttractionCard key={attraction.id} attraction={attraction} />
                     ))}
