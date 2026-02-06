@@ -24,6 +24,21 @@ interface RealMapProps {
   highlightedGemIds?: number[];
 }
 
+// --- Helper: Haversine Distance ---
+function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371e3; 
+  const toRad = (deg: number) => deg * (Math.PI / 180);
+  
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
 // --- Helper: Dynamic Radius Circle ---
 const RadiusCircle = ({ center, radius }: { center: google.maps.LatLngLiteral, radius: number }) => {
   const map = useMap();
@@ -38,7 +53,7 @@ const RadiusCircle = ({ center, radius }: { center: google.maps.LatLngLiteral, r
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: "#E0004D",
-        fillOpacity: 0.15,
+        fillOpacity: 0.10,
         map,
         clickable: false,
       });
@@ -56,55 +71,81 @@ const RadiusCircle = ({ center, radius }: { center: google.maps.LatLngLiteral, r
   return null;
 };
 
-// --- Helper: Camera Controller ---
-const MapUpdater = ({ center }: { center: google.maps.LatLngLiteral }) => {
+// --- Helper: Smart Camera Controller ---
+const MapZoomController = ({ center, radius }: { center: google.maps.LatLngLiteral, radius: number }) => {
   const map = useMap();
+  
   useEffect(() => {
-    if (map) {
-      map.panTo(center);
-      map.setZoom(16);
-    }
-  }, [map, center]);
+    if (!map) return;
+
+    // Smart Zoom: The smaller the radius, the closer we zoom
+    let targetZoom = 15;
+    if (radius <= 250) targetZoom = 17;
+    else if (radius <= 500) targetZoom = 16;
+    else if (radius <= 1000) targetZoom = 15;
+    else targetZoom = 14;
+
+    map.panTo(center);
+    map.setZoom(targetZoom);
+    
+  }, [map, center, radius]); 
+
   return null;
 };
 
 export default function RealMap({ station, onBack, highlightedGemIds = [] }: RealMapProps) {
-  const [radius, setRadius] = useState(500); 
+  const [radius, setRadius] = useState(800); 
   const [category, setCategory] = useState("all");
   const [selectedGem, setSelectedGem] = useState<Gem | null>(null);
 
-  // Filter Logic
+  // --- FILTER LOGIC ---
   const visibleGems = useMemo(() => {
     if (!station || !station.gems) return [];
 
     let gems = station.gems;
 
-    // 1. AI Highlighting takes priority if active
     if (highlightedGemIds.length > 0) {
       gems = gems.filter(g => highlightedGemIds.includes(g.id));
     } else {
-      // 2. Otherwise apply Category filter
       if (category !== "all") {
         gems = gems.filter(g => g.category === category);
       }
     }
 
+    gems = gems.filter(gem => {
+      const dist = haversineDistance(
+        station.location.lat, station.location.lng,
+        gem.lat, gem.lng
+      );
+      return dist <= radius;
+    });
+
     return gems;
-  }, [category, station, highlightedGemIds]);
+  }, [category, station, highlightedGemIds, radius]);
 
   const isAIMode = highlightedGemIds.length > 0;
 
-  // Auto-select first result if AI found something
-  useEffect(() => {
-    if (isAIMode && visibleGems.length > 0) {
-      setSelectedGem(visibleGems[0]);
-    }
-  }, [isAIMode, visibleGems]);
+  // --- DYNAMIC RESTRICTION BOUNDS ---
+  // Calculates a "jail box" based on the current radius
+  const mapRestriction = useMemo(() => {
+    // Rule: Allow panning up to 2.5x the radius distance
+    // 1 degree lat is approx 111,000 meters
+    const bufferMeters = Math.max(radius * 2.5, 600); // Min 600m buffer so it doesn't break at 0
+    const delta = bufferMeters / 111000;
+
+    return {
+      latLngBounds: {
+        north: station.location.lat + delta,
+        south: station.location.lat - delta,
+        east: station.location.lng + delta,
+        west: station.location.lng - delta,
+      },
+      strictBounds: false, // "False" allows a smooth elastic bounce effect
+    };
+  }, [station, radius]);
 
   return (
     <div className="relative h-full w-full bg-gray-100">
-      
-      {/* --- UI OVERLAYS (Restored to be Always Visible) --- */}
       
       {/* Top Bar */}
       <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-12 pb-4 bg-gradient-to-b from-white/90 to-white/0 pointer-events-none">
@@ -119,11 +160,15 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
           
           <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-sm border border-gray-100">
             <h2 className="text-lg font-bold text-gray-900 leading-none">{station.name}</h2>
-            <p className="text-xs text-[#E0004D] font-medium mt-1">Live Radius: {radius}m</p>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-xs text-[#E0004D] font-medium">Range: {radius}m</span>
+              <span className="text-[10px] text-gray-400">|</span>
+              <span className="text-[10px] text-gray-500">{visibleGems.length} places found</span>
+            </div>
           </div>
         </div>
 
-        {/* Filter Pills (Disable them visibly if in AI mode to avoid confusion) */}
+        {/* Filter Pills */}
         <div className={`flex gap-2 mt-4 overflow-x-auto scrollbar-hide pointer-events-auto pb-2 transition-opacity ${isAIMode ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
           {['all', 'food', 'cafe', 'fast_food', 'restaurant'].map((cat) => (
             <button
@@ -142,40 +187,56 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
         </div>
       </div>
 
-      {/* Bottom Slider (Restored) */}
+      {/* Bottom Slider */}
       <div className="absolute bottom-8 left-6 right-6 z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100">
         <div className="flex justify-between mb-2">
-            <span className="text-xs font-semibold text-gray-500">Walking Range</span>
+            <span className="text-xs font-semibold text-gray-500">Walking Radius</span>
             <span className="text-xs font-bold text-[#E0004D]">{radius}m</span>
         </div>
         <input 
           type="range" 
-          min="200" 
+          min="100" 
           max="2000" 
-          step="100"
+          step="50"
           value={radius}
           onChange={(e) => setRadius(Number(e.target.value))}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E0004D]"
         />
+        <div className="flex justify-between mt-1 text-[10px] text-gray-400">
+            <span>Close (100m)</span>
+            <span>Far (2km)</span>
+        </div>
       </div>
 
       {/* --- GOOGLE MAP --- */}
       <Map
         mapId="DEMO_MAP_ID"
         defaultCenter={station.location}
-        defaultZoom={16}
+        defaultZoom={15}
+        minZoom={14} // Locked: Can't zoom out too far
+        maxZoom={20} // Free: Can zoom in to see street details
+        restriction={mapRestriction} // 🔒 Dynamic Jail Box
         gestureHandling={'greedy'}
         disableDefaultUI={true}
         className="w-full h-full"
       >
-        <MapUpdater center={station.location} />
+        <MapZoomController center={station.location} radius={radius} />
         
-        {/* Radius Circle (Restored) */}
         <RadiusCircle center={station.location} radius={radius} />
 
-        {/* Station Center Marker */}
+        {/* Station Marker */}
         <AdvancedMarker position={station.location}>
-           <div className="w-4 h-4 bg-blue-600 border-2 border-white rounded-full shadow-lg animate-pulse" />
+           <div className="relative flex flex-col items-center">
+              <div className="bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-md mb-1 whitespace-nowrap">
+                {station.name} Station
+              </div>
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-xl border-2 border-white z-20">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-white">
+                   <path d="M18 6c0-1.105-.895-2-2-2H8c-1.105 0-2 .895-2 2v7h12V6zM6 15c0 1.105.895 2 2 2h8c1.105 0 2-.895 2-2v-2H6v2zm2 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm8 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-4-13.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/>
+                 </svg>
+              </div>
+              <div className="absolute top-6 w-8 h-8 bg-blue-500 rounded-full animate-ping opacity-75 -z-10" />
+           </div>
         </AdvancedMarker>
 
         {/* Gem Markers */}
@@ -186,7 +247,6 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
             onClick={() => setSelectedGem(gem)}
           >
             <div className="relative group cursor-pointer transition-transform hover:scale-110 active:scale-95">
-               {/* Green Bounce for AI, Red for Normal */}
                <MapPin className={`w-10 h-10 ${isAIMode ? 'text-green-600 animate-bounce' : 'text-[#E0004D]'} fill-white drop-shadow-md`} />
             </div>
           </AdvancedMarker>

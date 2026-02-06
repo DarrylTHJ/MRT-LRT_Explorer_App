@@ -182,10 +182,15 @@ export default function App() {
                   themeColor={themeColor}
                 />
 
-                <div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
-                  <TrainHero isZooming={viewState === "zooming"} />
-                  <p className="text-center text-xs text-gray-400 mt-2">Tap train to explore map</p>
-                </div>
+<div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
+  <TrainHero 
+    isZooming={viewState === "zooming"} 
+    currentStation={currentStationName}
+    stationsList={currentLineData}
+    onStationChange={setCurrentStationName}
+  />
+  <p className="text-center text-xs text-gray-400 mt-2">Tap image to explore map</p>
+</div>
 
                 <div className="px-6 py-6">
                   <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">Nearby Gems</h2>
