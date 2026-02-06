@@ -1,58 +1,87 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// 🔴 FIX: We cast to 'any' to force TypeScript to accept .env
 const API_KEY = (import.meta as any).env.VITE_GEMINI_API_KEY;
 
-// Safety check
 if (!API_KEY) {
   console.error("🚨 Error: VITE_GEMINI_API_KEY is missing in .env file");
 }
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
+const MODEL_ROSTER = [
+  "gemini-2.5-flash",
+  "gemini-3-flash-preview",
+  "gemini-2.5-flash-lite",
+  "gemini-2.0-flash",
+  "gemini-2.0-flash-lite",
+  "gemini-2.5-pro"
+];
+
 export interface AIRecommendation {
-  recommendedGemId: number;
+  recommendedGemIds: number[]; // <--- CHANGED TO ARRAY
   reason: string;
 }
+
+const generateWithFallback = async (prompt: string, rosterIndex = 0): Promise<string | null> => {
+  if (rosterIndex >= MODEL_ROSTER.length) {
+    console.error("💀 CRITICAL: All AI models are exhausted or failing.");
+    return null;
+  }
+
+  const currentModelName = MODEL_ROSTER[rosterIndex];
+  console.log(`🤖 RailRonda Brain: Attempting with [${currentModelName}]...`);
+
+  try {
+    const model = genAI.getGenerativeModel({ model: currentModelName });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
+
+  } catch (error: any) {
+    const isRateLimit = error.message?.includes("429") || error.message?.includes("Quota");
+    const isOverloaded = error.message?.includes("503") || error.message?.includes("Overloaded");
+
+    if (isRateLimit || isOverloaded) {
+      console.warn(`⚠️ Model [${currentModelName}] is out of breath. Switching to backup...`);
+      return generateWithFallback(prompt, rosterIndex + 1);
+    } else {
+      console.error(`❌ Fatal Error on [${currentModelName}]:`, error);
+      return generateWithFallback(prompt, rosterIndex + 1);
+    }
+  }
+};
 
 export const askRailRonda = async (
   userQuery: string, 
   availableGems: any[]
 ): Promise<AIRecommendation | null> => {
   
-  // ✅ Using the latest model as you requested
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
   const prompt = `
     You are RailRonda, a smart travel companion for KL public transport.
     
-    Here is the database of locations (Hidden Gems) available near the user:
+    CONTEXT DATA (Places near the user):
     ${JSON.stringify(availableGems)}
 
-    The user asks: "${userQuery}"
+    USER REQUEST: "${userQuery}"
 
     INSTRUCTIONS:
-    1. Analyze the user's request (e.g., looking for 'quiet', 'food', 'plugs', 'traditional').
-    2. Select the ONE single best matching location from the database above.
-    3. Return ONLY a JSON object with this exact format:
-       {
-         "recommendedGemId": <insert_id_number_here>,
-         "reason": "<insert_short_punchy_reason_here>"
-       }
-    4. If no place fits well, pick the closest match but acknowledge the limitation in the reason.
-    5. Do NOT use Markdown formatting (no \`\`\`json). Just the raw JSON string.
+    1. Analyze the User Request against the Context Data.
+    2. Select ALL matching locations (e.g. if user asks for 'coffee', return all cafes).
+    3. Return ONLY a raw JSON object (no markdown).
+    4. Format: { "recommendedGemIds": [101, 102], "reason": "Short summary of why these were picked" }
+    5. If nothing fits perfectly, return an empty array [] and a polite reason.
+    6. STRICTLY NO MARKDOWN. Just the JSON string.
   `;
 
+  const rawText = await generateWithFallback(prompt);
+
+  if (!rawText) return null;
+
   try {
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    
-    const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-    
+    const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(cleanText);
   } catch (error) {
-    console.error("Gemini Brain Freeze:", error);
+    console.error("🧠 JSON Parse Error:", error);
     return null;
   }
 };

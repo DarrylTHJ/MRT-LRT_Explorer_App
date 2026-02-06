@@ -4,13 +4,12 @@ import { TrainHero } from "./components/TrainHero";
 import { AttractionCard, Attraction } from "./components/AttractionCard";
 import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
-import { MapPin, Leaf } from "lucide-react"; 
+import { Leaf } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
-// FIX 1: Import only what we need
 import { allStationsData } from "../data/stationData";
 import { toast, Toaster } from "sonner";
 import { askRailRonda } from "../services/gemini";
-import GemMap from "./components/GemMap";
+import RealMap from "./components/RealMap"; // <--- CHANGED: Import RealMap
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
 
@@ -60,7 +59,9 @@ export default function App() {
   const [isThinking, setIsThinking] = useState(false);
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
   
-  // FIX 2: Correctly accessing data with the type fix from stationData.ts
+  // New State for Multi-Select AI Results
+  const [highlightedGemIds, setHighlightedGemIds] = useState<number[]>([]);
+
   const currentStationData = allStationsData[currentStationName] || allStationsData["Pasar Seni"];
   
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
@@ -89,22 +90,26 @@ export default function App() {
   const handleAISearch = async (userQuery: string) => {
     setIsThinking(true);
     
-    // FIX 3: Passing the correct gems for the ACTIVE station
+    // Call Gemini (now returns an object with recommendedGemIds array)
     const recommendation = await askRailRonda(userQuery, currentStationData.gems);
     
     setIsThinking(false);
 
-    if (recommendation) {
-      const gem = currentStationData.gems.find(g => g.id === recommendation.recommendedGemId);
+    if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
+      // 1. Set the Highlights (Array of IDs)
+      setHighlightedGemIds(recommendation.recommendedGemIds);
       
-      if (gem) {
-        toast.success(`RailRonda suggests: ${gem.name}`, {
-          description: recommendation.reason,
-          duration: 5000,
-        });
-      }
+      // 2. Switch to Map View automatically
+      setViewState("map");
+
+      // 3. Show success toast
+      toast.success(`Found ${recommendation.recommendedGemIds.length} matches!`, {
+        description: recommendation.reason,
+        duration: 4000,
+      });
     } else {
-      toast.error("RailRonda got lost on the tracks. Try again!");
+      toast.error("RailRonda couldn't find a match. Try a different query!");
+      setHighlightedGemIds([]); 
     }
   };
 
@@ -112,7 +117,6 @@ export default function App() {
     <div className="relative min-h-screen bg-[#F5F5F7] overflow-hidden">
       <div className="max-w-[393px] min-h-[852px] mx-auto bg-[#F5F5F7] relative shadow-2xl overflow-hidden">
         
-        {/* FIX 4: Toaster added here so popups actually show up */}
         <Toaster position="top-center" richColors />
         
         <AnimatePresence mode="popLayout">
@@ -124,9 +128,14 @@ export default function App() {
 
           {(viewState === "zooming" || viewState === "map") && (
             <div className="absolute inset-0 z-0 h-full w-full">
-              <GemMap 
+              {/* REPLACED GemMap with RealMap */}
+              <RealMap 
                 station={currentStationData} 
-                onBack={() => setViewState("dashboard")} 
+                onBack={() => {
+                    setViewState("dashboard");
+                    setHighlightedGemIds([]); // Clear the AI selection when going back
+                }}
+                highlightedGemIds={highlightedGemIds} // Pass the array of IDs
               />
             </div>
           )}
