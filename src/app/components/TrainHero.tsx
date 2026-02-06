@@ -241,10 +241,11 @@ export function TrainHero({ isZooming, currentStation, stationsList, onStationCh
             />
           ))}
         </div>
-
-        <div className={`mt-3 text-center transition-opacity ${isZooming ? 'opacity-0' : 'opacity-100'}`}>
-          <p className="text-xs text-gray-400 font-medium">← Swipe carriage to travel →</p>
-        </div>
+<div className={`mt-3 text-center transition-opacity ${isZooming ? 'opacity-0' : 'opacity-100'}`}>
+  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
+    Swipe to Travel • Tap to Explore
+  </p>
+</div>
       </motion.div>
     </div>
   );

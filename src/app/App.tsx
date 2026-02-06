@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RouteMap } from "./components/RouteMap";
 import { TrainHero } from "./components/TrainHero";
-import { AttractionCard, Attraction } from "./components/AttractionCard";
+import { AttractionCard } from "./components/AttractionCard";
 import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
 import { Leaf } from "lucide-react"; 
@@ -9,70 +9,38 @@ import { motion, AnimatePresence } from "motion/react";
 import { allStationsData } from "../data/stationData";
 import { toast, Toaster } from "sonner";
 import { askRailRonda } from "../services/gemini";
-import RealMap from "./components/RealMap"; // <--- CHANGED: Import RealMap
+import RealMap from "./components/RealMap"; 
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
 
-const allAttractions: Attraction[] = [
-  {
-    id: 1,
-    name: "Artisan Coffee House",
-    category: "Food",
-    image: "https://images.unsplash.com/photo-1544457070-4cd773b4d71e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYWZlJTIwaW50ZXJpb3IlMjBhZXN0aGV0aWN8ZW58MXx8fHwxNzY5NTA1NzI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    walkTime: "3 min walk",
-    isSheltered: true,
-    co2Saved: "0.4kg",
-  },
-  {
-    id: 2,
-    name: "Traditional Malaysian Bistro",
-    category: "Food",
-    image: "https://images.unsplash.com/photo-1755589494214-3e48817a4c9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFkaXRpb25hbCUyMG1hbGF5c2lhbiUyMHJlc3RhdXJhbnQlMjBpbnRlcmlvcnxlbnwxfHx8fDE3Njk1MDY2MDh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    walkTime: "5 min walk",
-    isSheltered: true,
-    co2Saved: "0.7kg",
-  },
-  {
-    id: 3,
-    name: "Street Food Market",
-    category: "Food",
-    image: "https://images.unsplash.com/photo-1759299710388-690bf2305e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHN0cmVldCUyMGZvb2QlMjBtYXJrZXQlMjB2aWJyYW50fGVufDF8fHx8MTc2OTUwNTcyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    walkTime: "2 min walk",
-    isSheltered: false,
-    co2Saved: "0.3kg",
-  },
-  {
-    id: 4,
-    name: "National Heritage Gallery",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1647792845543-a8032c59cbdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNldW0lMjBnYWxsZXJ5JTIwY29udGVtcG9yYXJ5JTIwYXJ0fGVufDF8fHx8MTc2OTUwNTcyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    walkTime: "4 min walk",
-    isSheltered: true,
-    co2Saved: "0.5kg",
-  }
-];
-
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
+  // 1. DEFAULT TO KAJANG (As requested)
   const [activeLine, setActiveLine] = useState<"kelana" | "kajang">("kajang");
   const [currentStationName, setCurrentStationName] = useState("Kajang");
+  
   const [isThinking, setIsThinking] = useState(false);
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
-  
-  // New State for Multi-Select AI Results
   const [highlightedGemIds, setHighlightedGemIds] = useState<number[]>([]);
 
-  const currentStationData = allStationsData[currentStationName] || allStationsData["Pasar Seni"];
-  
+  const currentStationData = allStationsData[currentStationName] || allStationsData["Kajang"];
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
 
-  const filteredAttractions =
-    activeFilter === "all"
-      ? allAttractions
-      : allAttractions.filter(
-          (attraction) => attraction.category.toLowerCase() === activeFilter
-        );
+  // 2. DYNAMIC GEMS MAPPING
+  // We convert the Station's real 'gems' into the format AttractionCard needs
+  const displayedAttractions = currentStationData.gems
+    .filter((gem) => activeFilter === "all" || gem.category === activeFilter)
+    .map((gem) => ({
+      id: gem.id,
+      name: gem.name,
+      category: gem.category.replace("_", " "), // "fast_food" -> "fast food"
+      // Random placeholder logic since we don't have real images for all 1000 gems yet
+      image: `https://source.unsplash.com/400x300/?${gem.category},food`, 
+      walkTime: "5 min", // Placeholder or calculate from distance
+      isSheltered: Math.random() > 0.5, // Mock data
+      co2Saved: gem.co2Saved,
+    }));
 
   const handleTrainClick = () => {
     setViewState("zooming"); 
@@ -83,26 +51,19 @@ export default function App() {
 
   const handleLineSwitch = (line: "kelana" | "kajang") => {
       setActiveLine(line);
+      // Reset to start of line
       if (line === "kelana") setCurrentStationName("Abdullah Hukum");
-      else setCurrentStationName("Pasar Seni");
+      else setCurrentStationName("Kajang");
   };
 
   const handleAISearch = async (userQuery: string) => {
     setIsThinking(true);
-    
-    // Call Gemini (now returns an object with recommendedGemIds array)
     const recommendation = await askRailRonda(userQuery, currentStationData.gems);
-    
     setIsThinking(false);
 
     if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
-      // 1. Set the Highlights (Array of IDs)
       setHighlightedGemIds(recommendation.recommendedGemIds);
-      
-      // 2. Switch to Map View automatically
       setViewState("map");
-
-      // 3. Show success toast
       toast.success(`Found ${recommendation.recommendedGemIds.length} matches!`, {
         description: recommendation.reason,
         duration: 4000,
@@ -128,14 +89,13 @@ export default function App() {
 
           {(viewState === "zooming" || viewState === "map") && (
             <div className="absolute inset-0 z-0 h-full w-full">
-              {/* REPLACED GemMap with RealMap */}
               <RealMap 
                 station={currentStationData} 
                 onBack={() => {
                     setViewState("dashboard");
-                    setHighlightedGemIds([]); // Clear the AI selection when going back
+                    setHighlightedGemIds([]); 
                 }}
-                highlightedGemIds={highlightedGemIds} // Pass the array of IDs
+                highlightedGemIds={highlightedGemIds} 
               />
             </div>
           )}
@@ -182,16 +142,16 @@ export default function App() {
                   themeColor={themeColor}
                 />
 
-<div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
-<TrainHero 
-  isZooming={viewState === "zooming"} 
-  currentStation={currentStationName}
-  stationsList={currentLineData}
-  onStationChange={setCurrentStationName}
-  themeColor={themeColor} // <--- ADD THIS
-/>
-  <p className="text-center text-xs text-gray-400 mt-2">Tap image to explore map</p>
-</div>
+                <div className="cursor-pointer transition-transform active:scale-95 origin-center" onClick={handleTrainClick}>
+                  <TrainHero 
+                    isZooming={viewState === "zooming"} 
+                    currentStation={currentStationName}
+                    stationsList={currentLineData}
+                    onStationChange={setCurrentStationName}
+                    themeColor={themeColor}
+                  />
+                  {/* 3. REMOVED THE "TAP TO EXPLORE" <p> TAG HERE */}
+                </div>
 
                 <div className="px-6 py-6">
                   <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">Nearby Gems</h2>
@@ -201,9 +161,15 @@ export default function App() {
                   
                   <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
                      <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; } .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
-                    {filteredAttractions.map((attraction) => (
+                    {/* 4. RENDER REAL DYNAMIC ATTRACTIONS */}
+                    {displayedAttractions.map((attraction) => (
                       <AttractionCard key={attraction.id} attraction={attraction} />
                     ))}
+                    {displayedAttractions.length === 0 && (
+                      <div className="w-full text-center text-gray-400 text-sm py-8 italic">
+                        No gems found for this category.
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
