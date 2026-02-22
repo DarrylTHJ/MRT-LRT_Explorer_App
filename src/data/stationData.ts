@@ -51,7 +51,7 @@ export const allStationsData: Record<string, Station> = {
     name: "Kajang",
     location: stationLocations["Kajang"],
     gems: [
-      { id: 1, name: "KFC", category: "fast_food", lat: 2.99175, lng: 101.78879, description: "Chicken", co2Saved: "0.20kg" },
+      { id: 1, name: "KFCC", category: "fast_food", lat: 2.99175, lng: 101.78879, description: "Chicken", co2Saved: "0.20kg" },
       { id: 2, name: "Sate Kajang Hj Samuri", category: "restaurant", lat: 2.99358, lng: 101.78708, description: "Satay", co2Saved: "0.30kg" },
       { id: 3, name: "Sate Kajang Hj Samuri", category: "restaurant", lat: 2.99162, lng: 101.78853, description: "Local Delights", co2Saved: "0.40kg" },
       { id: 4, name: "Restoran Malaysia", category: "restaurant", lat: 2.9928, lng: 101.78971, description: "Chinese", co2Saved: "0.50kg" },
