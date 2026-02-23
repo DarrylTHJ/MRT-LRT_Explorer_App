@@ -56,7 +56,7 @@ if response:
     df = pd.DataFrame(data).drop_duplicates(subset=['Name', 'lat', 'lng'])
     
     if not df.empty:
-        df.to_csv("mrt_kelanajaya_food_complete.csv", index=False)
+        df.to_csv(r"C:\Users\user\Desktop\Codes [1]\MRT-LRT_Explorer_App", index=False)
         print(f"\nSuccess! Found {len(df)} food spots along the MRT Kelana Jaya Line.")
         print(df.head(10)) # Show first 10 results
     else:
