@@ -74,54 +74,57 @@ export default function App() {
     });
   };
 
-  // 🔴 HANDLE STATION SELECTION (Acts as Starting Station for Global Search)
-  const handleStationSelect = async (stationName: string) => {
+ // 1. Just changes the visual station, DOES NOT fire AI yet
+  const handleStationSelect = (stationName: string) => {
     setCurrentStationName(stationName);
+  };
 
-    if (pendingGlobalQuery) {
-      const query = pendingGlobalQuery;
-      setPendingGlobalQuery(null); // Clear pending state
-      setIsThinking(true);
+  // 2. 🔴 NEW: The function attached to the Confirm button that fires the AI
+  const handleConfirmOrigin = async () => {
+    if (!pendingGlobalQuery) return;
+    
+    const query = pendingGlobalQuery;
+    setPendingGlobalQuery(null); // Clear pending state (Hides banner)
+    setIsThinking(true);
 
-      // Flatten ALL gems across ALL stations
-      const allGems = Object.values(allStationsData).flatMap(station => 
-        station.gems.map(gem => ({
-          ...gem,
-          stationName: station.name,
-          stationLat: station.location.lat,
-          stationLng: station.location.lng
-        }))
-      );
+    // Flatten ALL gems across ALL stations
+    const allGems = Object.values(allStationsData).flatMap(station => 
+      station.gems.map(gem => ({
+        ...gem,
+        stationName: station.name,
+        stationLat: station.location.lat,
+        stationLng: station.location.lng
+      }))
+    );
 
-      // Ask AI
-      const recommendation = await askGlobalRailRonda(query, allGems);
+    // Ask AI
+    const recommendation = await askGlobalRailRonda(query, allGems);
+    
+    if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
       
-      if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
+      // Map AI Results to UI Data + Route Math
+      const results = recommendation.recommendedGemIds.map((id: number) => {
+        const gemData = allGems.find(g => g.id === id);
+        if (!gemData) return null;
         
-        // Map AI Results to UI Data + Route Math
-        const results = recommendation.recommendedGemIds.map((id: number) => {
-          const gemData = allGems.find(g => g.id === id);
-          if (!gemData) return null;
-          
-          const route = calculateRoute(
-            stationName, // User's tapped starting station
-            gemData.stationName, // Destination station
-            gemData.lat, gemData.lng,
-            gemData.stationLat, gemData.stationLng
-          );
+        const route = calculateRoute(
+          currentStationName, // User's tapped starting station
+          gemData.stationName, // Destination station
+          gemData.lat, gemData.lng,
+          gemData.stationLat, gemData.stationLng
+        );
 
-          return { gem: gemData, route };
-        }).filter(Boolean);
+        return { gem: gemData, route };
+      }).filter(Boolean);
 
-        setGlobalResults(results as GlobalSearchResult[]);
-        setIsGlobalSheetOpen(true);
-        toast.success(`Found top matches based on ${stationName}!`, { description: recommendation.reason });
+      setGlobalResults(results as GlobalSearchResult[]);
+      setIsGlobalSheetOpen(true);
+      toast.success(`Found top matches based on ${currentStationName}!`, { description: recommendation.reason });
 
-      } else {
-        toast.error("RailRonda couldn't find a match. Try a different query!");
-      }
-      setIsThinking(false);
+    } else {
+      toast.error("RailRonda couldn't find a match. Try a different query!");
     }
+    setIsThinking(false);
   };
 
   return (
@@ -185,30 +188,31 @@ export default function App() {
                   </h1>
                 </header>
 
-{/* 🔴 NEW PENDING QUERY OVERLAY WITH CONFIRM BUTTON */}
-{pendingGlobalQuery && (
-  <motion.div 
-    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-    className="mx-6 mb-4 p-4 bg-blue-600 text-white rounded-2xl shadow-xl flex flex-col gap-3 relative z-20"
-  >
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <MapPin className="w-4 h-4 text-blue-200" />
-        <span className="text-sm font-bold">Select start station below</span>
-      </div>
-      <button onClick={() => setPendingGlobalQuery(null)} className="p-1 text-blue-200 hover:text-white rounded-full bg-blue-700/50">
-        <X className="w-4 h-4"/>
-      </button>
-    </div>
-    
-    <button 
-      onClick={handleConfirmOrigin}
-      className="w-full py-2.5 bg-white hover:bg-gray-50 text-blue-600 text-sm font-extrabold rounded-xl shadow-sm transition-transform active:scale-95 flex justify-center items-center gap-2"
-    >
-      Confirm {currentStationName} as Start
-    </button>
-  </motion.div>
-)}
+                {/* 🔴 NEW PENDING QUERY OVERLAY WITH CONFIRM BUTTON */}
+                {pendingGlobalQuery && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                    className="mx-6 mb-4 p-4 bg-blue-600 text-white rounded-2xl shadow-xl flex flex-col gap-3 relative z-20"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-blue-200" />
+                        <span className="text-sm font-bold">Select start station below</span>
+                      </div>
+                      <button onClick={() => setPendingGlobalQuery(null)} className="p-1 text-blue-200 hover:text-white rounded-full bg-blue-700/50">
+                        <X className="w-4 h-4"/>
+                      </button>
+                    </div>
+                    
+                    {/* THE RESTORED BUTTON */}
+                    <button 
+                      onClick={handleConfirmOrigin}
+                      className="w-full py-2.5 bg-white hover:bg-gray-50 text-blue-600 text-sm font-extrabold rounded-xl shadow-sm transition-transform active:scale-95 flex justify-center items-center gap-2"
+                    >
+                      Confirm {currentStationName} as Start
+                    </button>
+                  </motion.div>
+                )}
 
                 <RouteMap 
                   stations={currentLineData}
