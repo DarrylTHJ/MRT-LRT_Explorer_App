@@ -25,7 +25,6 @@ interface RealMapProps {
 }
 
 const CATEGORIES = {
-  "Heritage & Culture": ["Landmarks", "Arts", "Entertainment"],
   "Amenity": ["Restaurant","Cafe","Fast Food","Food Court","Cinema","Theatre","Arts Centre","Nightclub","Community Centre"],
   "Tourism": ["Museum","Gallery","Attraction","Theme Park","Viewpoint"],
   "Leisure": ["Bowling Alley","Amusement Arcade","Water Park"]
