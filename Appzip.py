@@ -8,13 +8,14 @@ from folium.plugins import MarkerCluster  # New Feature: Group pins
 import os
 import webview
 import time
+import math
 
 from sqlalchemy import create_engine
 
 
 MRT_LINES = {
     "Kajang Line": "Kwasa Damansara|Kwasa Sentral|Kota Damansara|Surian|Mutiara Damansara|Bandar Utama|Taman Tun Dr Ismail|Phileo Damansara|Pusat Bandar Damansara|Semantan|Muzium Negara|Pasar Seni|Merdeka|Bukit Bintang|Tun Razak Exchange|Cochrane|Maluri|Taman Pertama|Taman Midah|Taman Mutiara|Taman Connaught|Taman Suntex|Sri Raya|Bandar Tun Hussein Onn|Batu 11 Cheras|Bukit Dukung|Sungai Jernih|Stadium Kajang|Kajang",
-    "Putrajaya Line": "Kwasa Damansara|Kampung Selamat|Sungai Buloh|Damansara Damai|Sri Damansara West|Sri Damansara East|Sri Damansara Sentral|Kepong Baru|Metro Prima|Jalan Ipoh|Sentul West|Titiwangsa|Hospital Kuala Lumpur|Raja Uda|Ampang Park|Persiaran KLCC|Conlay|Tun Razak Exchange|Chan Sow Lin|Kuchai|Taman Naga Emas|Sungai Besi|Serdang Raya North|Serdang Raya South|Serdang Jaya|UPM|Taman Equine|Putra Permai|16 Sierra|Cyberjaya North|Cyberjaya City Centre|Putrajaya Sentral",
+    #"Putrajaya Line": "Kwasa Damansara|Kampung Selamat|Sungai Buloh|Damansara Damai|Sri Damansara West|Sri Damansara East|Sri Damansara Sentral|Kepong Baru|Metro Prima|Jalan Ipoh|Sentul West|Titiwangsa|Hospital Kuala Lumpur|Raja Uda|Ampang Park|Persiaran KLCC|Conlay|Tun Razak Exchange|Chan Sow Lin|Kuchai|Taman Naga Emas|Sungai Besi|Serdang Raya North|Serdang Raya South|Serdang Jaya|UPM|Taman Equine|Putra Permai|16 Sierra|Cyberjaya North|Cyberjaya City Centre|Putrajaya Sentral",
     "Kelana Jaya Line":"Gombak|Taman Melati|Wangsa Maju|Sri Rampai|Setiawangsa|Jelatek|Dato'Keramat|Damai|Ampang Park|KLCC|Kampung Baru|Dang Wangi|Masjid Jamek|Pasar Seni|KL Sentral|Bangsar|Abdullah Hukum|Kerinchi|Universiti|Taman Jaya|Asia Jaya|Taman Paramount|Taman Bahagia|Kelana Jaya|Lembah Subang|Ara Damansara|Glenmarie|Subang Jaya|SS 15|SS18|USJ 7|Taipan|Wawasan|USJ21|Alam Megah|Subang Alam|Putra Heights"
 }
 
@@ -77,35 +78,72 @@ class MRTApp:
         self.log_box.see(tk.END)
 
     def start_extraction(self):
+        self.extract_btn.config(state="disabled")
         threading.Thread(target=self.process_extraction).start()
 
+    def haversine(self, lat1, lon1, lat2, lon2):
+        # Radius of the Earth in km
+        R = 6371.0
+    
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+    
+        a = math.sin(dlat / 2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2)**2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+        # Distance in meters
+        return R * c * 1000
+    
     def process_extraction(self):
         line_name = self.line_var.get()
-        stations = MRT_LINES[line_name]
+        stations_regex = MRT_LINES[line_name]
         api = overpy.Overpass()
-        
         filename = self.filename_entry.get().strip() or "export"
-        
         self.log(f"Starting extraction for {line_name}...")
         
         query = f"""[out:json][timeout:180];
-        (node["railway"~"station|halt"]["name"~"{stations}"];
-         way["railway"~"station|halt"]["name"~"{stations}"];)->.stations;
+        (node["railway"~"station|halt"]["name"~"{stations_regex}"];
+         way["railway"~"station|halt"]["name"~"{stations_regex}"];)->.stations;
         (nwr(around.stations:500)["amenity"~"restaurant|cafe|fast_food|food_court|cinema|theatre|arts_centre|nightclub|community_centre"];
          nwr(around.stations:500)["tourism"~"museum|gallery|attraction|theme_park|viewpoint"];
-         nwr(around.stations:500)["leisure"~"bowling_alley|amusement_arcade|water_park"];);
+         nwr(around.stations:500)["leisure"~"bowling_alley|amusement_arcade|water_park"];)->.pois;
+        
+        (.stations; .pois;);
         out center;"""
 
         
         try:
             response = api.query(query)
-            data = []
-            for item in response.nodes + response.ways + response.relations:
-                tags = item.tags
-                lat = getattr(item, 'lat', getattr(item, 'center_lat', None))
-                lon = getattr(item, 'lon', getattr(item, 'center_lon', None))
 
-                # Your categorization logic
+            station_coords = []
+            poi_elements = []
+            data = []
+
+            for item in response.nodes + response.ways + response.relations:
+                name = item.tags.get("name", "Unknown")                
+                lat = float(getattr(item, 'lat', getattr(item, 'center_lat', None)))
+                lon = float(getattr(item, 'lon', getattr(item, 'center_lon', None)))
+
+                if item.tags.get("railway") in ["station", "halt"]:
+                    station_coords.append({"name": name, "lat": lat, "lon": lon})
+                else:
+                    poi_elements.append(item)
+
+            for item in poi_elements:
+                tags = item.tags
+                lat = float(getattr(item, 'lat', getattr(item, 'center_lat', None)))
+                lon = float(getattr(item, 'lon', getattr(item, 'center_lon', None)))
+
+                # Find nearest station
+                nearest_stn = "Unknown"
+                min_dist = float('inf')
+
+                for stn in station_coords:
+                    d = self.haversine(lat, lon, stn['lat'], stn['lon'])
+                    if d < min_dist:
+                        min_dist = d
+                        nearest_stn = stn['name']
+
                 amenity = tags.get("amenity")
                 tourism = tags.get("tourism")
                 leisure = tags.get("leisure")
@@ -120,7 +158,9 @@ class MRTApp:
                     "Name": tags.get("name", "Unnamed"),
                     "Category": main_cat,
                     "Subcategory": (amenity or tourism or leisure or "General").replace("_", " ").title(),
-                    "lat": lat, "lng": lon
+                    "lat": lat, "lng": lon,
+                    "Nearest Station": nearest_stn,
+                    "Distance (m)": round(min_dist, 1)
                 })
 
             df = pd.DataFrame(data).drop_duplicates(subset=['Name', 'lat', 'lng'])
@@ -137,8 +177,7 @@ class MRTApp:
             self.log(f"Error: {str(e)}")
             messagebox.showerror("Error", "Could not fetch data. Check connection.")
         
-        self.run_btn.config(state="normal")
-    
+        self.extract_btn.config(state="normal")    
     def open_map_viewer(self):
         file_path = filedialog.askopenfilename(filetypes=[("CSV Files", "*.csv")])
         if not file_path: return

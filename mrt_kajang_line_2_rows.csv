@@ -1,0 +1,1148 @@
+ID,Name,Category,Subcategory,lat,lng,Nearest Station,Distance (m)
+KA0002,KFC,Food,Fast Food,2.9917474,101.7887923,KG34 Stadium Kajang,385.8
+KA0003,Sate Kajang Hj Samuri,Food,Restaurant,2.9935811,101.7870848,KG34 Stadium Kajang,111.6
+KA0004,Malee Classic II,Food,Restaurant,2.9996241,101.7884951,KG33 Sungai Jernih,503.7
+KA0005,McDonald's,Food,Fast Food,3.0901073,101.7415909,KG25 Taman Mutiara,188.2
+KA0006,Secret Recipe,Food,Fast Food,3.0908222,101.7429635,KG25 Taman Mutiara,290.6
+KA0008,Old Town,Food,Cafe,3.133234,101.6890616,KG15 Muzium Negara,474.2
+KA0009,Dadi,Entertainment,Cinema,3.1492234,101.7125407,KG18A Bukit Bintang,359.1
+KA0010,Restoran Win Heng Seng,Food,Restaurant,3.1454922,101.7150729,MR6 Bukit Bintang,403.9
+KA0011,Hai Kah Kia,Food,Restaurant,3.1454249,101.714994,MR6 Bukit Bintang,396.6
+KA0012,Steam Era Seafood Steamboat Restaurant,Food,Restaurant,3.1445994,101.7140074,MR6 Bukit Bintang,324.8
+KA0013,Pizza Hut,Food,Restaurant,3.1445538,101.7139565,MR6 Bukit Bintang,322.6
+KA0014,Chen Jiu Ru,Food,Restaurant,3.1443449,101.7131357,MR6 Bukit Bintang,265.8
+KA0015,Restoran Chef Rasa Sayang,Food,Restaurant,3.144977,101.7139645,MR6 Bukit Bintang,301.4
+KA0016,Restoran Oversea,Food,Restaurant,3.1445976,101.7134509,MR6 Bukit Bintang,273.4
+KA0017,Restoran Fong Lye,Food,Restaurant,3.1447145,101.7135756,MR6 Bukit Bintang,277.3
+KA0018,Pure Mind Vegetarian Restaurant,Food,Restaurant,3.14491,101.7138438,MR6 Bukit Bintang,292.4
+KA0019,U Cafe,Food,Cafe,3.1450096,101.7114796,MR6 Bukit Bintang,118.3
+KA0020,Starbucks,Food,Cafe,3.1447766,101.7115735,MR6 Bukit Bintang,144.6
+KA0021,Tealive,Food,Cafe,3.1453167,101.7111404,MR6 Bukit Bintang,92.3
+KA0022,Lotteria,Food,Fast Food,3.1575724,101.6124514,KG08 Mutiara Damansara,482
+KA0023,Blue Boy Vegetarian Restaurant,Food,Restaurant,3.1448602,101.7061467,KG17 Merdeka,489.9
+KA0024,Voilà Meat Free Restaurant,Food,Restaurant,3.1419175,101.6971822,KG16 Pasar Seni,113.6
+KA0025,TGV Cinemas,Entertainment,Cinema,3.14833,101.6166414,KG09 Bandar Utama,304.8
+KA0026,Shan Yuan Restuarant,Food,Restaurant,3.1533923,101.5917643,KG07 Surian,473.8
+KA0027,Sate Kajang Hj Samuri,Food,Restaurant,2.9916234,101.788532,KG34 Stadium Kajang,374.5
+KA0028,Restoran Malaysia,Food,Restaurant,2.9928041,101.7897131,KG34 Stadium Kajang,414.3
+KA0029,Yishensu - A Vegetarian Connoisseur,Food,Restaurant,3.1493123,101.6166088,KG09 Bandar Utama,384
+KA0030,Taste Vegetarian House,Food,Restaurant,3.1525762,101.5912879,KG07 Surian,426.4
+KA0031,Love Health Vegetarian,Food,Restaurant,3.1505387,101.5926094,KG07 Surian,160.6
+KA0032,Meeples European Boardgame Cafe,Food,Restaurant,3.1513817,101.5931037,KG07 Surian,209.3
+KA0033,Starbucks,Food,Cafe,3.1526378,101.592608,KG07 Surian,359.3
+KA0034,Tasty Chicken Rice,Food,Restaurant,3.1530554,101.5920018,KG07 Surian,428.5
+KA0035,Galeri Sate,Culture,Museum,2.9945961,101.7847977,KG34 Stadium Kajang,166.8
+KA0036,Medan Satay Kajang,Food,Restaurant,2.9942718,101.7852996,KG34 Stadium Kajang,102.7
+KA0037,La Chica Mexicana,Food,Restaurant,3.1478855,101.7073937,KG18A Bukit Bintang,420.6
+KA0038,Pinchos,Food,Restaurant,3.1479897,101.7072015,KG18A Bukit Bintang,444.7
+KA0039,Lan Zhou Mee Tarik,Food,Restaurant,3.1463334,101.7078059,KG18A Bukit Bintang,343.2
+KA0040,The Pirates Club KL,Food,Restaurant,3.1485587,101.7087168,KG18A Bukit Bintang,337.4
+KA0041,Restoran Heritage One Station,Food,Restaurant,3.1404499,101.6935743,KJ14 Pasar Seni,292.9
+KA0042,Starbucks,Food,Cafe,3.1493097,101.7127191,KG18A Bukit Bintang,377.7
+KA0043,VCR,Food,Cafe,3.1432531,101.7054476,KG17 Merdeka,363.4
+KA0044,Vistana Corner,Food,Restaurant,3.1426367,101.7043311,KG17 Merdeka,239.2
+KA0045,Hadramawt Palace,Food,Restaurant,3.1474516,101.7215001,KG20 PY23 Tun Razak Exchange,543.9
+KA0046,Levain,Food,Cafe,3.1461634,101.7204323,KG20 PY23 Tun Razak Exchange,376.8
+KA0047,Al Andalus,Food,Restaurant,3.1453002,101.7202356,KG20 PY23 Tun Razak Exchange,278.8
+KA0048,Fukuya,Food,Restaurant,3.1458916,101.7203257,KG20 PY23 Tun Razak Exchange,345.3
+KA0049,Yarl,Food,Restaurant,3.1339617,101.6906715,KG15 Muzium Negara,511.5
+KA0053,YW Coffee Shop,Food,Cafe,3.1456912,101.7073698,KG18A Bukit Bintang,400.2
+KA0054,Noy Thai Seafood,Food,Restaurant,3.1462436,101.7091044,KG18A Bukit Bintang,200.1
+KA0055,Birdnest Collective,Food,Cafe,3.1427638,101.6967977,KG16 Pasar Seni,68.3
+KA0056,Al-Muhammadi,Food,Restaurant,3.1459712,101.7131361,MR6 Bukit Bintang,184
+KA0057,Halab - Berangan,Food,Restaurant,3.1476624,101.7085848,KG18A Bukit Bintang,290.2
+KA0058,Restaurant Yenn,Food,Restaurant,3.1460531,101.7093955,KG18A Bukit Bintang,172.1
+KA0059,Cu Cha Restaurant,Food,Restaurant,3.146161,101.7095591,KG18A Bukit Bintang,151.6
+KA0060,Lot 10 Hutong Food Court,Food,Food Court,3.1469293,101.7118546,MR6 Bukit Bintang,103.8
+KA0061,Zu Chuan,Food,Restaurant,3.1459247,101.711946,MR6 Bukit Bintang,54.1
+KA0062,Hong Kong's Food Culture,Food,Restaurant,3.144061,101.71048,MR6 Bukit Bintang,249.9
+KA0063,Yusoof Dan Zakhir,Food,Restaurant,3.1450281,101.6958385,KJ14 Pasar Seni,294.1
+KA0064,The Loaf Bakery & Bistro,Food,Cafe,3.1490063,101.7126152,KG18A Bukit Bintang,343.1
+KA0065,Cafe de Paris,Food,Cafe,3.149116,101.7127059,KG18A Bukit Bintang,358.9
+KA0066,Sushi Zanmai,Food,Restaurant,3.1473219,101.7132001,MR6 Bukit Bintang,236
+KA0067,O'Briens,Food,Cafe,3.1519347,101.6667532,KG14 Semantan,189
+KA0068,Vocational Training Opportunity Centre,Other,Community Centre,3.1429883,101.7017822,KG17 Merdeka,46.6
+KA0069,Jom Cari Makan,Food,Restaurant,3.153326,101.5936564,KG07 Surian,414.5
+KA0071,TGI Fridays,Food,Restaurant,3.1492416,101.6164389,KG09 Bandar Utama,390.4
+KA0072,Poolview Cafeteria,Food,Restaurant,3.1535356,101.6045591,KG08 Mutiara Damansara,508
+KA0073,Hakka,Food,Restaurant,3.1507057,101.7129496,KG18A Bukit Bintang,526.1
+KA0074,Muar,Food,Restaurant,3.1456292,101.706859,KG18A Bukit Bintang,457.2
+KA0075,Anytime Dining,Food,Cafe,3.1450937,101.7076256,KG18A Bukit Bintang,392.8
+KA0076,Park 28 Mutiara Damansara,Food,Restaurant,3.1557846,101.613007,KG08 Mutiara Damansara,469.1
+KA0077,Ahmed Nasi Kandar Penang,Food,Restaurant,3.1452663,101.6982159,KG16 Pasar Seni,382.2
+KA0078,Tajudin Nasi Beriani,Food,Restaurant,3.1464391,101.6959811,KG16 Pasar Seni,448.5
+KA0079,Nomad’s,Food,Cafe,3.1437075,101.6958106,KJ14 Pasar Seni,151.9
+KA0080,West Lake,Food,Restaurant,3.1430231,101.6985746,KG16 Pasar Seni,262.5
+KA0081,Jiu Pin,Food,Restaurant,3.1456042,101.7031348,KG17 Merdeka,318
+KA0082,AllAce Burger & Chicken,Food,Fast Food,3.1452823,101.6984154,KG16 Pasar Seni,396.5
+KA0083,Bol - Asian Reimagined,Food,Restaurant,3.1431274,101.7048622,KG17 Merdeka,297.4
+KA0084,Claypot Rice By The Roadside,Food,Fast Food,3.1449144,101.6986365,KG16 Pasar Seni,380.8
+KA0085,Sun Fong Baku teh,Food,Restaurant,3.1444541,101.7145184,MR6 Bukit Bintang,382.2
+KA0086,Mitasu,Food,Restaurant,3.1491,101.711733,KG18A Bukit Bintang,309.8
+KA0087,Noble House,Food,Restaurant,3.144806,101.719959,KG20 PY23 Tun Razak Exchange,222.2
+KA0088,Adyar Ananda Bhavan,Food,Restaurant,3.1466393,101.7003397,KG17 Merdeka,463.6
+KA0089,Moontree House,Food,Cafe,3.141975,101.6972237,KG16 Pasar Seni,114.8
+KA0090,Old Kasturi Kopitiam,Food,Restaurant,3.142822,101.6959358,KG16 Pasar Seni,59.7
+KA0091,Dunkin',Food,Fast Food,3.1458007,101.700803,KG17 Merdeka,357.2
+KA0092,Hwa Viet Kitchen,Food,Restaurant,3.1459166,101.7018121,KG17 Merdeka,337.7
+KA0093,KFC,Food,Fast Food,3.1450872,101.6986728,KG16 Pasar Seni,397.7
+KA0094,Sup Kambing Tangga,Food,Fast Food,3.1452467,101.6977313,KG16 Pasar Seni,353
+KA0095,Sisha's Place,Food,Restaurant,3.1429585,101.7088789,KG18A Bukit Bintang,447.4
+KA0096,Wong Ah Wah,Food,Restaurant,3.144891,101.7079037,KG18A Bukit Bintang,374.3
+KA0097,Sutraa,Food,Restaurant,3.1477092,101.707823,KG18A Bukit Bintang,369
+KA0098,Grandmama's Pavillion Restaurant,Food,Restaurant,3.149445,101.7122589,KG18A Bukit Bintang,366.6
+KA0099,Muzium Polis Diraja Malaysia,Culture,Museum,3.1409386,101.6889136,KG15 Muzium Negara,457.8
+KA0100,Ali Maju Cafe,Food,Restaurant,3.1546346,101.6654677,KG14 Semantan,408.7
+KA0101,Restoran Loong Huang,Food,Restaurant,3.1457619,101.6964682,KG16 Pasar Seni,372.4
+KA0102,Mala Tang Jalan Sultan,Food,Restaurant,3.143634,101.6985536,KG16 Pasar Seni,285.5
+KA0103,Chocha Foodstore,Food,Cafe,3.1408565,101.6980974,KG16 Pasar Seni,265.4
+KA0104,Ali Muthu & Ahhack,Food,Restaurant,3.1413972,101.6972637,KG16 Pasar Seni,156.8
+KA0105,Outback,Food,Restaurant,3.1444497,101.7093101,KG18A Bukit Bintang,283
+KA0106,La Boca,Food,Restaurant,3.1498173,101.7130879,KG18A Bukit Bintang,447.3
+KA0107,Restoran Kiew Yee Baru,Food,Restaurant,3.1438365,101.6966932,KG16 Pasar Seni,164
+KA0108,New Shanghai,Food,Restaurant,3.1509167,101.7088528,KG18A Bukit Bintang,546.7
+KA0109,Starbucks,Food,Cafe,3.1470013,101.7119676,MR6 Bukit Bintang,116.4
+KA0110,The Coffee Bean & Tea Leaf,Food,Cafe,3.1495335,101.7124457,KG18A Bukit Bintang,384.4
+KA0111,The Pressroom,Food,Restaurant,3.1499057,101.7125597,KG18A Bukit Bintang,427.1
+KA0112,Le Shady Trinity,Food,Cafe,3.1428954,101.6964298,KG16 Pasar Seni,55.4
+KA0113,Feeka Coffee Roasters,Food,Cafe,3.1486909,101.7084018,KG18A Bukit Bintang,373
+KA0114,Ali-Sons Nasi Kandar,Food,Restaurant,3.1452529,101.6980753,KG16 Pasar Seni,372.4
+KA0115,Rasta Cafe & Bar,Food,Cafe,3.1428073,101.6965989,KG16 Pasar Seni,55.3
+KA0116,Morganfield's,Food,Restaurant,3.1495209,101.7123563,KG18A Bukit Bintang,378.8
+KA0117,Nam Heong,Food,Restaurant,3.1435269,101.6985493,KG16 Pasar Seni,279.6
+KA0118,Auntie Anne,Food,Cafe,3.1423209,101.7106127,MR6 Bukit Bintang,428.3
+KA0119,KFC,Food,Fast Food,3.1347778,101.6864741,KG15 Muzium Negara,279
+KA0120,KFC,Food,Fast Food,3.1425137,101.7106717,MR6 Bukit Bintang,405.9
+KA0121,Papa John's,Food,Fast Food,3.1426959,101.7104652,MR6 Bukit Bintang,392.2
+KA0122,Merchant's Lane,Food,Cafe,3.1410448,101.6980959,KG16 Pasar Seni,252
+KA0123,Dining in the Dark KL,Food,Restaurant,3.1474986,101.7082688,KG18A Bukit Bintang,314.4
+KA0124,Fast & Yummy Shawarma,Food,Fast Food,3.145346,101.6969164,KG16 Pasar Seni,333
+KA0125,Suriani,Food,Restaurant,3.1482212,101.7089022,KG18A Bukit Bintang,296.8
+KA0126,Camp5 Climbing Gym,Food,Cafe,3.1501164,101.6163919,KG09 Bandar Utama,469.9
+KA0127,The Counter,Food,Restaurant,3.1479856,101.7150232,MR6 Bukit Bintang,447
+KA0128,Lostgens' Contemporary Art Space (Findars),Culture,Arts Centre,3.1418599,101.6972314,KG16 Pasar Seni,121.6
+KA0129,Old China Café,Food,Restaurant,3.1413844,101.6973506,KG16 Pasar Seni,164.6
+KA0130,Le Monde Cafe,Food,Cafe,3.1466716,101.6958311,KJ14 Pasar Seni,474.4
+KA0131,Shell Out,Food,Restaurant,3.1520873,101.5919464,KG07 Surian,338.8
+KA0132,Mongolia BBQ,Food,Restaurant,3.1468784,101.7086555,KG18A Bukit Bintang,253.4
+KA0133,Khalifah,Food,Restaurant,3.1509658,101.5924887,KG07 Surian,203.5
+KA0134,Arimau Nasi Lemak Berlauk,Food,Restaurant,3.15166,101.5922161,KG07 Surian,282.8
+KA0135,Nasi Kandar Padang Kota,Food,Restaurant,3.1516514,101.5919445,KG07 Surian,300.7
+KA0136,Sao Nam,Food,Restaurant,3.145855,101.7075938,KG18A Bukit Bintang,372.3
+KA0137,T-Club KL,Entertainment,Nightclub,3.1510908,101.7130513,KG18A Bukit Bintang,569.6
+KA0138,Kedai Kopi Lai Foong,Food,Restaurant,3.1453009,101.6967286,KG16 Pasar Seni,324.3
+KA0139,Tang City Food Court,Food,Food Court,3.1445107,101.6981807,KG16 Pasar Seni,313.5
+KA0140,Jadi Batik Gallery,Culture,Gallery,3.1457108,101.7190427,KG20 PY23 Tun Razak Exchange,338.6
+KA0141,Koryo,Food,Restaurant,3.1458009,101.7160126,MR6 Bukit Bintang,504
+KA0142,J&P Magic House,Food,Restaurant,3.1481158,101.7079929,KG18A Bukit Bintang,372.1
+KA0143,Halab Castle,Food,Restaurant,3.1477865,101.7086475,KG18A Bukit Bintang,290.9
+KA0144,Taz,Food,Restaurant,3.1479933,101.709545,KG18A Bukit Bintang,228.5
+KA0145,Pacific Restaurant and Bar,Food,Restaurant,3.1473672,101.7084663,KG18A Bukit Bintang,288.6
+KA0146,El Cerdo,Food,Restaurant,3.1474522,101.7078863,KG18A Bukit Bintang,352.4
+KA0147,The Steakhouse,Food,Restaurant,3.1475125,101.7082375,KG18A Bukit Bintang,318.2
+KA0148,Ciccio,Food,Restaurant,3.1477572,101.7071119,KG18A Bukit Bintang,444.8
+KA0149,Subway,Food,Fast Food,3.1457606,101.7098206,KG18A Bukit Bintang,141.4
+KA0151,McDonald's,Food,Fast Food,3.1467592,101.710955,KG18A Bukit Bintang,35.8
+KA0153,Boardwalk,Food,Restaurant,3.1355822,101.6856358,KG15 Muzium Negara,255.8
+KA0154,Iketeru,Food,Restaurant,3.1353511,101.6859575,KG15 Muzium Negara,250.5
+KA0156,Kayu Nasi Kandar,Food,Restaurant,3.1532674,101.5926137,KG07 Surian,425.6
+KA0157,The Artcoffee,Food,Cafe,3.1505712,101.5917096,KG07 Surian,246.8
+KA0158,Mon Chinese Beef Roti,Food,Restaurant,3.1459006,101.7099823,KG18A Bukit Bintang,117.9
+KA0159,Sri Paandi,Food,Restaurant,3.1446087,101.708403,KG18A Bukit Bintang,343.7
+KA0160,Sri Ganesa,Food,Fast Food,3.1466092,101.7005829,KG17 Merdeka,449.2
+KA0161,Arab Hadramot,Food,Restaurant,3.1417568,101.7092489,MR6 Bukit Bintang,540.2
+KA0162,Secret Recipe,Food,Fast Food,2.9960665,101.7902529,KG34 Stadium Kajang,502.6
+KA0163,Heritage Cafe,Food,Restaurant,2.9959487,101.790261,KG34 Stadium Kajang,497.8
+KA0164,Restoran Ayza's,Food,Restaurant,2.9954706,101.7902315,KG34 Stadium Kajang,474.6
+KA0165,Kedai Kopi Zillion,Food,Restaurant,2.9921556,101.7891029,KG34 Stadium Kajang,385.5
+KA0166,Old Buddha Vegetarian Restaurant,Food,Restaurant,2.9921527,101.7892333,KG34 Stadium Kajang,397.9
+KA0167,Restoran Bintang Kajang,Food,Restaurant,2.9924194,101.789701,KG34 Stadium Kajang,429.4
+KA0168,Restoran Anjung,Food,Restaurant,2.992797,101.7898942,KG34 Stadium Kajang,433.6
+KA0169,Restoran Sri Santhi,Food,Restaurant,2.991273,101.7822989,KG34 Stadium Kajang,532.3
+KA0170,Kopitiam Yat Yeh Heng,Food,Restaurant,2.9913689,101.7824688,KG34 Stadium Kajang,510.7
+KA0171,Ilman Cafe,Food,Cafe,2.9773748,101.7916604,KB06 Kajang,602.6
+KA0172,Community Library,Other,Community Centre,3.1406343,101.6309316,KG10 Taman Tun Dr Ismail,512.2
+KA0173,Ah hei bakkutteh,Food,Restaurant,3.1444537,101.714398,MR6 Bukit Bintang,370.5
+KA0174,Wei-Ling Gallery,Culture,Gallery,3.1358904,101.691433,KG15 Muzium Negara,475.5
+KA0175,Mawar Merah,Food,Restaurant,3.1453353,101.6990643,KG17 Merdeka,440.2
+KA0176,Restoran Kim Lian Kee,Food,Restaurant,3.1443421,101.6975031,KG16 Pasar Seni,252.9
+KA0177,Precious Old China,Food,Restaurant,3.1454428,101.6954569,KJ14 Pasar Seni,334.6
+KA0178,Damascus Шаурма,Food,Fast Food,3.147269,101.711257,KG18A Bukit Bintang,100.3
+KA0179,Iglesia ni cristo,Other,Community Centre,3.1270876,101.7305316,KG22 Maluri,465.2
+KA0180,Michaelango,Food,Restaurant,3.1484676,101.7135431,MR6 Bukit Bintang,351.1
+KA0181,Palmierra28,Food,Restaurant,3.1410137,101.698098,KG16 Pasar Seni,254.3
+KA0182,Urban Operation,Food,Restaurant,3.1452703,101.698266,KG16 Pasar Seni,385.7
+KA0183,Starbucks,Food,Cafe,3.1518761,101.6659259,KG14 Semantan,119.7
+KA0184,Subway,Food,Fast Food,3.1515928,101.6661649,KG14 Semantan,113.9
+KA0185,Tg's Nasi Kandar,Food,Restaurant,3.1455737,101.706758,KG18A Bukit Bintang,469.4
+KA0186,McDonald's,Food,Fast Food,3.1346045,101.6863202,KG15 Muzium Negara,303.1
+KA0187,Subway,Food,Fast Food,3.1359541,101.6889358,KG15 Muzium Negara,220.9
+KA0188,Hon Kee Porridge,Food,Restaurant,3.1443477,101.6978606,KG16 Pasar Seni,276.6
+KA0189,etc.,Food,Cafe,3.1430594,101.6966318,KG16 Pasar Seni,80.9
+KA0190,Sana'a Restaurant,Food,Restaurant,3.1471,101.712439,MR6 Bukit Bintang,156
+KA0191,Baan 26,Food,Restaurant,3.1478039,101.7076197,KG18A Bukit Bintang,393.9
+KA0192,Quizinn Foodcourt,Food,Restaurant,3.1336019,101.6872045,KG15 Muzium Negara,393.1
+KA0193,Madam Kwan,Food,Restaurant,3.1486149,101.7130001,MR6 Bukit Bintang,329.1
+KA0194,Jersey Jack Gelato,Food,Cafe,3.1475143,101.7090376,KG18A Bukit Bintang,238.2
+KA0195,French Feast,Food,Restaurant,3.145852,101.7071226,KG18A Bukit Bintang,424
+KA0196,Rococo Café Restaurant,Food,Restaurant,3.1465136,101.7089013,KG18A Bukit Bintang,221.5
+KA0197,Restoran Ameen,Food,Restaurant,3.1455852,101.7126819,MR6 Bukit Bintang,143.9
+KA0198,Gani Bistro Nasi Kandar,Food,Restaurant,3.1463335,101.7185803,KG20 PY23 Tun Razak Exchange,421
+KA0199,Starbucks,Food,Cafe,3.1444638,101.7098633,KG18A Bukit Bintang,248.1
+KA0200,Arraaziq,Food,Restaurant,3.1446047,101.7096872,KG18A Bukit Bintang,244.5
+KA0201,Fuel Shack,Food,Fast Food,3.1445102,101.7099225,KG18A Bukit Bintang,240.5
+KA0202,KFC,Food,Fast Food,3.1445685,101.7100797,KG18A Bukit Bintang,227.2
+KA0203,Sin Kiew Yee Shin Kee Beef Noodles,Food,Restaurant,3.1450869,101.6969606,KG16 Pasar Seni,306
+KA0204,Husen Cafe,Food,Restaurant,3.1330377,101.688918,KG15 Muzium Negara,488.3
+KA0205,Ko Ryo Jeong,Food,Restaurant,3.1474216,101.7135998,MR6 Bukit Bintang,278.9
+KA0206,Neroteca,Food,Restaurant,3.1488157,101.7074215,KG18A Bukit Bintang,467.3
+KA0207,Ozeki,Food,Restaurant,3.1510853,101.7120628,KG18A Bukit Bintang,532.3
+KA0208,Lodge Paradize Poolside,Food,Restaurant,3.1506055,101.7102004,KG18A Bukit Bintang,469.3
+KA0209,Burger on 16,Food,Restaurant,3.1414299,101.7095202,MR6 Bukit Bintang,560.4
+KA0210,Wong Fook Kee,Food,Restaurant,3.1461609,101.7079864,KG18A Bukit Bintang,324.5
+KA0212,River of Life,Other,Viewpoint,3.1472253,101.695192,KJ14 Pasar Seni,532.6
+KA0213,Saigon Station,Food,Restaurant,3.1454328,101.7080463,KG18A Bukit Bintang,335.7
+KA0214,ABC Bistro Cafe,Food,Restaurant,3.1326357,101.6877913,KG15 Muzium Negara,502.8
+KA0215,Din Tai Fung,Food,Restaurant,3.149206,101.7121887,KG18A Bukit Bintang,339.2
+KA0216,Indian Mini Restaurant,Food,Fast Food,3.1467409,101.7105566,KG18A Bukit Bintang,50.1
+KA0217,Payung Cafe,Food,Restaurant,3.1426579,101.6936549,KJ14 Pasar Seni,185
+KA0218,Dotty's Pastries,Food,Cafe,3.1402536,101.6285901,KG10 Taman Tun Dr Ismail,533
+KA0219,Foodle,Food,Restaurant,3.1437733,101.69581,KJ14 Pasar Seni,158.7
+KA0220,Via Pre Kl Italian restaurant,Food,Restaurant,3.1439149,101.6575103,KG13 Pusat Bandar Damansara,545.1
+KA0221,TGV Cinemas (IMAX),Entertainment,Cinema,3.1276652,101.7247594,KG22 Maluri,442.2
+KA0222,Starbucks,Food,Cafe,3.1465502,101.6616469,KG13 Pusat Bandar Damansara,372.8
+KA0223,McDonald's,Food,Fast Food,3.149147,101.6168094,KG09 Bandar Utama,355.7
+KA0224,Starbucks,Food,Cafe,3.1275163,101.7235582,KG22 Maluri,524.2
+KA0225,Subway,Food,Fast Food,3.1345429,101.7227281,KG21 Cochrane,231.5
+KA0226,Golden Screen Cinemas,Entertainment,Cinema,3.1352296,101.7220987,KG21 Cochrane,321.9
+KA0227,Starbucks,Food,Cafe,3.1344361,101.722806,KG21 Cochrane,218.7
+KA0228,KFC,Food,Fast Food,3.1264599,101.7277608,KG22 Maluri,222.7
+KA0229,IKEA Restaurant,Food,Fast Food,3.1354754,101.7216212,KG21 Cochrane,366.8
+KA0230,Nando's,Food,Restaurant,3.1339739,101.7230193,KG21 Cochrane,166.3
+KA0231,Lotus Five Star Kajang Cineplex,Entertainment,Cinema,2.9912152,101.7889783,KG34 Stadium Kajang,441.6
+KA0232,IKEA Restaurant,Food,Fast Food,3.1568022,101.6123341,KG08 Mutiara Damansara,428.9
+KA0233,Subway,Food,Fast Food,3.1569741,101.6112329,KG08 Mutiara Damansara,333
+KA0234,Purple Miao,Food,Restaurant,3.144878,101.7087088,KG18A Bukit Bintang,298.7
+KA0235,Ho Kow Hainam Kopitiam,Food,Cafe,3.1413488,101.6976799,KG16 Pasar Seni,194.8
+KA0236,Restoran Jaya,Food,Fast Food,3.1463113,101.700473,KG17 Merdeka,424.4
+KA0237,Food Court Lot 10,Food,Fast Food,3.1463684,101.7119416,MR6 Bukit Bintang,60.7
+KA0238,The Enclave,Food,Restaurant,3.1345831,101.6266673,KG10 Taman Tun Dr Ismail,492.2
+KA0239,The Nasi Lemak Guys,Food,Restaurant,3.1353275,101.6290435,KG10 Taman Tun Dr Ismail,216
+KA0240,Ice Dreams Cafe,Food,Cafe,3.1354819,101.6290393,KG10 Taman Tun Dr Ismail,210.8
+KA0241,Myra’s,Food,Restaurant,3.1506546,101.7085076,KG18A Bukit Bintang,538.2
+KA0242,Starbucks,Food,Cafe,3.1334558,101.6869574,KG15 Muzium Negara,411.2
+KA0243,Starbucks,Food,Cafe,3.1426205,101.7100268,MR6 Bukit Bintang,416.5
+KA0244,Sweet Potato Balls Petaling Street,Food,Fast Food,3.1445184,101.6980566,KG16 Pasar Seni,305.1
+KA0245,Kim Soya Bean,Food,Fast Food,3.1443381,101.6976014,KG16 Pasar Seni,258.5
+KA0246,Limkee Cafe,Food,Cafe,3.1438163,101.698569,KG16 Pasar Seni,297.1
+KA0247,Naab,Food,Restaurant,3.1472249,101.7116918,KG18A Bukit Bintang,124
+KA0248,Bubble Bee Cafe,Food,Cafe,3.1416868,101.69789,KG16 Pasar Seni,195.4
+KA0249,Nine Dragon Char Chan Teng,Food,Restaurant,3.1416107,101.6980586,KG16 Pasar Seni,215.9
+KA0250,Leaf & Co,Food,Cafe,3.1429152,101.6987455,KG16 Pasar Seni,278.2
+KA0251,Warung Wok,Food,Restaurant,3.136207,101.6908704,KG15 Muzium Negara,405.8
+KA0252,Vishal Food & Catering,Food,Restaurant,3.135211,101.6920878,KG15 Muzium Negara,569.3
+KA0253,Greyhound Cafe,Food,Cafe,3.1469634,101.7120323,MR6 Bukit Bintang,116.3
+KA0254,Walter Food Court,Food,Cafe,3.1539686,101.5955352,KG07 Surian,526.6
+KA0255,Hawker Center,Food,Food Court,3.144631,101.7112082,MR6 Bukit Bintang,163.2
+KA0256,Resepi Ayah,Food,Fast Food,3.1452388,101.6979244,KG16 Pasar Seni,362.4
+KA0257,Kenny Rogers Roasters,Food,Fast Food,3.1428401,101.710976,MR6 Bukit Bintang,363.9
+KA0259,Koon Kee Wan Tan Mee,Food,Fast Food,3.1443268,101.697933,KG16 Pasar Seni,279.9
+KA0260,Mohamed Nazar Curry House,Food,Restaurant,3.1462916,101.7136845,MR6 Bukit Bintang,245.8
+KA0261,Restoran Han Kee,Food,Restaurant,3.143189,101.6985691,KG16 Pasar Seni,267.2
+KA0262,Restoran Pik Wah,Food,Restaurant,3.1430023,101.7003727,KG17 Merdeka,202.4
+KA0263,Poppo Kanteen,Food,Restaurant,3.0894754,101.7427989,KG25 Taman Mutiara,335.8
+KA0264,Yellow Brick Road,Food,Cafe,3.1496178,101.6615059,KG14 Semantan,453
+KA0265,CMCR Kuala Lumpur,Food,Cafe,3.1397698,101.6303033,KG10 Taman Tun Dr Ismail,420.5
+KA0266,Old KL Train Station,Culture,Attraction,3.1397613,101.6933554,KJ14 Pasar Seni,368.1
+KA0267,Ben’s,Food,Cafe,3.1490455,101.7124945,KG18A Bukit Bintang,339.6
+KA0268,Clay Pot Street Food,Food,Fast Food,3.1443937,101.6986453,KG16 Pasar Seni,341.6
+KA0269,Ben’s General Food Store,Food,Cafe,3.1339615,101.6298297,KG10 Taman Tun Dr Ismail,256.6
+KA0270,Ours Eatery,Food,Cafe,3.1458222,101.6619516,KG13 Pusat Bandar Damansara,286.9
+KA0271,Mighty Monster,Food,Cafe,3.1346315,101.7232414,KG21 Cochrane,240.8
+KA0272,The Fish Bowl,Food,Cafe,3.145973,101.6621355,KG13 Pusat Bandar Damansara,300.9
+KA0273,The Fish Bowl,Food,Cafe,3.1491596,101.7124153,KG18A Bukit Bintang,346.1
+KA0274,33 Restoran WK Tiga Tiga,Food,Restaurant,3.1426598,101.7148698,MR6 Bukit Bintang,534.4
+KA0275,Birdnest Café & Bar,Food,Restaurant,3.1454818,101.7071117,KG18A Bukit Bintang,433.5
+KA0276,Junk Cafe,Food,Restaurant,3.1418364,101.698026,KG16 Pasar Seni,203.3
+KA0277,Sushi Kitchen,Food,Restaurant,3.1505274,101.5828112,KG06 Kota Damansara,454.2
+KA0278,Hadramot House,Food,Restaurant,3.1465886,101.7107517,KG18A Bukit Bintang,22.8
+KA0279,Golden Screen Cinemas (GSC) NU Sentral,Entertainment,Cinema,3.1329599,101.6868543,KG15 Muzium Negara,467.3
+KA0280,Breakfast Spot Petaling Street,Food,Cafe,3.1412978,101.6980874,KG16 Pasar Seni,235.3
+KA0281,Anne Elizabeth The Deli,Food,Restaurant,3.0886082,101.743648,KG25 Taman Mutiara,469.7
+KA0282,Heritage Journey,Food,Fast Food,3.1460691,101.7118481,MR6 Bukit Bintang,40.7
+KA0283,Satay Putera Kajang,Food,Restaurant,2.9927559,101.7863262,KG34 Stadium Kajang,145.2
+KA0284,Station Cafe,Food,Cafe,3.1379878,101.6875075,KG15 Muzium Negara,96.7
+KA0285,Halab - Beremi,Food,Restaurant,3.1475646,101.7103584,KG18A Bukit Bintang,138.3
+KA0286,Sahara Tent,Food,Restaurant,3.1428095,101.7087339,KG18A Bukit Bintang,469.9
+KA0287,Vintage 1988,Food,Cafe,3.1428583,101.6985774,KG16 Pasar Seni,258.7
+KA0288,Ampersand,Food,Cafe,3.1461425,101.7116376,MR6 Bukit Bintang,18.9
+KA0289,Vetri Bay Leaf Curry House,Food,Restaurant,2.9924412,101.7885106,KG34 Stadium Kajang,313.3
+KA0290,India Gate,Food,Restaurant,3.1477084,101.7084409,KG18A Bukit Bintang,306.7
+KA0291,Mixue,Food,Cafe,3.1437953,101.6987392,KG16 Pasar Seni,312.2
+KA0292,Bonzer Corner,Food,Restaurant,3.144715,101.7074474,KG18A Bukit Bintang,428.3
+KA0293,Texas Chicken,Food,Fast Food,3.1455387,101.6974356,KG16 Pasar Seni,369.6
+KA0294,Bröom At Bukit Bintang,Food,Cafe,3.1435359,101.7048283,KG17 Merdeka,300.9
+KA0295,Next2Free,Food,Fast Food,3.1455215,101.7120778,MR6 Bukit Bintang,90.3
+KA0296,Viewpoint of KL TV Tower between 2 buildings,Other,Viewpoint,3.1400969,101.705436,KG17 Merdeka,476.5
+KA0297,Al-Sarifa,Food,Restaurant,3.146527,101.7083203,KG18A Bukit Bintang,286
+KA0298,Bocado,Food,Restaurant,3.1495494,101.6651155,KG14 Semantan,159.2
+KA0299,Amazins Thai Food,Food,Restaurant,3.1450327,101.7080848,KG18A Bukit Bintang,349.2
+KA0300,Infusion Specialty Coffee Co,Food,Cafe,3.1504671,101.6157384,KG09 Bandar Utama,544.6
+KA0301,KLCG,Food,Restaurant,3.1470648,101.6956828,KJ14 Pasar Seni,516.3
+KA0302,Sushi Zanmai,Food,Restaurant,3.1332558,101.6866541,KG15 Muzium Negara,437.9
+KA0303,Triple Gold Kitchen,Food,Cafe,3.1461208,101.709523,KG18A Bukit Bintang,156.5
+KA0304,Wizards At Tribeca,Food,Restaurant,3.1461963,101.7156103,MR6 Bukit Bintang,458.6
+KA0305,Halab Gate Shawarma,Food,Restaurant,3.147448,101.7107892,KG18A Bukit Bintang,112.4
+KA0306,OldTown White Coffee,Food,Cafe,3.1496027,101.7121899,KG18A Bukit Bintang,379.6
+KA0307,Chinese Hawker Centre,Food,Food Court,3.1330606,101.6892872,KG15 Muzium Negara,502.2
+KA0308,Chinese Food & Baos,Food,Restaurant,3.1327782,101.688946,KG15 Muzium Negara,516.4
+KA0309,Aachi Mess,Food,Restaurant,3.1346109,101.6918461,KG15 Muzium Negara,574
+KA0310,Pizza Mansion,Food,Restaurant,3.1486286,101.7085598,KG18A Bukit Bintang,355.4
+KA0312,Bunn Choon,Food,Cafe,3.1413522,101.6976066,KG16 Pasar Seni,188.2
+KA0313,Vinny Jeyaa,Food,Restaurant,3.1432525,101.6958615,KG16 Pasar Seni,104.3
+KA0314,Simple Life Vegan Cafe,Food,Cafe,3.1462998,101.7119938,MR6 Bukit Bintang,62.2
+KA0315,McDonald's,Food,Fast Food,3.1047723,101.7328518,KG24 Taman Midah,77.8
+KA0316,Hugo’s KL,Food,Restaurant,3.148352,101.707857,KG18A Bukit Bintang,398.6
+KA0317,Restoran Char Siew Yoong,Food,Restaurant,3.1206172,101.7299668,AG13 Maluri,446.7
+KA0318,Chuan Kee Hakka Restaurant,Food,Restaurant,3.1204101,101.7298774,AG13 Maluri,455
+KA0319,Shawarma Damascus,Food,Fast Food,3.1456071,101.7113305,MR6 Bukit Bintang,54.5
+KA0320,Wrap n'go,Food,Restaurant,3.144794,101.695847,KG16 Pasar Seni,268.8
+KA0321,KFC,Food,Fast Food,3.1055339,101.7323905,KG24 Taman Midah,124
+KA0322,KFC,Food,Fast Food,3.1113471,101.7299857,KG23 Taman Pertama,162.4
+KA0323,Restoran Nasi Kandar Ali Maju,Food,Restaurant,3.1115444,101.7299179,KG23 Taman Pertama,139.5
+KA0324,Mingle Cafe,Food,Cafe,3.1429692,101.6987448,KG16 Pasar Seni,279.4
+KA0325,Restoran Dhurbar,Food,Restaurant,3.1026929,101.7331783,KG24 Taman Midah,219.3
+KA0326,Sakura Sushi,Food,Restaurant,3.1024889,101.7324086,KG24 Taman Midah,216.5
+KA0327,Tosaya,Food,Restaurant,3.1029796,101.7330037,KG24 Taman Midah,182
+KA0328,Restoran 21,Food,Restaurant,3.1017975,101.7333379,KG24 Taman Midah,316.9
+KA0329,Mirage Club,Entertainment,Nightclub,3.1024168,101.7329913,KG24 Taman Midah,238.7
+KA0330,Tar Boosh,Food,Restaurant,3.1333137,101.6883467,KG15 Muzium Negara,439.5
+KA0331,Petaling Street Asam Laksa,Food,Fast Food,3.1437143,101.6976447,KG16 Pasar Seni,208.4
+KA0332,Warong Old China,Food,Restaurant,3.144946,101.6967095,KG16 Pasar Seni,285
+KA0333,Kafei Dian,Food,Restaurant,3.1416022,101.6969755,KG16 Pasar Seni,118.4
+KA0334,Tarma,Food,Restaurant,3.1471725,101.7099667,KG18A Bukit Bintang,131.2
+KA0335,Wu Li Tou Drunken Clam Noodle,Food,Restaurant,3.1447602,101.6986851,KG16 Pasar Seni,372.3
+KA0336,Molten Chocolate Cafe,Food,Cafe,3.146186,101.7116255,MR6 Bukit Bintang,20.3
+KA0337,Drift Restaurant & Bar,Food,Restaurant,3.1489357,101.7097068,KG18A Bukit Bintang,307
+KA0338,Crispy Pork Noodles Soup,Food,Restaurant,3.1434742,101.6985467,KG16 Pasar Seni,276.8
+KA0339,Hana & Thyme,Food,Restaurant,3.1446142,101.7050156,KG17 Merdeka,366.6
+KA0340,Xin Ji Kitchen,Food,Restaurant,3.1459139,101.7086796,KG18A Bukit Bintang,252.9
+KA0341,Indian Empire,Food,Restaurant,3.1446742,101.7084908,KG18A Bukit Bintang,331.6
+KA0342,Pobeda,Food,Restaurant,3.1479535,101.70726,KG18A Bukit Bintang,437.2
+KA0343,Grand Harbour Restaurant (Fahrenheit 88),Food,Restaurant,3.1467796,101.7135243,MR6 Bukit Bintang,240
+KA0344,Mala Tang Jalan Sultan,Food,Restaurant,3.1432363,101.6987369,KG16 Pasar Seni,286.6
+KA0345,McDonald's,Food,Fast Food,3.1424588,101.7107341,MR6 Bukit Bintang,410.4
+KA0346,Sindbad,Food,Restaurant,3.1412661,101.7097719,MR6 Bukit Bintang,567.3
+KA0347,Ching Ching by Pandan Republic,Food,Cafe,3.14161,101.6975691,KG16 Pasar Seni,168.1
+KA0348,The Hungry Tapir,Food,Restaurant,3.1417953,101.6977197,KG16 Pasar Seni,173.2
+KA0349,Jusu,Food,Cafe,3.1471565,101.7109344,KG18A Bukit Bintang,79.5
+KA0350,Mini Stonehenge,Culture,Attraction,3.1404039,101.6877368,KG15 Muzium Negara,366.2
+KA0351,Muzium Seni Kraf Orang Asli,Culture,Museum,3.1377468,101.6885316,KG15 Muzium Negara,149.2
+KA0352,Planetarium Negara,Culture,Planetarium,3.139486,101.6893032,KG15 Muzium Negara,340.7
+KA0353,Pik Wah Restaurant Chinwoo Stadium KL,Food,Restaurant,3.1414372,101.6988598,KG16 Pasar Seni,305.5
+KA0354,Restoran Telawi,Food,Restaurant,3.1429839,101.6934641,KJ14 Pasar Seni,213.4
+KA0355,Nero Nero,Food,Restaurant,3.1459105,101.6618667,KG13 Pusat Bandar Damansara,298.2
+KA0356,Burger King,Food,Fast Food,3.1444268,101.709817,KG18A Bukit Bintang,254.1
+KA0357,RUANG by Think City,Other,Community Centre,3.1467854,101.6960552,KG16 Pasar Seni,486.4
+KA0358,Rockstar,Entertainment,Nightclub,3.1479023,101.70736,KG18A Bukit Bintang,424.8
+KA0359,Starbucks,Food,Cafe,3.1470564,101.6995006,KG17 Merdeka,550.1
+KA0360,Purradise,Food,Cafe,3.1402659,101.6284402,KG10 Taman Tun Dr Ismail,542.2
+KA0361,Dua by Skohns,Food,Restaurant,3.1397897,101.6283825,KG10 Taman Tun Dr Ismail,500.4
+KA0362,NZ Curry House,Food,Restaurant,3.1492611,101.7117604,KG18A Bukit Bintang,327.8
+KA0363,Balquis,Food,Restaurant,3.1476764,101.7038884,KG17 Merdeka,563.1
+KA0364,Hobby n Coffee,Food,Cafe,3.1404008,101.6288851,KG10 Taman Tun Dr Ismail,533.2
+KA0365,Alison Soup Hse,Food,Restaurant,3.1404698,101.6290735,KG10 Taman Tun Dr Ismail,532.1
+KA0366,Al Norul,Food,Restaurant,3.1452307,101.7099373,KG18A Bukit Bintang,171.7
+KA0367,Vojon Bilash,Food,Restaurant,3.1471767,101.7097804,KG18A Bukit Bintang,148.3
+KA0368,Food Village,Food,Restaurant,3.147197,101.709601,KG18A Bukit Bintang,166.4
+KA0369,Thai Somtam Seafood,Food,Restaurant,3.1471736,101.7098535,KG18A Bukit Bintang,141.4
+KA0370,Mezbani,Food,Restaurant,3.1474678,101.7091107,KG18A Bukit Bintang,228.6
+KA0371,Bachelor Point,Food,Restaurant,3.1478193,101.7090368,KG18A Bukit Bintang,256.9
+KA0372,Halab Express,Food,Restaurant,3.1477511,101.7087672,KG18A Bukit Bintang,277.5
+KA0373,Arabella,Food,Restaurant,3.1487672,101.7091346,KG18A Bukit Bintang,324.1
+KA0374,Histana Maju,Food,Restaurant,3.1490136,101.7092325,KG18A Bukit Bintang,340.3
+KA0375,Shawarma on the way,Food,Restaurant,3.1472703,101.7086708,KG18A Bukit Bintang,263.6
+KA0376,dipndip,Food,Cafe,3.1484423,101.7127044,MR6 Bukit Bintang,296.3
+KA0377,The Ship,Food,Restaurant,3.1482135,101.7112058,KG18A Bukit Bintang,199.9
+KA0378,Capitol Cafe,Food,Restaurant,3.1477233,101.7114876,KG18A Bukit Bintang,156.9
+KA0379,Ruposhi Bangla,Food,Restaurant,3.1483436,101.7094134,KG18A Bukit Bintang,267.9
+KA0380,Delizia,Food,Restaurant,3.1473604,101.7092889,KG18A Bukit Bintang,205.5
+KA0381,Kam Fatt,Food,Restaurant,3.1460754,101.70786,KG18A Bukit Bintang,339.5
+KA0382,Kathmandu,Food,Cafe,3.1457378,101.7074366,KG18A Bukit Bintang,391.9
+KA0383,Mao Jia,Food,Restaurant,3.1462496,101.7076401,KG18A Bukit Bintang,362.1
+KA0384,Roshona Bilash,Food,Restaurant,3.1465853,101.7080385,KG18A Bukit Bintang,317.6
+KA0385,Alifa,Food,Restaurant,3.1466961,101.7081595,KG18A Bukit Bintang,305.1
+KA0386,La Moon,Food,Restaurant,3.1382852,101.6300395,KG10 Taman Tun Dr Ismail,266.8
+KA0387,Kenny Hills Bakers,Food,Restaurant,3.1384358,101.6300981,KG10 Taman Tun Dr Ismail,280.6
+KA0388,Mesui Grill,Food,Restaurant,3.1487603,101.7082698,KG18A Bukit Bintang,389.1
+KA0389,Club De Vegas,Entertainment,Nightclub,3.1430169,101.7120952,MR6 Bukit Bintang,346.6
+KA0390,The Wildflowers,Food,Restaurant,3.1413471,101.6979047,KG16 Pasar Seni,215.2
+KA0391,Asia Street Food Club,Food,Restaurant,3.1414748,101.6979021,KG16 Pasar Seni,207.5
+KA0392,Nasi Ayam Kam Kee,Food,Restaurant,3.1430781,101.6985707,KG16 Pasar Seni,263.7
+KA0393,Coconut Hub,Food,Cafe,3.1429806,101.6985783,KG16 Pasar Seni,261.7
+KA0394,Pau Goreng Lembu Hai Kee,Food,Restaurant,3.1429582,101.6985778,KG16 Pasar Seni,261.1
+KA0395,China  Town Seng Kee,Food,Restaurant,3.1433454,101.6985658,KG16 Pasar Seni,273
+KA0396,Neighbour Club,Food,Restaurant,3.1439265,101.6985639,KG16 Pasar Seni,303.2
+KA0397,Happy City Steamboat,Food,Restaurant,3.1525414,101.5954036,KG07 Surian,377.5
+KA0398,3 Man Restaurant,Food,Restaurant,3.1501608,101.5931969,KG07 Surian,84.4
+KA0399,Restoran Jin Xuan Hong Kong,Food,Restaurant,3.1509433,101.5940684,KG07 Surian,154.8
+KA0400,Mee Tarik Jalan Sultan,Food,Restaurant,3.1526787,101.5922352,KG07 Surian,379.5
+KA0401,Subway,Food,Fast Food,3.1531581,101.5949554,KG07 Surian,419.3
+KA0402,Pizza Hut Delivery,Food,Fast Food,3.1531631,101.5947752,KG07 Surian,413.7
+KA0403,Domino's,Food,Fast Food,3.1518678,101.5940045,KG07 Surian,254.5
+KA0404,Uncle Don's (Kota Damansara),Food,Restaurant,3.1531973,101.5944683,KG07 Surian,409
+KA0405,Sun Thai Food,Food,Restaurant,3.153248,101.5941326,KG07 Surian,408.5
+KA0406,Meng Kee,Food,Restaurant,3.1480579,101.7103312,KG18A Bukit Bintang,190.2
+KA0407,Suriani,Food,Restaurant,3.1474198,101.7098836,KG18A Bukit Bintang,156.3
+KA0408,The Other Guys,Food,Restaurant,3.1479239,101.7102327,KG18A Bukit Bintang,180.4
+KA0409,Congkak,Food,Restaurant,3.147991,101.710282,KG18A Bukit Bintang,185.2
+KA0410,Private Corner,Food,Cafe,3.146557,101.7041664,KG17 Merdeka,461.6
+KA0411,Planet Cafe @ Planetarium Negara,Food,Cafe,3.139208,101.6894688,KG15 Muzium Negara,330.5
+KA0412,Subway,Food,Fast Food,3.1477002,101.575205,KG06 Kota Damansara,479.1
+KA0413,Nasi Lemak Ayam Berempah,Food,Restaurant,3.1528919,101.5790763,KG06 Kota Damansara,304.1
+KA0414,The Black Whale,Food,Cafe,3.1513909,101.5913865,KG07 Surian,325.8
+KA0415,Gyukingu Japanese BBQ,Food,Restaurant,3.1517421,101.5912906,KG07 Surian,358.9
+KA0416,Sushi Mentai,Food,Restaurant,3.1520041,101.594446,KG07 Surian,279.7
+KA0417,Restoran D.U. Cafe,Food,Restaurant,3.1513093,101.5940638,KG07 Surian,194.3
+KA0418,Korean BBQ,Food,Restaurant,3.1525498,101.5951168,KG07 Surian,363.5
+KA0419,KFC,Food,Fast Food,3.0419293,101.7726894,KG30 Batu 11 Cheras,100.5
+KA0420,Restoran Howntown Steamboat,Food,Restaurant,3.1505168,101.5932064,KG07 Surian,116.3
+KA0421,Eat Drink Thai,Food,Restaurant,3.1505589,101.5927873,KG07 Surian,147.8
+KA0422,神来一锅,Food,Restaurant,3.1505648,101.5927319,KG07 Surian,152.6
+KA0423,Damansara Uptown Hokkien Mee,Food,Restaurant,3.1504835,101.5936533,KG07 Surian,98.6
+KA0424,Cottle Coffee,Food,Cafe,3.149191,101.5948374,KG07 Surian,133.4
+KA0425,Berjaya Times Square Theme Park,Other,Theme Park,3.1421651,101.7105637,MR6 Bukit Bintang,446.4
+KA0426,Pandan,Food,Restaurant,3.1367745,101.6304439,KG10 Taman Tun Dr Ismail,94.8
+KA0427,Kumi,Food,Cafe,3.1438715,101.657385,KG13 Pusat Bandar Damansara,558.3
+KA0428,Passage Thru India,Food,Restaurant,3.1467741,101.7211172,KG20 PY23 Tun Razak Exchange,459.3
+KA0429,One Seafood,Food,Restaurant,3.1473354,101.7207299,KG20 PY23 Tun Razak Exchange,510.6
+KA0430,SFS Food Corner,Food,Fast Food,3.1463239,101.7139533,MR6 Bukit Bintang,275.8
+KA0431,Daboba,Food,Cafe,3.0897543,101.7426157,KG25 Taman Mutiara,301.1
+KA0432,The Black Whale,Food,Cafe,3.0888991,101.74385,KG25 Taman Mutiara,467.9
+KA0433,Restoran Nasi Hadramot,Food,Restaurant,3.1475068,101.7108128,KG18A Bukit Bintang,118.7
+KA0434,Peko Peko,Food,Restaurant,3.1385125,101.6301442,KG10 Taman Tun Dr Ismail,287.3
+KA0435,KFC,Food,Fast Food,3.1567305,101.6104706,KG08 Mutiara Damansara,250.5
+KA0436,Starbucks Reserve,Food,Cafe,3.1491377,101.5935074,KG07 Surian,55.9
+KA0437,Taco Bell,Food,Fast Food,3.1491396,101.5947431,KG07 Surian,125.8
+KA0438,Siam Eatery House,Food,Restaurant,3.1516058,101.5934748,KG07 Surian,224.7
+KA0440,KFC,Food,Fast Food,3.1490108,101.616897,KG09 Bandar Utama,337.8
+KA0441,Machi machi,Food,Cafe,3.1460603,101.7117564,MR6 Bukit Bintang,30.5
+KA0442,Haidilao Hot Pot,Food,Restaurant,3.1474956,101.6151958,KG09 Bandar Utama,412.2
+KA0443,Haidilao Hot Pot,Food,Restaurant,3.149169,101.7135988,MR6 Bukit Bintang,416.8
+KA0444,Haidilao Hot Pot,Food,Restaurant,3.1270732,101.724454,KG22 Maluri,416.7
+KA0445,Five Guys,Food,Fast Food,3.1491488,101.7125715,KG18A Bukit Bintang,353.8
+KA0446,TGI Fridays,Food,Restaurant,3.1489696,101.6163751,KG09 Bandar Utama,373.7
+KA0447,McDonald's,Food,Fast Food,3.1341177,101.7229387,KG21 Cochrane,182.4
+KA0448,KFC,Food,Fast Food,3.1346556,101.7225534,KG21 Cochrane,247.1
+KA0449,Burger King,Food,Fast Food,3.1347673,101.7232169,KG21 Cochrane,255.6
+KA0450,Pizza Hut,Food,Restaurant,3.13472,101.7239408,KG21 Cochrane,270.1
+KA0451,The Chicken Rice Shop,Food,Fast Food,3.1340173,101.7237668,KG21 Cochrane,190.9
+KA0452,Food Empire,Food,Food Court,3.1338705,101.7231988,KG21 Cochrane,156.3
+KA0453,Mykori Dessert Cafe,Food,Cafe,3.1345611,101.7230978,KG21 Cochrane,231.8
+KA0454,myBurgerLab,Food,Fast Food,3.1344279,101.7229731,KG21 Cochrane,216.8
+KA0455,"Ali, Muthu & Ah Hock",Food,Restaurant,3.1377713,101.6297269,KG10 Taman Tun Dr Ismail,230.9
+KA0456,Mixue,Food,Cafe,3.1258991,101.7274565,KG22 Maluri,154.3
+KA0457,Historical Museum of Traditional Chinese Medicine in Malaysia,Culture,Museum,3.1433007,101.70001,KG17 Merdeka,246.4
+KA0458,Light Capture,Food,Cafe,3.1470874,101.6964416,KG16 Pasar Seni,519.5
+KA0459,Secret Recipe,Food,Fast Food,3.1465137,101.695766,KJ14 Pasar Seni,456.1
+KA0460,Pusat Warisan Kajang,Culture,Museum,2.9919442,101.7866946,KG34 Stadium Kajang,241.2
+KA0461,GEM Restaurant,Food,Restaurant,3.1324172,101.6874178,KG15 Muzium Negara,524.7
+KA0462,Restoran 2233,Food,Restaurant,2.9916781,101.7866162,KG34 Stadium Kajang,268.4
+KA0463,Kedai Makanan Wan Fatt,Food,Restaurant,2.9913004,101.7871205,KG34 Stadium Kajang,323
+KA0464,Fu Pot,Food,Restaurant,3.144352,101.7197815,KG20 PY23 Tun Razak Exchange,172.9
+KA0465,Tealive,Food,Cafe,3.1506544,101.5918172,KG07 Surian,240.5
+KA0466,Starbucks,Food,Cafe,3.1506525,101.5918404,KG07 Surian,238.2
+KA0467,Chagee,Food,Cafe,3.1511234,101.5922518,KG07 Surian,234.3
+KA0468,Food Street Food,Food,Food Court,3.127022,101.7252762,KG22 Maluri,350.5
+KA0469,Raw Kitchen Hall,Food,Restaurant,3.1442195,101.6964684,KG16 Pasar Seni,201.3
+KA0470,Restoran Queen’s,Food,Restaurant,3.1309829,101.7230133,KG21 Cochrane,166.3
+KA0471,Nasi Lemak Peel Road,Food,Restaurant,3.1310575,101.7228995,KG21 Cochrane,158.5
+KA0472,Cielo Rooftop - Dining and Lounge,Food,Restaurant,3.1482561,101.7064875,KG18A Bukit Bintang,529.3
+KA0473,Best Town Cafe,Food,Restaurant,3.1112466,101.7300126,KG23 Taman Pertama,173.7
+KA0474,Bread & Butter,Food,Cafe,3.1481614,101.7070999,KG18A Bukit Bintang,462.7
+KA0475,Tealive,Food,Cafe,3.0725049,101.7664425,KG27 Taman Suntex,343.8
+KA0476,Burger King,Food,Fast Food,3.0908664,101.7415477,KG25 Taman Mutiara,137.3
+KA0477,Medan Selera The Nest @ IMBI,Food,Food Court,3.1438028,101.7134365,MR6 Bukit Bintang,332.9
+KA0478,Soo Kee's Son prawn & beef noodle,Food,Restaurant,3.1442813,101.7142292,MR6 Bukit Bintang,364.4
+KA0479,Plan B,Food,Cafe,3.145247,101.7155933,MR6 Bukit Bintang,465.7
+KA0480,McDonald's,Food,Fast Food,3.1505717,101.7092427,KG18A Bukit Bintang,494.4
+KA0481,Suzie Wong - Dinner and Show,Food,Restaurant,3.1506535,101.7092683,KG18A Bukit Bintang,501.9
+KA0482,Pop Meals @ Wisma Lim Foo Yong,Food,Restaurant,3.1505949,101.7091901,KG18A Bukit Bintang,499
+KA0483,BLACK Market (Changkat),Food,Restaurant,3.1496413,101.7090873,KG18A Bukit Bintang,408.4
+KA0484,Tealive,Food,Cafe,3.1469975,101.6960343,KG16 Pasar Seni,510
+KA0485,Flow Coffee @ The Exchange 106,Food,Cafe,3.1414999,101.7187438,KG20 PY23 Tun Razak Exchange,198.6
+KA0487,Hakata Izakaya,Food,Restaurant,3.0904154,101.7399931,KG25 Taman Mutiara,108.1
+KA0488,Kyochon,Food,Restaurant,3.0908313,101.7398842,KG25 Taman Mutiara,76.9
+KA0489,Restoran Steamboat Le Tien,Food,Restaurant,3.0922649,101.7406197,KG25 Taman Mutiara,109.9
+KA0490,Klang J.X. Bak Kut Teh,Food,Restaurant,3.0913257,101.7397081,KG25 Taman Mutiara,75.9
+KA0491,Food City,Food,Food Court,3.126045,101.727497,KG22 Maluri,171
+KA0492,Kedai Mamak Husin,Food,Restaurant,3.1445458,101.7042557,KG17 Merdeka,292.9
+KA0493,Yellow Brick Road,Food,Restaurant,3.1516736,101.6655428,KG14 Semantan,81.9
+KA0494,Baan Rao,Food,Restaurant,3.0759183,101.7454658,KG26 Taman Connaught,365.2
+KA0495,Rafeena Curry House,Food,Restaurant,3.0779532,101.7446659,KG26 Taman Connaught,146.8
+KA0496,Starbucks,Food,Cafe,3.14953,101.5800428,KG06 Kota Damansara,162.1
+KA0497,Starbucks,Food,Cafe,3.14936,101.578592,KG06 Kota Damansara,92.4
+KA0498,Subway,Food,Fast Food,3.1496355,101.5788496,KG06 Kota Damansara,61.7
+KA0499,Chatime,Food,Cafe,3.1495547,101.5788532,KG06 Kota Damansara,70.6
+KA0501,Nourish,Food,Restaurant,3.1518536,101.6654616,KG14 Semantan,99.9
+KA0502,Kusa,Food,Restaurant,3.1488909,101.7077115,KG18A Bukit Bintang,446.2
+KA0503,Mee Tarik Jalan Sultan,Food,Restaurant,3.1428928,101.6985779,KG16 Pasar Seni,259.5
+KA0504,Restoran Saji Kota,Food,Restaurant,3.0607231,101.7719454,KG28 Sri Raya,199.6
+KA0505,Krabi Thai Tomyam Seafood,Food,Restaurant,3.0500055,101.77228,KG29 Bandar Tun Hussein Onn,354.4
+KA0506,Kedai Kopi Heng Long,Food,Restaurant,3.0499838,101.7706933,KG29 Bandar Tun Hussein Onn,512.5
+KA0507,Wan Shoon,Food,Restaurant,3.1345561,101.627312,KG10 Taman Tun Dr Ismail,426.3
+KA0508,The Fish Hotspot,Food,Restaurant,3.1345957,101.6265978,KG10 Taman Tun Dr Ismail,499.1
+KA0509,SS20 Fish Head Noodle,Food,Restaurant,3.1355412,101.6290394,KG10 Taman Tun Dr Ismail,209
+KA0510,Dayone Dayone Noodles Pavilion KL,Food,Restaurant,3.1485366,101.713327,MR6 Bukit Bintang,342
+KA0511,Sam Steam Fish Head,Food,Restaurant,3.0404935,101.7718777,KG30 Batu 11 Cheras,186.1
+KA0512,Yan Izakaya,Food,Restaurant,3.0428772,101.773153,KG30 Batu 11 Cheras,176.2
+KA0513,Restoran Sin Hiap Seng 9,Food,Restaurant,3.0423923,101.7717807,KG30 Batu 11 Cheras,211.6
+KA0514,Sri Viyna Bhavan,Food,Restaurant,3.0423371,101.7727262,KG30 Batu 11 Cheras,133.8
+KA0515,Niko Neko Matcha 2.0 (Chinatown),Food,Cafe,3.1428009,101.6964143,KG16 Pasar Seni,44.8
+KA0516,Flaon,Food,Cafe,3.1436231,101.6966836,KG16 Pasar Seni,141
+KA0517,Experiment Kitchen,Food,Restaurant,3.0408536,101.7717151,KG30 Batu 11 Cheras,187.6
+KA0519,IKEA Café,Food,Cafe,3.1350774,101.7215486,KG21 Cochrane,331
+KA0520,Sri Madeena Restaurant,Food,Restaurant,3.0283477,101.7706905,KG31 Bukit Dukung,222.5
+KA0521,Mixue,Food,Cafe,3.1456147,101.695869,KG16 Pasar Seni,358.6
+KA0522,Contango,Food,Restaurant,3.1384648,101.6919219,KG15 Muzium Negara,530.2
+KA0524,Sala,Food,Cafe,3.1422567,101.7108923,MR6 Bukit Bintang,429.4
+KA0525,Minf Houze Vegan Cafe,Food,Restaurant,3.1506291,101.7120799,KG18A Bukit Bintang,483.7
+KA0526,Horizon Grill,Food,Restaurant,3.1504608,101.7138666,MR6 Bukit Bintang,555.1
+KA0527,Loong Kee,Food,Restaurant,3.1462613,101.709679,KG18A Bukit Bintang,136.5
+KA0528,Yun Xiang Mee Tarik,Food,Restaurant,3.1450092,101.6986786,KG16 Pasar Seni,391.7
+KA0529,Chinatown Cendol,Food,Restaurant,3.1425897,101.6981993,KG16 Pasar Seni,212.9
+KA0530,Restoran Basmoti,Food,Restaurant,3.141488,101.7094816,MR6 Bukit Bintang,556.1
+KA0531,Reto Cafe,Food,Restaurant,3.1466369,101.7107397,KG18A Bukit Bintang,27.7
+KA0532,Dancing Fish,Food,Restaurant,3.1433997,101.6674265,KG13 Pusat Bandar Damansara,560.7
+KA0533,Restoran Ikhwan,Food,Restaurant,3.1413916,101.7095573,MR6 Bukit Bintang,562.7
+KA0534,Lala Lok Lok,Food,Restaurant,3.1430165,101.6987413,KG16 Pasar Seni,280.2
+KA0535,Grand Sky Restaurant,Food,Restaurant,3.1460098,101.7087743,KG18A Bukit Bintang,240.4
+KA0536,Restoran Sai Woo,Food,Restaurant,3.1457083,101.7089493,KG18A Bukit Bintang,231
+KA0537,ZUS Coffee,Food,Cafe,3.1448903,101.6958329,KJ14 Pasar Seni,279
+KA0538,Dayang Ros Cafe & Flower Boutique,Food,Cafe,3.1449142,101.6965181,KG16 Pasar Seni,278.8
+KA0539,Restoran Charis,Food,Restaurant,3.1465809,101.6976636,KG16 Pasar Seni,487.4
+KA0540,Ramen Kumo Floor 4,Food,Restaurant,3.1462476,101.7118118,MR6 Bukit Bintang,41.5
+KA0541,Luck Bros Kopi,Food,Restaurant,3.1413755,101.6974117,KG16 Pasar Seni,170.2
+KA0542,Kusa Japanese Vegan,Food,Restaurant,3.1489581,101.7075786,KG18A Bukit Bintang,462.4
+KA0543,LaGula By The Hungry Tapir,Food,Cafe,3.1410523,101.6979269,KG16 Pasar Seni,236.8
+KA0544,Q Bistro Mamak Signature,Food,Restaurant,3.1490298,101.7118923,KG18A Bukit Bintang,308.2
+KA0545,Happy Lemon,Food,Cafe,3.1453977,101.7119652,MR6 Bukit Bintang,92.3
+KA0546,bibimmix,Food,Restaurant,3.1454814,101.7118937,MR6 Bukit Bintang,80.2
+KA0547,Soybean Factory,Food,Cafe,3.1455524,101.7118517,MR6 Bukit Bintang,71
+KA0548,Jipinhe,Food,Fast Food,3.145614,101.7118312,MR6 Bukit Bintang,64.2
+KA0549,Kuafood Fried Chuan,Food,Fast Food,3.145667,101.7118134,MR6 Bukit Bintang,58.3
+KA0550,Nasi Kukus Tongkek,Food,Restaurant,3.1460556,101.7116617,MR6 Bukit Bintang,20.1
+KA0551,Sushi Skewer,Food,Fast Food,3.1467468,101.711605,MR6 Bukit Bintang,76.1
+KA0552,Wagyukushi,Food,Fast Food,3.1467433,101.7116031,MR6 Bukit Bintang,75.7
+KA0553,Sweet Potato Factory,Food,Fast Food,3.1467445,101.7116109,MR6 Bukit Bintang,76
+KA0554,Optimist Coffee,Food,Cafe,3.1468077,101.7119582,MR6 Bukit Bintang,97.3
+KA0555,Rollney,Food,Fast Food,3.1471433,101.7119463,MR6 Bukit Bintang,129.7
+KA0556,Kedai Makan Kasih Ibu Dewi Enterprise,Food,Restaurant,3.1476831,101.7118638,KG18A Bukit Bintang,174.9
+KA0557,Ikan Bakar Kak Mia,Food,Restaurant,3.1475855,101.7117293,KG18A Bukit Bintang,157.2
+KA0558,33 Foodcourt,Food,Food Court,3.1478023,101.7118076,KG18A Bukit Bintang,182
+KA0559,SS Spicy Food,Food,Restaurant,3.138955,101.6979968,KG16 Pasar Seni,429.2
+KA0560,Transparent Coffee,Food,Cafe,3.138617,101.6973266,KG16 Pasar Seni,438
+KA0561,Three Years Old Cafe,Food,Cafe,3.1434687,101.7050385,KG17 Merdeka,322.1
+KA0562,PaPa Kanafa,Food,Cafe,3.1475039,101.7108825,KG18A Bukit Bintang,118
+KA0563,Boost,Food,Cafe,3.14877,101.7128307,MR6 Bukit Bintang,335.2
+KA0564,Dunkin',Food,Fast Food,3.1303496,101.6419304,KG12 Phileo Damansara,170
+KA0565,Starbucks,Food,Cafe,3.1564514,101.6117367,KG08 Mutiara Damansara,352.5
+KA0566,Foodland IPC,Food,Food Court,3.156838,101.6126108,KG08 Mutiara Damansara,458.6
+KA0567,meatgrocer.com,Food,Restaurant,3.1235355,101.7274211,AG13 Maluri,60.8
+KA0568,Domino's,Food,Fast Food,3.145138,101.6986716,KG16 Pasar Seni,401.8
+KA0569,Moo-Ka-Ta Krua Thai Restaurant Kota Damansara,Food,Restaurant,3.1522629,101.5916899,KG07 Surian,371.4
+KA0570,Famu Famu,Food,Restaurant,3.152583,101.591686,KG07 Surian,400.6
+KA0571,Zui Zui Xiang,Food,Restaurant,3.1526685,101.5916915,KG07 Surian,408.2
+KA0572,The Brew House,Food,Restaurant,3.1527211,101.5916966,KG07 Surian,412.8
+KA0573,Casadesa,Food,Restaurant,3.1524336,101.5919148,KG07 Surian,372.8
+KA0574,Hainan Fusion,Food,Restaurant,3.1526179,101.5916915,KG07 Surian,403.5
+KA0575,Baan Thai Seafood Restaurant,Food,Restaurant,3.1209312,101.7294374,AG13 Maluri,379.7
+KA0576,Isan Thai Restaurant,Food,Restaurant,3.1207072,101.7295907,AG13 Maluri,409.2
+KA0577,Restoran Suiyi,Food,Restaurant,3.1480756,101.71034,KG18A Bukit Bintang,191.8
+KA0578,AoOo Melbourne CAFE,Food,Restaurant,3.1434623,101.6968401,KG16 Pasar Seni,131.3
+KA0579,Omega Pork Noodles,Food,Restaurant,3.1526206,101.5947726,KG07 Surian,356.2
+KA0580,Hakka Rang Restaurant,Food,Restaurant,3.1526502,101.5941261,KG07 Surian,342.5
+KA0581,Restoran Yuen Feng,Food,Restaurant,3.1526405,101.5943679,KG07 Surian,346.1
+KA0584,QCup Coffee Roasters,Food,Cafe,3.1441715,101.7129185,MR6 Bukit Bintang,264.9
+KA0585,Chuai Heng Banquet Hall,Food,Restaurant,3.1455413,101.7179066,KG20 PY23 Tun Razak Exchange,380.1
+KA0586,Din Sun Kopitiam,Food,Cafe,3.1431636,101.6964682,KG16 Pasar Seni,85.3
+KA0587,Makamakan,Food,Restaurant,3.1430564,101.6964513,KG16 Pasar Seni,73.3
+KA0588,Nasi Ayam Hainan Chee Meng,Food,Restaurant,3.1452981,101.7091703,KG18A Bukit Bintang,229.9
+KA0589,Muzium Tekstil Negara,Culture,Museum,3.1465453,101.6939406,KJ14 Pasar Seni,481.3
+KA0590,Toast Box,Food,Cafe,3.1483315,101.7031667,KG17 Merdeka,613.2
+KA0591,Pokok Sunway Velocity,Food,Restaurant,3.1267717,101.7254765,KG22 Maluri,314.9
+KA0592,Stesen Nasi Kerabu,Food,Restaurant,3.153426,101.5796954,KG06 Kota Damansara,376.5
+KA0593,Nasi Ayam Mewangi Azeem,Food,Restaurant,3.1531168,101.5790499,KG06 Kota Damansara,328.6
+KA0594,Light Capture Cafe,Food,Cafe,3.149882,101.7131612,KG18A Bukit Bintang,457.8
+KA0595,Mano,Food,Restaurant,3.1508644,101.6643969,KG14 Semantan,107.2
+KA0596,Kazu,Food,Restaurant,3.1518639,101.6644711,KG14 Semantan,140.6
+KA0597,Pizza Mansion,Food,Fast Food,3.1511087,101.6644399,KG14 Semantan,103.2
+KA0598,Monster A Garden Cafe,Food,Cafe,3.1434479,101.6985506,KG16 Pasar Seni,275.9
+KA0599,Dodoo Kitchen,Food,Restaurant,3.1432405,101.696661,KG16 Pasar Seni,100.4
+KA0600,MyBolehBoleh,Food,Cafe,3.1424558,101.6982093,KG16 Pasar Seni,213.2
+KA0601,Restoran Pik Wah,Food,Restaurant,3.1415614,101.6980604,KG16 Pasar Seni,218.5
+KA0602,Burger King,Food,Fast Food,3.1338253,101.6864476,KG15 Muzium Negara,381
+KA0603,Aurum Theatre (GSC),Entertainment,Cinema,3.1433214,101.7180474,KG20 PY23 Tun Razak Exchange,220.2
+KA0604,Starbucks Reserve,Food,Cafe,3.1431954,101.7167419,KG20 PY23 Tun Razak Exchange,360.2
+KA0605,Starbucks,Food,Cafe,3.1418323,101.7189647,KG20 PY23 Tun Razak Exchange,155
+KA0606,Shake Shack,Food,Fast Food,3.1427073,101.7172635,KG20 PY23 Tun Razak Exchange,299.9
+KA0607,Mixue,Food,Cafe,3.142066,101.7100104,MR6 Bukit Bintang,474.6
+KA0608,KFC,Food,Fast Food,3.142099,101.7187644,KG20 PY23 Tun Razak Exchange,154.6
+KA0609,Nando's,Food,Restaurant,3.1429299,101.7183443,KG20 PY23 Tun Razak Exchange,180.2
+KA0610,Gong Cha,Food,Cafe,3.1416955,101.7176202,KG20 PY23 Tun Razak Exchange,288
+KA0611,Tealive,Food,Cafe,3.1415589,101.7177014,KG20 PY23 Tun Razak Exchange,286.9
+KA0612,% Arabica,Food,Cafe,3.1428685,101.718182,KG20 PY23 Tun Razak Exchange,197.8
+KA0613,ZUS Coffee,Food,Cafe,3.1434075,101.7175687,KG20 PY23 Tun Razak Exchange,274
+KA0614,O'Briens,Food,Cafe,3.1420262,101.7189207,KG20 PY23 Tun Razak Exchange,144.7
+KA0615,Kaffe 16,Food,Cafe,3.1416978,101.697174,KG16 Pasar Seni,126.7
+KA0616,McDonald's,Food,Fast Food,3.127391,101.7246884,KG22 Maluri,423.8
+KA0617,Jollibee,Food,Fast Food,3.1273041,101.7248814,KG22 Maluri,402.5
+KA0618,Food Exchange Food Court,Food,Food Court,3.1434312,101.7178403,KG20 PY23 Tun Razak Exchange,245.6
+KA0619,Kunafa Finger's,Food,Restaurant,3.147574,101.7111994,KG18A Bukit Bintang,130.3
+KA0620,La Mian Mee Tarik,Food,Restaurant,3.146157,101.7007497,KG17 Merdeka,395.7
+KA0621,ZUS Coffee,Food,Cafe,3.0765491,101.7421697,KG26 Taman Connaught,441.3
+KA0622,Mr Duck Teowchew Braised,Food,Restaurant,3.0946086,101.7397603,KG25 Taman Mutiara,374.2
+KA0623,Nam Chau Kopitiam,Food,Restaurant,3.0947885,101.7396975,KG25 Taman Mutiara,395.1
+KA0624,Sik Thong Ba,Food,Restaurant,3.094849,101.7396805,KG25 Taman Mutiara,402.1
+KA0625,FuBoLe Hotpot,Food,Restaurant,3.0952737,101.7395473,KG25 Taman Mutiara,451.3
+KA0626,Kopitiam LCL 99,Food,Restaurant,3.1459272,101.7017711,KG17 Merdeka,339.5
+KA0627,Sushi Mentai,Food,Restaurant,3.0895066,101.7422645,KG25 Taman Mutiara,288.4
+KA0628,ZUS Coffee,Food,Cafe,3.0907044,101.7422374,KG25 Taman Mutiara,215.6
+KA0629,Mega Star Arena,Entertainment,Theatre,3.1444087,101.7113286,MR6 Bukit Bintang,185.9
+KA0630,Jollibee,Food,Fast Food,3.1445488,101.7099736,KG18A Bukit Bintang,234.1
+KA0631,U-Village,Food,Restaurant,3.1445075,101.7103837,MR6 Bukit Bintang,212.6
+KA0632,Tong Yik Dessert,Food,Cafe,3.0765906,101.7423154,KG26 Taman Connaught,426.2
+KA0633,Hong Kong Xin Rong Kee,Food,Restaurant,3.076527,101.7420918,KG26 Taman Connaught,449.4
+KA0634,Beans.Factory,Food,Cafe,3.076509,101.7420285,KG26 Taman Connaught,456
+KA0635,Mee Tarik Tarik,Food,Restaurant,3.1521579,101.5947871,KG07 Surian,308.8
+KA0636,Ur-Mu,Culture,Gallery,3.1475486,101.7095135,KG18A Bukit Bintang,196.6
+KA0637,Kampung Attap Corner,Food,Restaurant,3.1386461,101.6969564,KG16 Pasar Seni,425.9
+KA0638,E-Kandar,Food,Restaurant,3.1500872,101.5943314,KG07 Surian,88
+KA0639,Mixue,Food,Cafe,2.9862562,101.791051,KG35 Kajang,359.6
+KA0640,Chagee,Food,Cafe,2.9866029,101.7911064,KG35 Kajang,398.6
+KA0641,Coffe To Go,Food,Cafe,2.9833747,101.7902722,KG35 Kajang,30.8
+KA0642,Salad Atelier,Food,Restaurant,3.1417289,101.7189901,KG20 PY23 Tun Razak Exchange,161.4
+KA0643,Farm To Plate,Food,Restaurant,3.1363356,101.6289689,KG10 Taman Tun Dr Ismail,212.4
+KA0644,Hansang Korean Restaurant,Food,Restaurant,3.1478416,101.6177559,KG09 Bandar Utama,176.9
+KA0645,Restoran Aman Bistro,Food,Restaurant,3.0770341,101.7425657,KG26 Taman Connaught,372.8
+KA0646,36 Siam Thai Cuisine,Food,Restaurant,3.0768652,101.7418988,KG26 Taman Connaught,442.8
+KA0647,On Fire Restaurant,Food,Restaurant,3.077251,101.7425024,KG26 Taman Connaught,363.4
+KA0648,Malaya Hainan Kafeidian,Food,Restaurant,3.0773856,101.7417469,KG26 Taman Connaught,426.6
+KA0649,Sunbather Coffee,Food,Cafe,3.1419831,101.6971865,KG16 Pasar Seni,110.7
+KA0650,Restoran Chao Zhou,Food,Restaurant,3.1458576,101.7091508,KG18A Bukit Bintang,204.3
+KA0651,Boleh Seafood Pot,Food,Restaurant,3.1460625,101.7094435,KG18A Bukit Bintang,166.6
+KA0652,Alor Hawker Fried,Food,Restaurant,3.1459795,101.7092997,KG18A Bukit Bintang,184.5
+KA0653,Sang Kee Restaurant,Food,Restaurant,3.1465807,101.6970818,KG16 Pasar Seni,471.2
+KA0654,Gerai Makanan Sai Kee,Food,Restaurant,3.1437778,101.6981836,KG16 Pasar Seni,259
+KA0655,Durian Power,Food,Restaurant,3.1454439,101.7075388,KG18A Bukit Bintang,388.9
+KA0656,Shhhbuuuleee,Food,Restaurant,3.144913,101.6984796,KG16 Pasar Seni,368.9
+KA0657,Oloiya,Food,Fast Food,3.1445155,101.6983573,KG16 Pasar Seni,327.3
+KA0658,Koong Woh Tong,Food,Fast Food,3.1425994,101.6977245,KG16 Pasar Seni,160.6
+KA0659,Bingxue,Food,Cafe,3.1451387,101.6973655,KG16 Pasar Seni,325.3
+KA0660,Holland's Fries,Food,Cafe,3.1460957,101.7111043,MR6 Bukit Bintang,42
+KA0661,Al-Sultan,Food,Restaurant,3.1462864,101.7112398,MR6 Bukit Bintang,35.8
+KA0662,99 Heaven Juice,Food,Cafe,3.146216,101.711101,KG18A Bukit Bintang,34
+KA0663,Cheese Potato,Food,Restaurant,3.1461157,101.7111024,MR6 Bukit Bintang,42.4
+KA0664,Kunafa Crisp,Food,Fast Food,3.1474252,101.7112178,KG18A Bukit Bintang,115
+KA0665,Restoran Paradise,Food,Restaurant,3.1451228,101.7089748,KG18A Bukit Bintang,258.8
+KA0666,Lanzhou Mee Tarik,Food,Restaurant,3.1480804,101.711207,KG18A Bukit Bintang,185.4
+KA0667,Habibi Juice,Food,Cafe,3.147474,101.7108879,KG18A Bukit Bintang,114.7
+KA0668,Shawarma,Food,Restaurant,3.1466093,101.7107757,KG18A Bukit Bintang,22.8
+KA0669,Mixue,Food,Cafe,3.1462205,101.710419,KG18A Bukit Bintang,58.4
+KA0670,Mixue,Food,Cafe,3.1451054,101.7114452,MR6 Bukit Bintang,107.7
+KA0671,Pizza Hut,Food,Restaurant,3.1495879,101.7129674,KG18A Bukit Bintang,418.6
+KA0672,Mixue,Food,Cafe,3.1473234,101.6179876,KG09 Bandar Utama,118.2
+KA0673,Nando's,Food,Restaurant,3.1495256,101.7126899,KG18A Bukit Bintang,396.5
+KA0674,Burger King,Food,Fast Food,3.1495713,101.7128829,KG18A Bukit Bintang,412
+KA0675,KFC,Food,Fast Food,3.1494967,101.7125625,KG18A Bukit Bintang,386.8
+KA0676,The Chicken Rice Shop,Food,Fast Food,3.1495454,101.7127806,KG18A Bukit Bintang,403.5
+KA0677,Ur-Mu Tun HS Lee,Culture,Museum,3.1447038,101.6965097,KG16 Pasar Seni,255.4
+KA0678,Wong Mee Coffee Stall,Food,Cafe,3.1440589,101.6961638,KG16 Pasar Seni,183
+KA0679,Wan Tan Mee Food Stall,Food,Fast Food,3.144161,101.6981136,KG16 Pasar Seni,280.4
+KA0680,Hameediyah Multi Concept,Food,Restaurant,3.1472806,101.7117189,KG18A Bukit Bintang,130.6
+KA0681,Tealive,Food,Cafe,3.1430028,101.6952968,KJ14 Pasar Seni,62.9
+KA0682,ZUS Coffee,Food,Cafe,3.147795,101.7183404,KG20 PY23 Tun Razak Exchange,583.1
+KA0683,McDonald's,Food,Fast Food,3.1473957,101.7177356,KG20 PY23 Tun Razak Exchange,566.9
+KA0684,Pucks Coffee,Food,Cafe,3.1436365,101.6969443,KG16 Pasar Seni,153.8
+KA0685,Kantata,Food,Cafe,3.1381477,101.6971818,KG16 Pasar Seni,485
+KA0686,Tommy Le Baker,Food,Cafe,3.1379588,101.6971956,KG16 Pasar Seni,505.9
+KA0687,Mixue,Food,Cafe,3.1272711,101.7248073,KG22 Maluri,405.1
+KA0691,Istana Restoran & Bar,Entertainment,Nightclub,3.1489972,101.710901,KG18A Bukit Bintang,284.1
+KA0692,Illy,Food,Cafe,3.1499566,101.7124902,KG18A Bukit Bintang,429
+KA0693,Sri Ganesa,Food,Restaurant,3.1431856,101.6966421,KG16 Pasar Seni,93.9
+KA0694,Nasi Kandar Safreen,Food,Restaurant,3.1453098,101.718121,KG20 PY23 Tun Razak Exchange,345.3
+KA0695,Haikahlang,Food,Restaurant,3.1448843,101.7172192,KG20 PY23 Tun Razak Exchange,382.2
+KA0696,Mixue,Food,Cafe,3.1337987,101.6872469,KG15 Muzium Negara,371.1
+KA0697,MiniNature Malaysia,Culture,Attraction,3.1440392,101.7110373,MR6 Bukit Bintang,231.5
+KA0698,Opeum Bistro Kuala Lumpur,Food,Restaurant,3.1448932,101.7181935,KG20 PY23 Tun Razak Exchange,303.9
+KA0699,Pin Yuen Noodle House,Food,Restaurant,3.0771371,101.7418229,KG26 Taman Connaught,433.1
+KA0700,Tealive,Food,Cafe,3.1469882,101.7117266,MR6 Bukit Bintang,105.3
+KA0701,Dunkin',Food,Fast Food,3.146495,101.7112082,KG18A Bukit Bintang,35.2
+KA0702,Kveh Cik Noor,Food,Restaurant,3.1462233,101.709743,KG18A Bukit Bintang,130.2
+KA0703,Yew Yew Coffee,Food,Cafe,3.1434496,101.698736,KG16 Pasar Seni,294.9
+KA0704,Zayn Alsham,Food,Fast Food,3.1463115,101.7111027,KG18A Bukit Bintang,27.3
+KA0705,Loaded Kumpir,Food,Fast Food,3.1462755,101.7110308,KG18A Bukit Bintang,23.9
+KA0706,Lapaq King,Food,Fast Food,3.1462557,101.7110033,KG18A Bukit Bintang,24
+KA0707,The Ship,Food,Restaurant,3.1462898,101.7105052,KG18A Bukit Bintang,46.5
+KA0708,Restoran Cheras Kopitiam,Food,Restaurant,3.1206387,101.7286915,AG13 Maluri,350.9
+KA0709,Me’nate,Food,Restaurant,3.1574788,101.6113929,KG08 Mutiara Damansara,382.2
+KA0710,Dolly Dim Sum,Food,Restaurant,3.1576865,101.6113295,KG08 Mutiara Damansara,393
+KA0711,Starbucks,Food,Cafe,3.1577391,101.6114324,KG08 Mutiara Damansara,405.2
+KA0712,Concubine KL,Food,Restaurant,3.1417131,101.6975608,KG16 Pasar Seni,161.4
+KA0713,Ní Kizoku,Food,Restaurant,3.1430666,101.6987828,KG16 Pasar Seni,286.1
+KA0714,National Mosque of Malaysia,Culture,Attraction,3.1419189,101.6920986,KJ14 Pasar Seni,360.8
+KA0715,Eden Coffee Rooftop,Food,Cafe,3.1465147,101.7116616,MR6 Bukit Bintang,53
+KA0716,Master Lee Hot Pot,Food,Restaurant,3.076678,101.7426017,KG26 Taman Connaught,396.5
+KA0717,Kakedo Dodo Food Court,Food,Food Court,3.0774323,101.7418428,KG26 Taman Connaught,414.8
+KA0718,erni&tina,Food,Cafe,3.0760531,101.742904,KG26 Taman Connaught,427.8
+KA0719,Vegelab,Food,Cafe,3.0760625,101.743097,KG26 Taman Connaught,414.8
+KA0720,Ayam Getok Mantul,Food,Restaurant,3.0760737,101.7432334,KG26 Taman Connaught,405.7
+KA0721,Kuali Bonda,Food,Restaurant,3.0785037,101.7423887,KG26 Taman Connaught,314.7
+KA0722,GotTo Eat,Food,Restaurant,3.0784881,101.7422984,KG26 Taman Connaught,324.9
+KA0723,Restoran PB Mamak Bistro,Food,Restaurant,3.0784586,101.742124,KG26 Taman Connaught,344.5
+KA0724,Restoran Sri Tanjung,Food,Restaurant,3.0784198,101.7419466,KG26 Taman Connaught,364.6
+KA0725,Thai Girl Mookata,Food,Restaurant,3.0785338,101.7424694,KG26 Taman Connaught,305.2
+KA0726,Antonio’s Trattoria Calabria,Food,Restaurant,3.1363729,101.6309099,KG10 Taman Tun Dr Ismail,38.7
+KA0727,Turkish Cafe Istanbul,Food,Restaurant,3.1322631,101.6296984,KG10 Taman Tun Dr Ismail,438.1
+KA0728,SCG Discovery,Food,Restaurant,3.1436028,101.7088921,KG18A Bukit Bintang,386.2
+KA0730,The Coffee Bean & Tea Leaf,Food,Cafe,3.1330634,101.6873885,KG15 Muzium Negara,452.8
+KA0731,Opera Cafe & Lounge,Food,Restaurant,3.1476853,101.7137518,MR6 Bukit Bintang,309.3
+KA0732,Vivo Pizza,Food,Restaurant,3.1423906,101.7107033,MR6 Bukit Bintang,418.5
+KA0733,Restoran Kam Lun Tai,Food,Restaurant,3.1508594,101.5910929,KG07 Surian,322.4
+KA0734,Padang Kota Corner,Food,Restaurant,3.1481676,101.5740051,KG06 Kota Damansara,570.8
+KA0735,Mee Tarik Sedap Lan Zhou,Food,Restaurant,3.0770873,101.7422222,KG26 Taman Connaught,399.3
+KA0736,Lingtang 138 Claypot Coffee,Food,Cafe,3.0770641,101.7421176,KG26 Taman Connaught,410.2
+KA0737,Connaught Chinese Cuisine,Food,Restaurant,3.0768598,101.7419712,KG26 Taman Connaught,436.7
+KA0738,Neu Xinmin Vegetarian Restaurant,Food,Restaurant,3.1325762,101.6883898,KG15 Muzium Negara,520.2
+KA0739,Bombay Talkies,Food,Restaurant,3.1330428,101.687996,KG15 Muzium Negara,460.9
+KA0740,Pizza Hut,Food,Restaurant,3.0731475,101.7628653,KG27 Taman Suntex,184.3
+KA0741,Starbucks,Food,Cafe,3.0730529,101.762875,KG27 Taman Suntex,174.2
+KA0742,ZUS Coffee,Food,Cafe,3.0729221,101.7630381,KG27 Taman Suntex,154.2
+KA0743,Pu Xian Wei Restaurant,Food,Restaurant,3.1326652,101.6884843,KG15 Muzium Negara,513.1
+KA0744,Celebrity Cafe & Bistro,Food,Cafe,3.0786461,101.7450227,KG26 Taman Connaught,61.4
+KA0745,Five Thousand Years,Food,Restaurant,3.1012951,101.7358483,KG24 Taman Midah,530.9
+KA0746,黥 KOBU by Wagyu Tavern,Food,Restaurant,3.1442488,101.7186249,KG20 PY23 Tun Razak Exchange,218.5
+KA0747,Wagaya KL Japanese Cuisine,Food,Restaurant,3.14505,101.7197595,KG20 PY23 Tun Razak Exchange,250.3
+KA0748,Saigon Viet Cuisine,Food,Restaurant,3.1457939,101.7186981,KG20 PY23 Tun Razak Exchange,360.5
+KA0749,US Pizza,Food,Fast Food,3.0491728,101.7715046,KG29 Bandar Tun Hussein Onn,399.9
+KA0750,Visalatchi’s Banana Leaf,Food,Restaurant,3.1354443,101.6918781,KG15 Muzium Negara,538.2
+KA0751,Jiu Yi Cha Ji 九億茶記 Sunway Giza (Kota Damansara),Food,Restaurant,3.1508788,101.5918479,KG07 Surian,250.8
+KA0752,煲你喜欢 Claypot Sifu Restaurant,Food,Restaurant,3.1430864,101.7154433,KG20 PY23 Tun Razak Exchange,502.7
+KA0753,New Ocean,Food,Restaurant,3.1426801,101.7154394,KG20 PY23 Tun Razak Exchange,502.4
+KA0754,Yu Yi Bak Kut Teh,Food,Restaurant,3.1427938,101.7154397,KG20 PY23 Tun Razak Exchange,502.1
+KA0755,OK Kari Kepala Ikan,Food,Restaurant,3.1428966,101.7154404,KG20 PY23 Tun Razak Exchange,502.2
+KA0756,Onn Kee Claypot Seafood Porridge,Food,Restaurant,3.1429952,101.7154407,KG20 PY23 Tun Razak Exchange,502.5
+KA0757,火凤凰 Fire Phoenix,Food,Restaurant,3.1431969,101.7154341,KG20 PY23 Tun Razak Exchange,504.6
+KA0758,Wang Hing Imbi Seafood,Food,Restaurant,3.1428882,101.7148571,MR6 Bukit Bintang,515.6
+KA0759,Nasi Kandar Imbii,Food,Restaurant,3.1435458,101.7154418,KG20 PY23 Tun Razak Exchange,508.6
+KA0760,Al Rawsha,Food,Restaurant,3.1388449,101.7219008,KG20 PY23 Tun Razak Exchange,490.4
+KA0761,Mansion 9,Food,Restaurant,3.1384744,101.7230283,KG20 PY23 Tun Razak Exchange,590
+KA0762,Golden Dragonboa,Food,Restaurant,3.1388721,101.7224236,KG20 PY23 Tun Razak Exchange,515.9
+KA0763,Espresso Impresso - Sunway Nexis,Food,Cafe,3.1498721,101.5948647,KG07 Surian,132
+KA0764,Su Xiang Ji,Food,Cafe,3.1424536,101.6972895,KG16 Pasar Seni,111.1
+KA0765,Barra,Food,Restaurant,3.1408071,101.6981028,KG16 Pasar Seni,269.4
+KA0766,The Hideout @ Petaling,Food,Restaurant,3.140907,101.698092,KG16 Pasar Seni,261.3
+KA0767,Sri Idaman Corner,Food,Restaurant,3.1433076,101.6958215,KG16 Pasar Seni,111.8
+KA0768,Cakchibo House,Food,Restaurant,3.144586,101.7205188,KG20 PY23 Tun Razak Exchange,207.2
+KA0769,ZUS Coffee,Food,Cafe,3.1451633,101.7206019,KG20 PY23 Tun Razak Exchange,271.4
+KA0770,Q Bistro,Food,Restaurant,3.1521061,101.5923044,KG07 Surian,319.4
+KA0771,XHF Mala Tang,Food,Restaurant,2.9861959,101.7910517,KG35 Kajang,353.1
+KA0772,SM Burger & Cafe,Food,Fast Food,2.9838596,101.7907869,KG35 Kajang,98.3
+KA0773,Seven Cafe,Food,Restaurant,3.1438007,101.7211379,KG20 PY23 Tun Razak Exchange,170.9
+KA0774,Chagee,Food,Cafe,3.1426784,101.6971151,KG16 Pasar Seni,96.1
+KA0775,Ploy,Food,Restaurant,3.1525547,101.6666279,KG14 Semantan,226.5
+KA0776,"Toong Kwoon Chye ""Mee""",Food,Restaurant,3.1439651,101.7079491,KG18A Bukit Bintang,427.7
+KA0777,Starbucks,Food,Cafe,3.1455596,101.6629585,KG13 Pusat Bandar Damansara,261.8
+KA0778,Qasioo Kitchen,Food,Restaurant,3.1356147,101.6883363,KG15 Muzium Negara,202.2
+KA0779,Gurney's Flavour,Food,Restaurant,3.1357288,101.688066,KG15 Muzium Negara,176.1
+KA0780,La Rica,Food,Restaurant,3.1357844,101.6880967,KG15 Muzium Negara,172.3
+KA0781,Karak Kare,Food,Restaurant,3.1357554,101.6880107,KG15 Muzium Negara,170.7
+KA0782,Golden Siam,Food,Restaurant,3.1388925,101.7223206,KG20 PY23 Tun Razak Exchange,508
+KA0783,Uwan Salai,Food,Restaurant,3.135435,101.7250417,KG21 Cochrane,399.1
+KA0784,Shawarma Street,Food,Restaurant,3.1478492,101.7108086,KG18A Bukit Bintang,156.7
+KA0785,Dil Se Bollywood Lounge,Entertainment,Nightclub,3.1489568,101.7109008,KG18A Bukit Bintang,279.6
+KA0787,TGV Cinemas,Entertainment,Cinema,3.0780411,101.7452657,KG26 Taman Connaught,128.1
+KA0788,Q Bistro Mamak Signature,Food,Restaurant,3.1475088,101.719341,KG20 PY23 Tun Razak Exchange,527.3
+KA0789,Dua Darjat,Food,Cafe,3.1463795,101.6953554,KJ14 Pasar Seni,438.4
+KA0790,Taste Of Medan,Food,Restaurant,3.1464307,101.6953481,KJ14 Pasar Seni,444.1
+KA0791,Pak Jen,Food,Restaurant,3.1465,101.695333,KJ14 Pasar Seni,451.8
+KA0792,Ayamas,Food,Restaurant,2.9930966,101.7847883,KG34 Stadium Kajang,189.5
+KA0793,Blob,Food,Cafe,3.1464462,101.6957621,KJ14 Pasar Seni,448.6
+KA0794,Miyakori Coffee,Food,Cafe,3.1434843,101.7047948,KG17 Merdeka,296
+KA0795,Al Baik,Food,Restaurant,3.1456233,101.6984123,KG16 Pasar Seni,427.3
+KA0796,Zada Cafe,Food,Cafe,3.1441135,101.6955674,KJ14 Pasar Seni,188.6
+KA0797,Thaba Express,Food,Restaurant,3.1465506,101.7013785,KG17 Merdeka,415.5
+KA0798,Transit Cafe,Food,Cafe,3.1459986,101.7014778,KG17 Merdeka,353.2
+KA0799,Treasure Island,Food,Restaurant,3.1456362,101.7029727,KG17 Merdeka,316
+KA0800,Loke Yuen Vegetarian,Food,Restaurant,3.1449142,101.7087565,KG18A Bukit Bintang,292
+KA0801,ASLI Shawarma BBQ,Food,Fast Food,3.1475485,101.7108883,KG18A Bukit Bintang,123
+KA0802,Thong Kee Plus @ TSLAW Tower,Food,Restaurant,3.1443284,101.7198602,KG20 PY23 Tun Razak Exchange,169.5
+KA0803,Chagee,Food,Cafe,3.0729973,101.7630952,KG27 Taman Suntex,160.3
+KA0804,Pauline's,Food,Fast Food,3.0730884,101.7629557,KG27 Taman Suntex,174.6
+KA0805,Mixue,Food,Cafe,3.0728456,101.7633205,KG27 Taman Suntex,138.8
+KA0806,Lai Fong Lala Noodles,Food,Restaurant,3.1445988,101.6987064,KG16 Pasar Seni,361.7
+KA0807,Yang's Braised Chicken,Food,Fast Food,3.1446529,101.709581,KG18A Bukit Bintang,246.8
+KA0808,Bottega KL,Food,Restaurant,3.1483741,101.7061707,KG18A Bukit Bintang,566.8
+KA0809,The Cheesy Twist,Food,Restaurant,3.1446568,101.7042753,KG17 Merdeka,302.4
+KA0810,de’ Kasthamandap,Food,Restaurant,3.1479473,101.7072748,KG18A Bukit Bintang,435.4
+KA0811,Boraa Bora Kitchen & Bar,Food,Restaurant,3.1477328,101.7077711,KG18A Bukit Bintang,375.4
+KA0812,Paan,Food,Restaurant,3.1471098,101.7084365,KG18A Bukit Bintang,282.9
+KA0813,Cheese Potato,Food,Fast Food,3.1460611,101.7098855,KG18A Bukit Bintang,119.9
+KA0814,Alzoaq,Food,Fast Food,3.1460033,101.7099301,KG18A Bukit Bintang,117.8
+KA0815,Gen Yakiniku,Food,Restaurant,3.1476099,101.706925,KG18A Bukit Bintang,459.5
+KA0817,SoYoung Malaysia,Food,Restaurant,3.142876,101.7178819,KG20 PY23 Tun Razak Exchange,231.1
+KA0818,Grumpy Bagels,Food,Cafe,3.1456828,101.7162435,KG20 PY23 Tun Razak Exchange,522.2
+KA0819,Tealive,Food,Cafe,3.143064,101.7197411,KG20 PY23 Tun Razak Exchange,37.6
+KA0820,Heartana Culture Hub,Culture,Arts Centre,3.1371954,101.6301474,KG10 Taman Tun Dr Ismail,151.8
+KA0821,Kapitan Bistro,Food,Restaurant,3.1457906,101.6958516,KJ14 Pasar Seni,377.8
+KA0822,Fuiyoh! It's Uncle Roger,Food,Restaurant,3.1352339,101.7220714,KG21 Cochrane,323.3
+KA0823,Jamaica Blue,Food,Cafe,3.1449221,101.704465,KG17 Merdeka,337.6
+KA0824,New Bhansaghar Restaurant,Food,Restaurant,3.1467271,101.696651,KG16 Pasar Seni,480.9
+KA0825,Mixue,Food,Cafe,3.1532834,101.5928427,KG07 Surian,420.8
+KA0826,Mil Toast,Food,Cafe,3.1479843,101.617697,KG09 Bandar Utama,193.2
+KA0827,Restoran Al Wira Curry House,Food,Restaurant,3.144776,101.7055513,KG17 Merdeka,427
+KA0828,Jamun,Food,Restaurant,3.1323704,101.6296929,KG10 Taman Tun Dr Ismail,426.8
+KA0829,Chef Long Fish & Lamb Pot,Food,Restaurant,3.1430431,101.7154419,KG20 PY23 Tun Razak Exchange,502.6
+KA0830,High Street Art Cafe,Food,Restaurant,3.146139,101.6966581,KG16 Pasar Seni,415.8
+KA0831,Pioneers Of Kuala Lumpur Museum,Culture,Museum,3.1456189,101.6965517,KG16 Pasar Seni,357.2
+KA0832,Ola,Food,Cafe,3.1456627,101.6966973,KG16 Pasar Seni,363.7
+KA0833,VIP Kawan-kawan,Food,Restaurant,3.1456803,101.6970116,KG16 Pasar Seni,371.5
+KA0834,BHC Chicken,Food,Restaurant,3.149213,101.6170618,KG09 Bandar Utama,344.9
+KA0835,Nasi Kandar Al Safinah Maju,Food,Restaurant,3.1462681,101.6991231,KG17 Merdeka,506.1
+KA0836,Restoran Zayyar Beriani,Food,Restaurant,3.1462188,101.6992068,KG17 Merdeka,495.8
+KA0837,AR One International,Food,Restaurant,3.1461857,101.6975216,KG16 Pasar Seni,440.8
+KA0838,Noble Village,Food,Restaurant,3.1469135,101.7190807,KG20 PY23 Tun Razak Exchange,466.9
+KA0839,Restoran Charis,Food,Restaurant,3.1468941,101.6973072,KG16 Pasar Seni,510.4
+KA0840,Restoran VIP Kawan-Kawan,Food,Restaurant,3.1468645,101.6973383,KG16 Pasar Seni,508
+KA0841,Restoran Dhaka Biryani,Food,Restaurant,3.1469198,101.6975103,KG16 Pasar Seni,518.6
+KA0842,Restoran Fatema,Food,Restaurant,3.1470235,101.697384,KG16 Pasar Seni,526.4
+KA0843,Cumilla Restaurant & Biryani House,Food,Restaurant,3.1461372,101.6970956,KG16 Pasar Seni,423.2
+KA0844,GClub,Entertainment,Nightclub,3.1455916,101.6974815,KG16 Pasar Seni,376.9
+KA0845,Oochid Bistro,Food,Restaurant,3.1456076,101.6975762,KG16 Pasar Seni,382.4
+KA0846,Yi Pin Lao Hotpot BBQ,Food,Restaurant,3.1442888,101.695981,KG16 Pasar Seni,210.9
+KA0847,Golden Rose,Food,Restaurant,3.1460135,101.6984682,KG16 Pasar Seni,467.3
+KA0848,AR One International,Food,Restaurant,3.1462419,101.6981602,KG16 Pasar Seni,473.3
+KA0849,Nando's,Food,Fast Food,3.1424605,101.7109195,MR6 Bukit Bintang,406.6
+KA0850,Food court,Food,Food Court,3.1419533,101.7101512,MR6 Bukit Bintang,481.4
+KA0851,Jue Kitchen - Pasta,Food,Restaurant,3.1427112,101.6984181,KG16 Pasar Seni,238.6
+KA0852,ZUS Coffee,Food,Cafe,3.1469205,101.618634,KG09 Bandar Utama,36
+KA0853,Monograph Dining,Food,Restaurant,3.1428053,101.6963845,KG16 Pasar Seni,44.4
+KA0854,Da Bao Restobar,Food,Restaurant,3.1415265,101.6979023,KG16 Pasar Seni,204.7
+KA0855,Thollu Vandi,Food,Restaurant,3.1352907,101.6920301,KG15 Muzium Negara,560.1
+KA0856,Restoran Shrinivasa Bhavan,Food,Restaurant,3.1352548,101.6920512,KG15 Muzium Negara,563.7
+KA0857,Lawanya Food Corner,Food,Fast Food,3.1356267,101.6913487,KG15 Muzium Negara,476
+KA0858,fono,Entertainment,Nightclub,3.137827,101.6970349,KG16 Pasar Seni,517.1
+KA0859,Ministry of Crab,Food,Restaurant,3.1412609,101.7073577,KG17 Merdeka,601.8
+KA0860,Hock Kee Kopitiam,Food,Restaurant,3.1410507,101.7073336,KG17 Merdeka,606.8
+KA0861,as i am,Food,Restaurant,3.1411674,101.7073155,KG17 Merdeka,600.6
+KA0862,Ting Shan,Food,Restaurant,3.1411013,101.7071489,KG17 Merdeka,585.6
+KA0863,Yorimichi Cafe,Food,Cafe,3.1446966,101.6962973,KG16 Pasar Seni,253.4
+KA0864,Jackson JR Stall,Food,Fast Food,3.1452504,101.6989383,KG16 Pasar Seni,430.9
+KA0865,Towzen,Food,Restaurant,3.1465745,101.6623366,KG13 Pusat Bandar Damansara,366.6
+KA0866,Koppiku,Food,Cafe,3.1516325,101.6656301,KG14 Semantan,80.6
+KA0867,Nutty Apam Balik,Food,Fast Food,3.1444703,101.6964381,KG16 Pasar Seni,228.8
+KA0868,Blossom a Glassmansion,Food,Restaurant,3.1463892,101.7181481,KG20 PY23 Tun Razak Exchange,446.3
+KA0869,Doña Bakehouse,Food,Restaurant,3.1442509,101.7199123,KG20 PY23 Tun Razak Exchange,160.6
+KA0870,Dong Chao Yuan,Food,Restaurant,3.1459242,101.718368,KG20 PY23 Tun Razak Exchange,389.1
+KA0871,Annabell KL,Food,Restaurant,3.1443427,101.7198169,KG20 PY23 Tun Razak Exchange,171.4
+KA0872,He Lee,Food,Restaurant,3.1449804,101.7153955,MR6 Bukit Bintang,451.2
+KA0873,Ming Kee Cantonese,Food,Restaurant,3.1450519,101.715386,MR6 Bukit Bintang,448.1
+KA0874,Ar Raaziq,Food,Restaurant,3.1442843,101.7154296,MR6 Bukit Bintang,481.4
+KA0875,Jade+60 Club KL,Entertainment,Nightclub,3.1398323,101.7213635,KG20 PY23 Tun Razak Exchange,365.6
+KA0876,mmCineplexes Plus,Entertainment,Cinema,3.142254,101.7107989,MR6 Bukit Bintang,431.4
+KA0877,Zeteo,Food,Cafe,3.1423286,101.6978145,KG16 Pasar Seni,169.6
+KA0878,Wawafish,Food,Restaurant,3.1417429,101.6978847,KG16 Pasar Seni,192.3
+KA0879,Lo And Behold,Food,Restaurant,3.1416305,101.6978926,KG16 Pasar Seni,198.3
+KA0880,GUI GUI Korean Barbecue,Food,Restaurant,3.1415736,101.6978379,KG16 Pasar Seni,195.9
+KA0883,Elixir,Entertainment,Nightclub,3.1407829,101.7212651,KG20 PY23 Tun Razak Exchange,267.6
+KA0884,Amber,Entertainment,Nightclub,3.1404617,101.7211476,KG20 PY23 Tun Razak Exchange,292.2
+KA0885,404 Club Not Found,Entertainment,Nightclub,3.1412965,101.7215909,KG20 PY23 Tun Razak Exchange,246.8
+KA0886,Le Club,Entertainment,Nightclub,3.1419205,101.7215216,KG20 PY23 Tun Razak Exchange,199.3
+KA0887,V12 Club,Entertainment,Nightclub,3.1411154,101.7215033,KG20 PY23 Tun Razak Exchange,254.3
+KA0888,BoomBoxx3,Entertainment,Nightclub,3.1402251,101.7211103,KG20 PY23 Tun Razak Exchange,314.2
+KA0889,Spade,Entertainment,Nightclub,3.1403482,101.7212436,KG20 PY23 Tun Razak Exchange,308.3
+KA0890,Spark Club KL,Entertainment,Nightclub,3.1418076,101.7215107,KG20 PY23 Tun Razak Exchange,204.7
+KA0891,The Steak Empire,Food,Restaurant,3.1397581,101.7212708,KG20 PY23 Tun Razak Exchange,368.9
+KA0892,Jupiter,Entertainment,Nightclub,3.1397968,101.7211096,KG20 PY23 Tun Razak Exchange,358.2
+KA0893,Oversea Seafood KL,Food,Restaurant,3.141695,101.7214795,KG20 PY23 Tun Razak Exchange,209
+KA0894,Luckin Coffee,Food,Cafe,3.1471542,101.662685,KG13 Pusat Bandar Damansara,432.4
+KA0895,Young Sanna Mee,Food,Restaurant,3.1534149,101.5913085,KG07 Surian,501
+KA0896,Nasi Kandar Umar,Food,Restaurant,3.1479041,101.7108007,KG18A Bukit Bintang,162.9
+KA0897,Luna Kitchen,Food,Cafe,3.1431174,101.6966502,KG16 Pasar Seni,87.5
+KA0898,AIR MATA KUCING,Food,Fast Food,3.1444898,101.697819,KG16 Pasar Seni,286.2
+KA0899,Nongkrong Cafe,Food,Fast Food,3.1457535,101.7003006,KG17 Merdeka,380.3
+KA0900,Durian Brothers,Food,Cafe,3.1438775,101.707798,KG18A Bukit Bintang,446.8
+KA0901,Idris Mee Tarik,Food,Restaurant,3.1443288,101.7042255,KG17 Merdeka,275.7
+KA0902,Green Veggie,Food,Restaurant,3.1437221,101.6967034,KG16 Pasar Seni,152.2
+KA0903,Bites,Food,Restaurant,3.145296,101.6993837,KG17 Merdeka,410
+KA0904,Big Mouth Bak Kut Teh,Food,Restaurant,3.1439136,101.6969166,KG16 Pasar Seni,180.3
+KA0905,Restoran New Sek Yuen,Food,Restaurant,3.1439211,101.6971452,KG16 Pasar Seni,192.3
+KA0906,Sister Chicken Rice,Food,Restaurant,3.1439173,101.6969514,KG16 Pasar Seni,182.2
+KA0907,Raijin Men,Food,Restaurant,3.1449909,101.6983391,KG16 Pasar Seni,365.6
+KA0908,Stellar Coffee,Food,Cafe,3.1448627,101.6984826,KG16 Pasar Seni,365
+KA0909,Le Petit Hamburg,Food,Restaurant,3.1449978,101.6981551,KG16 Pasar Seni,353.9
+KA0910,WEEEE by Welemon,Food,Restaurant,3.0774317,101.7424414,KG26 Taman Connaught,357.5
+KA0911,Chagee,Food,Cafe,3.0902137,101.7428175,KG25 Taman Mutiara,295.4
+KA0912,Mixue,Food,Cafe,3.0899931,101.7431482,KG25 Taman Mutiara,339
+KA0913,668 Restaurant,Food,Restaurant,3.1442291,101.6977399,KG16 Pasar Seni,257.9
+KA0914,Chan Thong Kee,Food,Restaurant,3.1445112,101.6982984,KG16 Pasar Seni,322.4
+KA0915,668 Food Centre,Food,Food Court,3.1445065,101.6985075,KG16 Pasar Seni,338.5
+KA0917,Heemo's Pizza,Food,Fast Food,3.1474205,101.5754874,KG06 Kota Damansara,473.4
+KA0918,Al-Kawthar Chinese Muslim Noodle Restaurant,Food,Restaurant,3.1479464,101.5743836,KG06 Kota Damansara,543.2
+KA0919,Arabica Middle Eastern Restaurant,Food,Restaurant,3.1477986,101.574774,KG06 Kota Damansara,513.3
+KA0920,Zhu Guang Yu Hot Pot,Food,Restaurant,3.1441145,101.706028,KG17 Merdeka,446.5
+KA0921,Super Matcha,Food,Cafe,3.1438195,101.7168984,KG20 PY23 Tun Razak Exchange,358.3
+KA0922,Medan Selera Tempat Letak Kereta Bertingkat PA Seri Sabah,Food,Food Court,3.1165865,101.7262025,KG23 Taman Pertama,557.8
+KA0923,V3 Saigon Viet Cafe,Food,Restaurant,3.1275235,101.7297869,KG22 Maluri,438.4
+KA0924,Radi Heart Resto Bar,Food,Restaurant,3.1435899,101.7056243,KG17 Merdeka,388.5
+KA0925,Baskbear Coffee,Food,Cafe,3.1430162,101.7197475,KG20 PY23 Tun Razak Exchange,33.3
+KA0926,Lan Zhou Mee Tarik,Food,Fast Food,3.1449419,101.7075824,KG18A Bukit Bintang,403.9
+KA0927,arest,Food,Cafe,3.1437035,101.7172116,KG20 PY23 Tun Razak Exchange,321.2
+KA0928,Dapo L.A,Food,Restaurant,3.1237786,101.7268399,AG13 Maluri,58
+KA0930,Loong Kee,Food,Fast Food,3.1439812,101.6975967,KG16 Pasar Seni,226.5
+KA0931,WIP,Food,Restaurant,3.142775,101.6668904,KG13 Pusat Bandar Damansara,504.1
+KA0932,Roberto’s,Food,Restaurant,3.1427837,101.6670685,KG13 Pusat Bandar Damansara,523.7
+KA0933,Huckleberry,Food,Restaurant,3.1428366,101.6673079,KG13 Pusat Bandar Damansara,549.6
+KA0934,Merdeka Grill,Food,Restaurant,3.1417171,101.7007387,KG17 Merdeka,208.5
+KA0935,Park Lounge,Food,Restaurant,3.141627,101.700779,KG17 Merdeka,211.7
+KA0936,Murni Discovery,Food,Restaurant,3.1426003,101.7051601,KG17 Merdeka,331.1
+KA0937,100 Years Nasi Lemak,Food,Restaurant,3.1430627,101.7053424,KG17 Merdeka,350.1
+KA0938,Breakfast Spot,Food,Cafe,3.1435852,101.7048578,KG17 Merdeka,305.4
+KA0939,Angtara,Food,Restaurant,3.1434384,101.7047768,KG17 Merdeka,292.9
+KA0940,Waaron Kuus,Food,Restaurant,3.143147,101.6978829,KG16 Pasar Seni,194.6
+KA0941,Joy Food And Drink,Food,Fast Food,3.1426585,101.6977147,KG16 Pasar Seni,160.5
+KA0942,V8 Kitchens EXP,Food,Cafe,3.1429483,101.6979014,KG16 Pasar Seni,188.4
+KA0943,Butter Kaya,Food,Restaurant,3.1436143,101.6978206,KG16 Pasar Seni,215.9
+KA0944,Restoran Farhaman,Food,Restaurant,3.1437821,101.6977884,KG16 Pasar Seni,225.2
+KA0945,Haypii Kopii,Food,Cafe,3.1432095,101.6976853,KG16 Pasar Seni,178.2
+KA0946,No 27,Food,Restaurant,3.1442374,101.698562,KG16 Pasar Seni,323.4
+KA0947,Bee Cheng Hiang,Food,Fast Food,3.14426,101.6987077,KG16 Pasar Seni,337.7
+KA0948,Chinese Food City,Food,Fast Food,3.1425636,101.6979585,KG16 Pasar Seni,186
+KA0949,Restoran H&Y Jalan Sultan,Food,Restaurant,3.1443126,101.6987015,KG16 Pasar Seni,340.8
+KA0950,Kedai Kopi Xiong Wor,Food,Restaurant,3.1392439,101.6298177,KG10 Taman Tun Dr Ismail,375.7
+KA0951,India gate (no more bars or clubs here),Food,Restaurant,3.1477823,101.7084593,KG18A Bukit Bintang,308.8
+KA0952,AMANECO,Food,Cafe,3.0384194,101.7741893,KG30 Batu 11 Cheras,334.2
+KA0953,Ferria KL,Food,Restaurant,3.1478907,101.7144257,MR6 Bukit Bintang,384.3
+KA0954,Community Coffee Roasters,Food,Cafe,3.130349,101.6419573,KG12 Phileo Damansara,168
+KA0955,View on Merdeka Tower 118,Other,Viewpoint,3.1427984,101.6986021,KG16 Pasar Seni,260.2
+KA0956,View on Merdeka Tower 118,Other,Viewpoint,3.1427857,101.7008622,KG17 Merdeka,148.4
+KA0957,View on Merdeka Tower 118,Other,Viewpoint,3.1427102,101.7013862,KG17 Merdeka,92.1
+KA0958,Sedap,Food,Restaurant,3.1504158,101.7145527,MR6 Bukit Bintang,591.1
+KA0959,Red Chinese Cuisine,Food,Restaurant,3.1504831,101.7144541,MR6 Bukit Bintang,591.1
+KA0960,Terrace,Food,Cafe,3.1505423,101.714578,MR6 Bukit Bintang,604.2
+KA0961,Lavang,Food,Restaurant,3.1424468,101.7050202,KG17 Merdeka,317.9
+KA0962,Yum Yum BBQ,Food,Restaurant,3.1259423,101.7250296,KG22 Maluri,288.7
+KA0963,theLocal Kopi Malaya Signature,Food,Cafe,3.1557272,101.6129381,KG08 Mutiara Damansara,460.6
+KA0964,AllAce,Food,Fast Food,3.0902616,101.7424012,KG25 Taman Mutiara,251.5
+KA0965,Restoran Teoh Heng Kee,Food,Restaurant,3.0878723,101.7379912,KG25 Taman Mutiara,465.3
+KA0966,Warung Babi Guling Jenny,Food,Restaurant,3.08787,101.7380358,KG25 Taman Mutiara,462.7
+KA0967,Shun Shun Lai,Food,Cafe,3.0878817,101.7378153,KG25 Taman Mutiara,475.9
+KA0968,Green Lane Noodles,Food,Restaurant,3.0878955,101.7375141,KG25 Taman Mutiara,495.6
+KA0969,Taste Good Gourmet,Food,Restaurant,3.0879131,101.737215,KG25 Taman Mutiara,516.2
+KA0970,Restoran Lim Kee Pan Mee,Food,Restaurant,3.0879176,101.7370452,KG25 Taman Mutiara,528.9
+KA0971,Chaos House,Food,Restaurant,3.0879359,101.7366234,KG25 Taman Mutiara,561.4
+KA0972,1188 Curry Fish Head and Steam Fish Restaurant,Food,Restaurant,3.0879377,101.7365638,KG25 Taman Mutiara,566.2
+KA0973,Richiamo,Food,Cafe,3.1468044,101.6947466,KJ14 Pasar Seni,489.6
+KA0974,Old Peking Grilled Fish,Food,Restaurant,3.1431222,101.6987376,KG16 Pasar Seni,282.9
+KA0975,Warung Awana,Food,Fast Food,3.1466716,101.6935936,KJ14 Pasar Seni,507.8
+KA0976,Nasi Kandar AZ Signature,Food,Restaurant,3.1436252,101.7113765,MR6 Bukit Bintang,272.5
+KA0977,Yue Cha Dao,Food,Restaurant,3.146411,101.7002324,KG17 Merdeka,446.7
+KA0978,Bluebird,Food,Cafe,3.1427265,101.7024654,KG17 Merdeka,36.1
+KA0979,Fluffed,Food,Restaurant,3.1426529,101.6972125,KG16 Pasar Seni,105.8
+KA0980,Kim Yong Gee,Food,Restaurant,3.1425767,101.6980783,KG16 Pasar Seni,199.4
+KA0981,Sutera Mas Beef Roti,Food,Fast Food,3.142591,101.6975196,KG16 Pasar Seni,137.9
+KA0982,1978 Cucur Udang,Food,Fast Food,3.1425921,101.6975383,KG16 Pasar Seni,140
+KA0983,Restoran Nasi Kandar MS Maju,Food,Restaurant,3.1127626,101.7295584,KG23 Taman Pertama,31.5
+KA0984,The Ngon Salad Rolls,Food,Restaurant,3.145905,101.7018564,KG17 Merdeka,335.9
+KA0985,Restoran Kenki Foodcourt,Food,Restaurant,3.0999888,101.7333477,KG24 Taman Midah,508.8
+KA0986,Peel Road Kopitiam,Food,Restaurant,3.1251908,101.7264346,KG22 Maluri,113.3
+KA0987,Mafuji Hotpot,Food,Restaurant,3.1250893,101.726514,KG22 Maluri,99.3
+KA0988,Ditan Hot Pot,Food,Restaurant,3.1257833,101.7253671,KG22 Maluri,247.7
+KA0989,Xiao La Mei F&B Sdn. Bhd.,Food,Restaurant,3.1287955,101.7208623,KG21 Cochrane,473.5
+KA0990,28 Food House,Food,Food Court,3.1298851,101.7193684,KG21 Cochrane,496
+KA0991,Hailam Vege Kopitiam,Food,Restaurant,3.1210154,101.7286822,AG13 Maluri,316.2
+KA0992,M Restoran,Food,Restaurant,3.1208972,101.7286689,AG13 Maluri,325.8
+KA0993,Restoran Kou Shui,Food,Restaurant,3.120727,101.7286563,AG13 Maluri,340.5
+KA0994,Hometaste Mix Rice,Food,Restaurant,3.1204,101.7285973,AG13 Maluri,367.9
+KA0995,AllAce,Food,Fast Food,3.1200918,101.7285537,AG13 Maluri,395.8
+KA0996,Lanka Taste,Food,Restaurant,3.1458251,101.7021502,KG17 Merdeka,324.9
+KA0997,Pizzeria Dihyang,Food,Restaurant,3.146492,101.7016139,KG17 Merdeka,404.2
+KA0998,Esca KL,Food,Restaurant,3.1418075,101.6978508,KG16 Pasar Seni,186.1
+KA0999,Thoulath Rojak & Cendol,Food,Restaurant,3.0714176,101.7671738,KG27 Taman Suntex,410.7
+KA1000,Dury Dury,Food,Restaurant,3.1446767,101.706754,KG18A Bukit Bintang,500
+KA1001,Daawat,Food,Restaurant,3.1449247,101.7066272,KG18A Bukit Bintang,503
+KA1002,Liuli House,Food,Restaurant,3.1383618,101.6993648,KG16 Pasar Seni,565.7
+KA1003,Flavorsome,Food,Restaurant,3.1382728,101.6994713,KG16 Pasar Seni,580.7
+KA1004,Miss Coco,Food,Cafe,3.1491097,101.7077201,KG18A Bukit Bintang,460.7
+KA1005,Outreach Coffee,Food,Cafe,3.1438395,101.7077659,KG18A Bukit Bintang,452.2
+KA1006,Kaihomaru,Food,Restaurant,3.1438116,101.7090239,KG18A Bukit Bintang,358.8
+KA1007,Yaki Soul,Food,Restaurant,3.1489258,101.7084117,KG18A Bukit Bintang,390.2
+KA1008,Shaik Corner Maju,Food,Fast Food,3.1433062,101.6997585,KG17 Merdeka,274
+KA1009,Court Hill Corner,Food,Fast Food,3.146808,101.7003857,KG17 Merdeka,478.3
+KA1010,Ruby Cafe,Food,Restaurant,3.1467289,101.7008215,KG17 Merdeka,451.8
+KA1011,After Summer,Food,Cafe,3.1254756,101.7260464,KG22 Maluri,166.7
+KA1012,Fengche Chu Hot Pot,Food,Restaurant,3.1255972,101.7257704,KG22 Maluri,199.2
+KA1013,Chicken Everyday,Food,Fast Food,3.1256381,101.725695,KG22 Maluri,208.7
+KA1014,Mei Fan Now Bbq,Food,Restaurant,3.1252325,101.7264006,KG22 Maluri,119.2
+KA1015,Yoursnackies,Food,Cafe,3.1256964,101.725527,KG22 Maluri,227.6
+KA1016,Guizhou Cuisine,Food,Restaurant,3.1256236,101.7257355,KG22 Maluri,204.1
+KA1017,Guan Wai Ye Ren,Food,Restaurant,3.1251593,101.7264735,KG22 Maluri,107.7
+KA1018,Faizal Kong Mee Tarik,Food,Restaurant,3.1450601,101.6943962,KJ14 Pasar Seni,308.7
+KA1019,ZUS Coffee,Food,Cafe,3.1444906,101.6942212,KJ14 Pasar Seni,258.2
+KA1020,Luckin Coffee,Food,Cafe,3.1444101,101.7094201,KG18A Bukit Bintang,279.1
+KA1021,ChaTraMue,Food,Cafe,3.1442867,101.6940619,KJ14 Pasar Seni,247.8
+KA1022,Good News Pizza,Food,Restaurant,3.1409618,101.6980915,KG16 Pasar Seni,257.4
+KA1023,Huangjia Bistro,Food,Restaurant,3.1433252,101.7083539,KG18A Bukit Bintang,447
+KA1024,New Chennai Bakery,Food,Restaurant,3.1352222,101.6912378,KG15 Muzium Negara,482.6
+KA1026,Ayyappa Pullingo,Food,Fast Food,3.1351297,101.6910782,KG15 Muzium Negara,471.5
+KA1028,Loke Yuen vegetarian,Food,Restaurant,3.1450191,101.70887,KG18A Bukit Bintang,275
+KA1029,Brew & Bond,Food,Cafe,3.1440479,101.7082088,KG18A Bukit Bintang,399.8
+KA1030,Subway,Food,Fast Food,3.1405723,101.7068632,KG17 Merdeka,579.7
+KA1031,Adough,Food,Cafe,3.1468731,101.7194946,KG20 PY23 Tun Razak Exchange,455
+KA1032,Mawar Merah 118-2,Food,Restaurant,3.1426864,101.699091,KG16 Pasar Seni,312.5
+KA1033,Malaya Nyonya House,Food,Restaurant,3.1419108,101.6990953,KG16 Pasar Seni,316.6
+KA1034,Summation,Food,Cafe,3.1449274,101.6984076,KG16 Pasar Seni,364.9
+KA1035,Hock Kee Kopitiam 福气安康 (Kota Damansara),Food,Restaurant,3.1533673,101.5919022,KG07 Surian,464.5
+KA1036,Uncle Soon Fried Rice @ Wisma Cosway,Food,Restaurant,3.1508208,101.7119175,KG18A Bukit Bintang,499.9
+KA1037,The Industry,Food,Restaurant,3.1513867,101.664648,KG14 Semantan,91.9
+KA1038,Feeka Coffee Roasters,Food,Cafe,3.1511439,101.664441,KG14 Semantan,103.8
+KA1039,Healthy Spoon,Food,Restaurant,3.1469235,101.7197953,KG20 PY23 Tun Razak Exchange,458
+KA1040,Want Eat 2,Food,Food Court,3.1476555,101.7013084,KG17 Merdeka,537.5
+KA1041,Pampas Bukit Ceylon,Food,Restaurant,3.1484196,101.7030035,KG17 Merdeka,619.9
+KA1042,Ng Ah Choo Multipurpose Hall,Other,Community Centre,2.9864626,101.792934,KG35 Kajang,472.4
+KA1043,On The Go,Food,Cafe,3.1444023,101.6941928,KJ14 Pasar Seni,251.1
+KA1044,Bunga Telang,Food,Fast Food,3.1441869,101.6936079,KJ14 Pasar Seni,271
+KA1045,Cilantro Cafe,Food,Cafe,3.1445649,101.6942326,KJ14 Pasar Seni,264.9
+KA1046,Pinggan Ayan,Food,Fast Food,3.144155,101.6935741,KJ14 Pasar Seni,271.1
+KA1047,Greedy Grill,Food,Fast Food,3.1441277,101.6935246,KJ14 Pasar Seni,272.9
+KA1048,Godzilla x Kong Mural,Culture,Attraction,3.1445007,101.6958395,KG16 Pasar Seni,237
+KA1050,Restoran Nasi Kandar Al-Sarifa,Food,Restaurant,3.0429632,101.7722147,KG30 Batu 11 Cheras,223
+KA1051,Heritage Kopitiam,Food,Restaurant,3.0406724,101.7704664,KG30 Batu 11 Cheras,327.1
+KA1052,Restoran Cui Yan,Food,Restaurant,3.0425277,101.7723845,KG30 Batu 11 Cheras,172.8
+KA1053,Viet Pho Cafe,Food,Cafe,3.0389982,101.7692212,KG30 Batu 11 Cheras,524.7
+KA1054,Milwaukee Steak Corner,Food,Restaurant,3.0386457,101.7690274,KG30 Batu 11 Cheras,563.1
+KA1055,马来西亚华社研究中心思源讲堂,Other,Community Centre,3.1389999,101.6980863,KG16 Pasar Seni,429.2
+KA1056,吉隆坡暨雪兰莪中华大会堂丹斯里颜清文礼堂,Other,Community Centre,3.1393091,101.6979762,KG16 Pasar Seni,393.1
+KA1057,Warakuya Japanese Cuisine,Food,Restaurant,3.0903938,101.7423784,KG25 Taman Mutiara,242.7
+KA1058,Mi Viet,Food,Restaurant,3.0879413,101.7429241,KG25 Taman Mutiara,467.8
+KA1059,S11 Mixed Rice,Food,Restaurant,3.0884514,101.7433999,KG25 Taman Mutiara,460.6
+KA1060,Ming Si Vegetarian Restaurant,Food,Restaurant,3.0883882,101.7433385,KG25 Taman Mutiara,460.6
+KA1061,Southern Kopi,Food,Restaurant,3.0893535,101.7443232,KG25 Taman Mutiara,487.5
+KA1062,Restoran Hong Sang,Food,Restaurant,3.0902695,101.7436242,KG25 Taman Mutiara,377
+KA1063,Food City,Food,Food Court,3.090589,101.7414253,KG25 Taman Mutiara,139.6
+KA1064,Duo Rou Hot Pot BBQ Buffet,Food,Restaurant,3.0908362,101.7413676,KG25 Taman Mutiara,120.2
+KA1065,Mixue,Food,Cafe,3.0909114,101.7424619,KG25 Taman Mutiara,234
+KA1066,Romaliya,Food,Restaurant,3.0905507,101.7415233,KG25 Taman Mutiara,151
+KA1067,ALittle Tea,Food,Cafe,3.0909271,101.7425734,KG25 Taman Mutiara,245.9
+KA1068,B.O.D. 包栈,Food,Cafe,3.0908422,101.7416232,KG25 Taman Mutiara,146.1
+KA1069,Bananabro,Food,Restaurant,3.0908078,101.7413932,KG25 Taman Mutiara,124.2
+KA1070,Boost Juice,Food,Cafe,3.0909702,101.7428248,KG25 Taman Mutiara,272.8
+KA1071,Bungkus Kaw Kaw,Food,Restaurant,3.0908053,101.7424871,KG25 Taman Mutiara,239.2
+KA1072,Cotti Coffee,Food,Cafe,3.0907819,101.7419153,KG25 Taman Mutiara,178.9
+KA1073,Esquire Kitchen,Food,Restaurant,3.0910046,101.7426116,KG25 Taman Mutiara,248.8
+KA1074,Go Noodle House,Food,Restaurant,3.0907413,101.7413151,KG25 Taman Mutiara,120.1
+KA1075,Hotpot Kitchen Express,Food,Restaurant,3.0908289,101.7415463,KG25 Taman Mutiara,138.7
+KA1076,KOI Thé,Food,Cafe,3.0906679,101.7414745,KG25 Taman Mutiara,139.5
+KA1077,Oiso,Food,Restaurant,3.0906923,101.7420659,KG25 Taman Mutiara,198
+KA1078,Old Nanyang Coffee,Food,Restaurant,3.0907428,101.7424282,KG25 Taman Mutiara,234.6
+KA1079,Penang Chendul,Food,Restaurant,3.090883,101.7418576,KG25 Taman Mutiara,169.4
+KA1080,Salad Atelier,Food,Restaurant,3.0910234,101.7428848,KG25 Taman Mutiara,278.6
+KA1081,Simple Life Healthy Vegetarian Restaurant,Food,Restaurant,3.0908334,101.7426083,KG25 Taman Mutiara,251.7
+KA1082,Sushi Boy,Food,Restaurant,3.0910753,101.7428148,KG25 Taman Mutiara,270.3
+KA1083,Sushihan,Food,Restaurant,3.0910266,101.7430653,KG25 Taman Mutiara,298.5
+KA1084,Tealive,Food,Cafe,3.090887,101.7418001,KG25 Taman Mutiara,163.2
+KA1085,Tsuen Wan Restaurant,Food,Restaurant,3.0908805,101.7431872,KG25 Taman Mutiara,314
+KA1086,U-Village Hong Kong Restaurant,Food,Restaurant,3.0906483,101.7413285,KG25 Taman Mutiara,127
+KA1087,Empire Sushi,Food,Restaurant,3.090794,101.7418265,KG25 Taman Mutiara,169.2
+KA1088,Roy Bonzer Corner,Food,Fast Food,3.1446298,101.7074376,KG18A Bukit Bintang,433.6
+KA1089,Virunthu at KL Town,Food,Food Court,3.1353935,101.7251755,KG21 Cochrane,404
+KA1090,TSK Cafe,Food,Restaurant,3.1342796,101.6910606,KG15 Muzium Negara,521.4
+KA1091,Pusat Rukun Tetangga Daerah Brickfields,Other,Community Centre,3.1340922,101.6904001,KG15 Muzium Negara,479.8
+KA1092,Lovecity Cafe,Food,Cafe,3.1335779,101.6897964,KG15 Muzium Negara,480.7
+KA1093,Ziyafat,Food,Restaurant,3.1447734,101.7086143,KG18A Bukit Bintang,314
+KA1094,Restoran Beh Brothers,Food,Restaurant,3.1451792,101.7082933,KG18A Bukit Bintang,321.2
+KA1095,Azuma Cafe,Food,Restaurant,3.1431326,101.7094615,MR6 Bukit Bintang,396.5
+KA1096,Upper House,Food,Restaurant,3.1431115,101.697887,KG16 Pasar Seni,193.4
+KA1097,Pirate Burger,Food,Fast Food,3.146417,101.7079709,KG18A Bukit Bintang,324.7
+KA1098,Restoran Dilla,Food,Restaurant,3.1452111,101.697824,KG16 Pasar Seni,354.3
+KA1099,Luckin Coffee,Food,Cafe,3.1284048,101.7249922,KG22 Maluri,496.2
+KA1100,PENKO Sushi & Grill Izakaya,Food,Restaurant,3.1472643,101.6960565,KG16 Pasar Seni,539.5
+KA1101,LostxFound Cafe,Food,Cafe,3.1445347,101.714973,MR6 Bukit Bintang,423.7
+KA1102,OGA Tea & Dining,Food,Cafe,3.1456421,101.7171938,KG20 PY23 Tun Razak Exchange,440.2
+KA1103,Liho Tea,Food,Cafe,3.1268459,101.7253481,KG22 Maluri,330.2
+KA1104,STG,Food,Cafe,3.1483714,101.7065456,KG18A Bukit Bintang,528.4
+KA1105,Din Sun Kopitiam,Food,Restaurant,3.1440493,101.6958097,KJ14 Pasar Seni,187.8
+KA1106,BBap,Food,Restaurant,3.133373,101.6864685,KG15 Muzium Negara,429.2
+KA1107,Gerakan Belia 4B Malaysia,Other,Community Centre,3.1380037,101.6842081,KG15 Muzium Negara,360.5
+KA1108,Jalan Hang Kasturi,Culture,Attraction,3.1453613,101.6958024,KJ14 Pasar Seni,329.8
+KA1109,REXKL,Culture,Arts Centre,3.1449157,101.6982503,KG16 Pasar Seni,352.9
+KA1110,Sin Sze Si Ya Temple,Culture,Place Of Worship,3.1456516,101.6963891,KG16 Pasar Seni,359.8
+KA1111,Pizza Hut,Food,Restaurant,3.138994,101.6280431,KG10 Taman Tun Dr Ismail,454.3
+KA1120,Muzium Negara,Culture,Museum,3.137709,101.687381,KG15 Muzium Negara,64
+KA1121,LaPARK,Food,Food Court,3.1496467,101.7152794,MR6 Bukit Bintang,579.4
+KA1122,Istana 1,Culture,Museum,3.1376947,101.6880871,KG15 Muzium Negara,104.1
+KA1123,Muzium Etnologi Dunia Melayu,Culture,Museum,3.1376831,101.6884371,KG15 Muzium Negara,136.6
+KA1124,Jalan Petaling,Culture,Marketplace,3.1438675,101.6976221,KG16 Pasar Seni,218.8
+KA1125,Taman Budaya Kuala Lumpur,Culture,Arts Centre,3.1410427,101.6957119,KJ14 Pasar Seni,161.5
+KA1126,Jalan Alor,Culture,Marketplace,3.1456933,101.7086769,KG18A Bukit Bintang,260
+KA1127,Bangunan Zhongshan,Culture,Attraction,3.1378948,101.6971405,KG16 Pasar Seni,511.7
+KA1128,Bangunan Sultan Abdul Samad,Culture,Attraction,3.1484599,101.694874,KJ14 Pasar Seni,671.4
+KA1129,Medan Sate,Food,Food Court,2.9915687,101.788387,KG34 Stadium Kajang,368.1
+KA1130,Fifth Avenue Coffee Shop,Food,Restaurant,3.1006395,101.7321753,KG24 Taman Midah,421.4
+KA1132,Muzium Kesenian Islam Malaysia,Culture,Museum,3.1414518,101.6897523,KG15 Muzium Negara,549.9
+KA1133,Gemu Club KL,Entertainment,Nightclub,3.1511081,101.7136832,KG18A Bukit Bintang,604.1
+KA1135,Big Tree,Food,Restaurant,3.1400977,101.6281947,KG10 Taman Tun Dr Ismail,540.5
+KA1136,Pickle & Fig,Food,Restaurant,3.1401658,101.6283889,KG10 Taman Tun Dr Ismail,535.5
+KA1137,Dotty's Patries,Food,Restaurant,3.1402338,101.6285832,KG10 Taman Tun Dr Ismail,531.4
+KA1138,d'Cengkih,Food,Restaurant,3.139805,101.628151,KG10 Taman Tun Dr Ismail,516.3
+KA1139,Domino's,Food,Fast Food,3.1398503,101.6282805,KG10 Taman Tun Dr Ismail,512.3
+KA1140,Abadi Cafeteria,Food,Restaurant,3.1399412,101.6285393,KG10 Taman Tun Dr Ismail,505.5
+KA1141,Ismail,Food,Restaurant,3.1399866,101.6286688,KG10 Taman Tun Dr Ismail,502.7
+KA1142,Kwan Lee,Food,Food Court,3.1402747,101.6286995,KG10 Taman Tun Dr Ismail,529.4
+KA1143,Kedey Kamek,Food,Restaurant,3.1402973,101.6287645,KG10 Taman Tun Dr Ismail,528.5
+KA1144,Do'Stim Noodle/BBQ,Food,Restaurant,3.14032,101.6288292,KG10 Taman Tun Dr Ismail,527.6
+KA1145,Mahesha,Food,Restaurant,3.1401181,101.6290442,KG10 Taman Tun Dr Ismail,497.3
+KA1146,Chakuro Yakiniku,Food,Restaurant,3.1401636,101.6291738,KG10 Taman Tun Dr Ismail,496.3
+KA1147,Secret Recipe,Food,Fast Food,3.1405492,101.62965,KG10 Taman Tun Dr Ismail,520.2
+KA1148,Kapitan,Food,Restaurant,3.1406143,101.6296273,KG10 Taman Tun Dr Ismail,527.9
+KA1149,pebble - llaollao,Food,Restaurant,3.1406794,101.6296048,KG10 Taman Tun Dr Ismail,535.5
+KA1150,Kiya's,Food,Restaurant,3.1409611,101.6297838,KG10 Taman Tun Dr Ismail,561.3
+KA1151,Restoran Puteri,Food,Restaurant,3.140896,101.6298063,KG10 Taman Tun Dr Ismail,553.6
+KA1152,Big Singh Capati,Food,Restaurant,3.1407006,101.629874,KG10 Taman Tun Dr Ismail,530.8
+KA1153,Viet Thai,Food,Restaurant,3.1406358,101.6298967,KG10 Taman Tun Dr Ismail,523.3
+KA1154,Bedouin,Food,Restaurant,3.1389358,101.630123,KG10 Taman Tun Dr Ismail,333.4
+KA1155,Ember Modern Bistro,Food,Restaurant,3.1390505,101.629812,KG10 Taman Tun Dr Ismail,355.5
+KA1156,Chong Thong Kee,Food,Restaurant,3.1391081,101.6297926,KG10 Taman Tun Dr Ismail,362.2
+KA1157,Chuen Hainanese Chicken Rice,Food,Restaurant,3.1395999,101.6296279,KG10 Taman Tun Dr Ismail,419.9
+KA1158,The Brew House,Food,Restaurant,3.1393606,101.6290949,KG10 Taman Tun Dr Ismail,419
+KA1159,Loco,Food,Restaurant,3.1393406,101.6290374,KG10 Taman Tun Dr Ismail,420.1
+KA1160,Uncle Don's,Food,Restaurant,3.1393005,101.6289226,KG10 Taman Tun Dr Ismail,422.5
+KA1161,Mosin,Food,Restaurant,3.139173,101.6285625,KG10 Taman Tun Dr Ismail,432.6
+KA1162,Spesial Sambal Waroeng,Food,Restaurant,3.1390336,101.6281628,KG10 Taman Tun Dr Ismail,448.5
+KA1163,Pusat Kreatif Kanak-kanak Tuanku Bainun,Culture,Arts Centre,3.1413065,101.6321937,KG10 Taman Tun Dr Ismail,605.3
+KA1164,Kwai Chai Hong,Culture,Attraction,3.1416001,101.6976753,KG16 Pasar Seni,178.7
+KA1165,McDonald's,Food,Fast Food,3.1404584,101.6292435,KG10 Taman Tun Dr Ismail,524.1
+KA1166,McDonald's,Food,Fast Food,3.1495574,101.5797696,KG06 Kota Damansara,134
+KA1167,Medan Selera Tanjung Village,Food,Food Court,3.1521615,101.5926368,KG07 Surian,308.8
+KA1168,Neighbourhood Foodcourt,Food,Food Court,3.1520937,101.5940468,KG07 Surian,280
+KA1171,Andaman Seafood Village - Seafood Restaurant Kuala Lumpur,Food,Restaurant,3.1470508,101.7181634,KG20 PY23 Tun Razak Exchange,512.3
+KA1172,Medan Selera MBPJ Damansara Kim,Food,Food Court,3.1362089,101.6294526,KG10 Taman Tun Dr Ismail,157.3
+KA1173,Dewan Komuniti Taman Midah,Other,Community Centre,3.1007098,101.7298505,KG24 Taman Midah,491.4
+KA1175,Sri Taman Memorial Tun Abdul Razak,Culture,Museum,3.1419374,101.6868484,KG15 Muzium Negara,536.8
+KA1176,Dewan Masyarakat Taman Segar,Other,Community Centre,3.0899554,101.7443822,KG25 Taman Mutiara,467.8
+KA1180,Thomson Cafe,Food,Fast Food,3.1495804,101.5790331,KG06 Kota Damansara,74.3
+KA1181,Bookafe,Food,Cafe,3.045923,101.7722149,KG29 Bandar Tun Hussein Onn,412.2
+KA1182,Persatuan Penduduk Desa Bunga Raya,Other,Community Centre,2.9910923,101.7836585,KG34 Stadium Kajang,433.8
+KA1183,探 Cafe tàn cafe tan cafe,Food,Cafe,2.9872187,101.7911188,KG35 Kajang,465.9
+KA1184,Gerai Selera Impian,Food,Food Court,3.1725581,101.5756425,KG04 PY01 Kwasa Damansara,551
+KA1185,Al Baik Di Bistro,Food,Restaurant,3.1445639,101.6959457,KG16 Pasar Seni,241.7
+KA1186,Dong Mun Kopitiam,Food,Food Court,3.1434434,101.6973251,KG16 Pasar Seni,162
+KA1188,Dewan Rekreasi Yayasan Pendidikan Cheras,Other,Community Centre,3.1320561,101.7192202,KG21 Cochrane,422.6
+KA1189,Dilmi Thai Tomyam,Food,Restaurant,2.9811742,101.7895514,KB06 Kajang,199.1
+KA1190,Medan Selera Madani Leboh Pudu,Food,Food Court,3.1460587,101.6980611,KG16 Pasar Seni,450.1
+KA1191,Blue Corridor,Culture,Attraction,3.1485181,101.6954538,KJ14 Pasar Seni,676.4
+KA1192,Young Womens' Christian Association of Kuala Lumpur,Other,Community Centre,3.1429442,101.7017941,KG17 Merdeka,44.6
+KA1193,Laman @ Menara Maybank,Food,Food Court,3.1471891,101.7005066,KG17 Merdeka,512
+KA1194,Pusat Penjaja Taman Segar (C),Food,Food Court,3.0882,101.7433582,KG25 Taman Mutiara,477.1
+KA1195,Pusat Penjaja Taman Segar (A),Food,Food Court,3.0903792,101.7435852,KG25 Taman Mutiara,369.3
+KA1196,River of Life site,Culture,Attraction,3.1485181,101.6954538,KJ14 Pasar Seni,676.4

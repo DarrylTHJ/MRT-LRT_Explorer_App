@@ -4,15 +4,18 @@ import { TrainHero } from "./components/TrainHero";
 import { AttractionCard } from "./components/AttractionCard";
 import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
-import { Leaf } from "lucide-react"; 
+import { Leaf, MapPin, X } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
 import { allStationsData, type Gem } from "../data/stationData";
 import { toast, Toaster } from "sonner";
-import { askRailRonda } from "../services/gemini";
+import { askGlobalRailRonda } from "../services/gemini";
 import { fetchGemsForLine } from "../services/supabasePlaces";
 import RealMap from "./components/RealMap"; 
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
+import { GlobalSearchResults, GlobalSearchResult } from "./components/GlobalSearchResults";
+import { NavigationSheet } from "./components/NavigationSheet";
+import { calculateRoute } from "../utils/routeCalculator";
 
 const STATION_NAME_ALIASES: Record<string, string> = {
   "Pusat Bandar D'sara": "Pusat Bandar Damansara",
@@ -68,6 +71,11 @@ export default function App() {
 
   const resolvedStationName = resolveStationName(currentStationName);
   const localStationData = allStationsData[resolvedStationName] || allStationsData["Kajang"];
+
+  const [pendingGlobalQuery, setPendingGlobalQuery] = useState<string | null>(null);
+  const [globalResults, setGlobalResults] = useState<GlobalSearchResult[]>([]);
+  const [isGlobalSheetOpen, setIsGlobalSheetOpen] = useState(false);
+  const [activeNavigationRoute, setActiveNavigationRoute] = useState<GlobalSearchResult | null>(null);
 
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
@@ -170,8 +178,6 @@ export default function App() {
       gems: stationScopedGems,
     };
   }, [currentStationName, localStationData, stationLocation, stationScopedGems]);
-
-  // Dynamic Gems Mapping
   const displayedAttractions = currentStationData.gems
     .filter((gem) => activeFilter === "all" || gem.category === activeFilter)
     .map((gem) => ({
@@ -182,6 +188,10 @@ export default function App() {
       walkTime: "5 min", 
       isSheltered: Math.random() > 0.5, 
       co2Saved: gem.co2Saved,
+      lat: gem.lat,
+      lng: gem.lng,
+      stationLat: currentStationData.location.lat,
+      stationLng: currentStationData.location.lng,
     }));
 
   const handleTrainClick = () => {
@@ -197,36 +207,77 @@ export default function App() {
       else setCurrentStationName("Kajang");
   };
 
-  const handleAISearch = async (userQuery: string) => {
-    setIsThinking(true);
-    const recommendation = await askRailRonda(userQuery, currentStationData.gems);
-    setIsThinking(false);
+  // 🔴 INITIATE GLOBAL SEARCH
+  const handleAISearch = (userQuery: string) => {
+    setPendingGlobalQuery(userQuery);
+    toast("Select your starting station on the map above", {
+      icon: <MapPin className="w-4 h-4 text-blue-500" />,
+      duration: 5000,
+    });
+  };
 
+ // 1. Just changes the visual station, DOES NOT fire AI yet
+  const handleStationSelect = (stationName: string) => {
+    setCurrentStationName(stationName);
+  };
+
+  // 2. 🔴 NEW: The function attached to the Confirm button that fires the AI
+  const handleConfirmOrigin = async () => {
+    if (!pendingGlobalQuery) return;
+    
+    const query = pendingGlobalQuery;
+    setPendingGlobalQuery(null); // Clear pending state (Hides banner)
+    setIsThinking(true);
+
+    // Flatten ALL gems across ALL stations
+    const allGems = Object.values(allStationsData).flatMap(station => 
+      station.gems.map(gem => ({
+        ...gem,
+        stationName: station.name,
+        stationLat: station.location.lat,
+        stationLng: station.location.lng
+      }))
+    );
+
+    // Ask AI
+    const recommendation = await askGlobalRailRonda(query, allGems);
+    
     if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
-      setHighlightedGemIds(recommendation.recommendedGemIds);
-      setViewState("map");
-      toast.success(`Found ${recommendation.recommendedGemIds.length} matches!`, {
-        description: recommendation.reason,
-        duration: 4000,
-      });
+      
+      // Map AI Results to UI Data + Route Math
+      const results = recommendation.recommendedGemIds.map((id: number) => {
+        const gemData = allGems.find(g => g.id === id);
+        if (!gemData) return null;
+        
+        const route = calculateRoute(
+          currentStationName, // User's tapped starting station
+          gemData.stationName, // Destination station
+          gemData.lat, gemData.lng,
+          gemData.stationLat, gemData.stationLng
+        );
+
+        return { gem: gemData, route };
+      }).filter(Boolean);
+
+      setGlobalResults(results as GlobalSearchResult[]);
+      setIsGlobalSheetOpen(true);
+      toast.success(`Found top matches based on ${currentStationName}!`, { description: recommendation.reason });
+
     } else {
       toast.error("RailRonda couldn't find a match. Try a different query!");
-      setHighlightedGemIds([]); 
     }
+    setIsThinking(false);
   };
 
   return (
-    // 🔴 FIX 1: Use h-[100dvh] instead of min-h-screen to lock to viewport
     <div className="relative h-[100dvh] w-full bg-[#F5F5F7] overflow-hidden flex justify-center">
-      
-      {/* 🔴 FIX 2: Use h-full to fill the parent, removing the fixed 852px height */}
       <div className="w-full max-w-[393px] h-full bg-[#F5F5F7] relative shadow-2xl overflow-hidden flex flex-col">
         
         <Toaster position="top-center" richColors />
         
         <AnimatePresence mode="popLayout">
           {viewState === "impact" && (
-             <div className="absolute inset-0 z-50 h-full w-full">
+             <div className="absolute inset-0 z-[70] h-full w-full">
                 <ImpactPage onBack={() => setViewState("dashboard")} />
              </div>
           )}
@@ -279,10 +330,36 @@ export default function App() {
                   </h1>
                 </header>
 
+                {/* 🔴 NEW PENDING QUERY OVERLAY WITH CONFIRM BUTTON */}
+                {pendingGlobalQuery && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                    className="mx-6 mb-4 p-4 bg-blue-600 text-white rounded-2xl shadow-xl flex flex-col gap-3 relative z-20"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-blue-200" />
+                        <span className="text-sm font-bold">Select start station below</span>
+                      </div>
+                      <button onClick={() => setPendingGlobalQuery(null)} className="p-1 text-blue-200 hover:text-white rounded-full bg-blue-700/50">
+                        <X className="w-4 h-4"/>
+                      </button>
+                    </div>
+                    
+                    {/* THE RESTORED BUTTON */}
+                    <button 
+                      onClick={handleConfirmOrigin}
+                      className="w-full py-2.5 bg-white hover:bg-gray-50 text-blue-600 text-sm font-extrabold rounded-xl shadow-sm transition-transform active:scale-95 flex justify-center items-center gap-2"
+                    >
+                      Confirm {currentStationName} as Start
+                    </button>
+                  </motion.div>
+                )}
+
                 <RouteMap 
                   stations={currentLineData}
                   currentStation={currentStationName}
-                  onStationSelect={setCurrentStationName}
+                  onStationSelect={handleStationSelect} // 🔴 Routes clicks here now
                   themeColor={themeColor}
                 />
 
@@ -291,7 +368,7 @@ export default function App() {
                     isZooming={viewState === "zooming"} 
                     currentStation={currentStationName}
                     stationsList={currentLineData}
-                    onStationChange={setCurrentStationName}
+                    onStationChange={handleStationSelect} // 🔴 And here
                     themeColor={themeColor}
                   />
                 </div>
@@ -323,7 +400,25 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* 🔴 NEW BOTTOM SHEETS */}
+        <GlobalSearchResults 
+          isOpen={isGlobalSheetOpen}
+          onClose={() => setIsGlobalSheetOpen(false)}
+          results={globalResults}
+          onNavigate={(result) => {
+             setIsGlobalSheetOpen(false);
+             setActiveNavigationRoute(result);
+          }}
+        />
+
+        <NavigationSheet 
+          result={activeNavigationRoute}
+          onClose={() => setActiveNavigationRoute(null)}
+        />
+
       </div>
     </div>
   );
 }
+
