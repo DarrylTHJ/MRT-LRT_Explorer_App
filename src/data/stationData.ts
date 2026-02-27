@@ -6,6 +6,8 @@ export interface Gem {
   lng: number;
   description: string;
   co2Saved: string;
+  nearestStation?: string;
+  distanceMeters?: number;
 }
 
 export interface Station {
