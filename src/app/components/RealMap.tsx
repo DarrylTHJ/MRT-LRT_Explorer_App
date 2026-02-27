@@ -26,11 +26,9 @@ interface RealMapProps {
 
 const CATEGORIES = {
   "Heritage & Culture": ["Landmarks", "Arts", "Entertainment"],
-  "Food & Drinks": ["Chinese", "Malay", "Indian", "Others"],
-  "Essentials": ["ATM", "Pharmacies", "Convenience Store"],
-  "Hotels": ["Hotels", "Hostels", "Airbnb"],
-  "Photo": ["Murals", "Viewpoints"],
-  "Sports": ["Parks", "Gyms", "Studios"]
+  "Amenity": ["Restaurant","Cafe","Fast Food","Food Court","Cinema","Theatre","Arts Centre","Nightclub","Community Centre"],
+  "Tourism": ["Museum","Gallery","Attraction","Theme Park","Viewpoint"],
+  "Leisure": ["Bowling Alley","Amusement Arcade","Water Park"]
 };
 
 // --- Helper: Haversine Distance ---
