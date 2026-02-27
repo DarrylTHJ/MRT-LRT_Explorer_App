@@ -298,7 +298,7 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
           </AdvancedMarker>
         ))}
 
-        {/* Info Window */}
+{/* Info Window */}
         {selectedGem && (
           <InfoWindow
             position={{ lat: selectedGem.lat, lng: selectedGem.lng }}
@@ -308,14 +308,26 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
             <div className="min-w-[160px] p-1">
               <h3 className="font-bold text-sm text-gray-900">{selectedGem.name}</h3>
               <p className="text-xs text-gray-500 capitalize mb-2">{selectedGem.category.replace('_', ' ')}</p>
-
+              
               <div className="flex items-center justify-between mt-2">
-                <div className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded">
-                  <span>🌱 {selectedGem.co2Saved} CO2</span>
-                </div>
-                <button className="p-1 rounded-full bg-gray-100 hover:bg-blue-100 text-blue-600 transition-colors">
-                  <Navigation className="w-3 h-3" />
-                </button>
+                 <div className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded">
+                    <span>🌱 {selectedGem.co2Saved} CO2</span>
+                 </div>
+                 
+                 {/* 🔴 UPDATED: Navigation Button with correct Google Maps URL */}
+                 <button 
+                    onClick={() => {
+                      const origin = `${station.location.lat},${station.location.lng}`;
+                      const destination = `${selectedGem.lat},${selectedGem.lng}`;
+                      const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
+                      window.open(url, '_blank');
+                    }}
+                    className="p-2 rounded-full bg-gray-100 hover:bg-blue-100 text-blue-600 transition-colors flex items-center justify-center shadow-sm"
+                    title="Get Walking Directions"
+                 >
+                    <Navigation className="w-4 h-4" />
+                 </button>
+                 
               </div>
             </div>
           </InfoWindow>

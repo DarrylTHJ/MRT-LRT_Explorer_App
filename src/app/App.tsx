@@ -27,7 +27,7 @@ export default function App() {
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
 
   // Dynamic Gems Mapping
-  const displayedAttractions = currentStationData.gems
+const displayedAttractions = currentStationData.gems
     .filter((gem) => activeFilter === "all" || gem.category === activeFilter)
     .map((gem) => ({
       id: gem.id,
@@ -37,6 +37,11 @@ export default function App() {
       walkTime: "5 min", 
       isSheltered: Math.random() > 0.5, 
       co2Saved: gem.co2Saved,
+      // 🔴 NEW: Pass coordinates for navigation
+      lat: gem.lat,
+      lng: gem.lng,
+      stationLat: currentStationData.location.lat,
+      stationLng: currentStationData.location.lng,
     }));
 
   const handleTrainClick = () => {
