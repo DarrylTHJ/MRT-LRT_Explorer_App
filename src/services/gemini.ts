@@ -96,34 +96,36 @@ export interface GlobalGem {
 }
 
 export const askGlobalRailRonda = async (query: string, allGems: GlobalGem[]) => {
-  // Compress data to save tokens
-  const compressedGems = allGems.map(g => `${g.id}|${g.name}|${g.category}|${g.stationName}`).join('\n');
-  
-  const prompt = `
-    You are RailRonda, an expert transit and local food guide in Kuala Lumpur.
-    A user asked: "${query}"
-    
-    Here is a list of ALL locations across ALL stations in the format ID|Name|Category|Station:
-    ${compressedGems}
-    
-    Find the absolute best 10 matches for the user's query. 
-    Return ONLY a raw JSON object (no markdown, no backticks) with this exact structure:
-    {
-      "recommendedGemIds": [id1, id2, id3...],
-      "reason": "A short, friendly sentence explaining why you picked these places."
-    }
-  `;
-
-  // 🔴 NOW USES THE FALLBACK ROSTER
-  const rawText = await generateWithFallback(prompt);
-
-  if (!rawText) return null;
-
   try {
+    // Compress data to save tokens
+    const compressedGems = allGems.map(g => `${g.id}|${g.name}|${g.category}|${g.stationName}`).join('\n');
+    
+    const prompt = `
+      You are RailRonda, an expert transit and local food guide in Kuala Lumpur.
+      A user asked: "${query}"
+      
+      Here is a list of ALL locations across ALL stations in the format ID|Name|Category|Station:
+      ${compressedGems}
+      
+      INSTRUCTIONS:
+      1. Find ALL locations that are a good semantic match for the user's request.
+      2. Do NOT limit your selection. If there are 30 great matches across the city, return all 30 IDs. If there are only 2, return 2.
+      3. Order the IDs roughly by how accurately they match the query (Best match first).
+      4. Return ONLY a raw JSON object (no markdown, no backticks) with this exact structure:
+      {
+        "recommendedGemIds": [id1, id2, id3...],
+        "reason": "A short, friendly sentence explaining what you found across the network."
+      }
+    `;
+
+    const rawText = await generateWithFallback(prompt);
+
+    if (!rawText) return null;
+
     const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(cleanText);
   } catch (error) {
-    console.error("Global Gemini JSON Parse Error:", error);
+    console.error("Global Gemini Error:", error);
     return null;
   }
 };

@@ -20,12 +20,12 @@ export function GlobalSearchResults({ isOpen, onClose, results, onNavigate }: Pr
 
   if (!isOpen) return null;
 
-  // Sorting Logic
+// Sorting Logic + The UI Limit (slice)
   const sortedResults = [...results].sort((a, b) => {
     if (sortBy === "fastest") return a.route.totalTimeMins - b.route.totalTimeMins;
     if (sortBy === "nearest") return a.route.walkDistanceMeters - b.route.walkDistanceMeters;
-    return 0; // "best" respects the AI's original array order
-  });
+    return 0; // "best" respects the AI's original semantic matching order
+  }).slice(0, 10); // 🔴 This limits the UI to ONLY show the Top 10 AFTER sorting!
 
   const generateSearchLink = (name: string, platform: 'google' | 'tiktok' | 'ig') => {
     const encoded = encodeURIComponent(name + " KL");
@@ -48,7 +48,7 @@ export function GlobalSearchResults({ isOpen, onClose, results, onNavigate }: Pr
           <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4" />
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Top 10 Matches</h2>
+              <h2 className="text-xl font-bold text-gray-900">Matches</h2>
               <p className="text-xs text-gray-500">Based on your starting station</p>
             </div>
             <button onClick={onClose} className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
@@ -92,7 +92,7 @@ export function GlobalSearchResults({ isOpen, onClose, results, onNavigate }: Pr
               {/* Metrics */}
               <div className="flex items-center gap-4 my-3 text-xs font-medium text-gray-600">
                 <div className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-orange-500" /> {item.route.totalTimeMins} mins total</div>
-                <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-green-500" /> {item.route.walkDistanceMeters}m walk</div>
+                <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-green-500" /> {item.route.walkDistanceMeters}m walk from station</div>
               </div>
 
               {/* Social/Review Links */}
