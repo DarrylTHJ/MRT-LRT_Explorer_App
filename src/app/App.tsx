@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { RouteMap } from "./components/RouteMap";
 import { TrainHero } from "./components/TrainHero";
 import { AttractionCard } from "./components/AttractionCard";
@@ -6,12 +6,46 @@ import { GlassSearchBar } from "./components/GlassSearchBar";
 import { FilterTabs } from "./components/FilterTabs";
 import { Leaf } from "lucide-react"; 
 import { motion, AnimatePresence } from "motion/react";
-import { allStationsData } from "../data/stationData";
+import { allStationsData, type Gem } from "../data/stationData";
 import { toast, Toaster } from "sonner";
 import { askRailRonda } from "../services/gemini";
+import { fetchGemsForLine } from "../services/supabasePlaces";
 import RealMap from "./components/RealMap"; 
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
 import ImpactPage from "./components/ImpactPage"; 
+
+const STATION_NAME_ALIASES: Record<string, string> = {
+  "Pusat Bandar D'sara": "Pusat Bandar Damansara",
+  BTHO: "Bandar Tun Hussein Onn",
+};
+
+const CARD_NEARBY_RADIUS_METERS = 2000;
+const STRICT_SUPABASE_MODE = ((import.meta as any).env.VITE_DISABLE_LOCAL_FALLBACK || "")
+  .toLowerCase()
+  .trim() === "true";
+
+function resolveStationName(stationName: string): string {
+  return STATION_NAME_ALIASES[stationName] || stationName;
+}
+
+function normalizeStationKey(stationName: string): string {
+  const resolved = resolveStationName(stationName).toLowerCase();
+  return resolved.replace(/[^a-z0-9]/g, "");
+}
+
+function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371e3;
+  const toRad = (deg: number) => deg * (Math.PI / 180);
+
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
 
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -21,10 +55,121 @@ export default function App() {
   const [isThinking, setIsThinking] = useState(false);
   const [viewState, setViewState] = useState<"dashboard" | "zooming" | "map" | "impact">("dashboard");
   const [highlightedGemIds, setHighlightedGemIds] = useState<number[]>([]);
+  const [lineGems, setLineGems] = useState<Record<"kelana" | "kajang", Gem[]>>({
+    kelana: [],
+    kajang: [],
+  });
+  const [loadedLines, setLoadedLines] = useState<Record<"kelana" | "kajang", boolean>>({
+    kelana: false,
+    kajang: false,
+  });
+  const [isLoadingLineGems, setIsLoadingLineGems] = useState(false);
+  const hasShownSupabaseFallbackToast = useRef(false);
 
-  const currentStationData = allStationsData[currentStationName] || allStationsData["Kajang"];
+  const resolvedStationName = resolveStationName(currentStationName);
+  const localStationData = allStationsData[resolvedStationName] || allStationsData["Kajang"];
+
   const currentLineData = activeLine === "kelana" ? KELANA_JAYA_LINE : KAJANG_LINE;
   const themeColor = activeLine === "kelana" ? "#E0004D" : "#007A33";
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    // Keep per-line cache so switching back is instant.
+    if (loadedLines[activeLine]) return;
+
+    const loadLineGems = async () => {
+      setIsLoadingLineGems(true);
+      try {
+        const gems = await fetchGemsForLine(activeLine);
+        if (!isCancelled) {
+          setLineGems((prev) => ({ ...prev, [activeLine]: gems }));
+          setLoadedLines((prev) => ({ ...prev, [activeLine]: true }));
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          console.error("Failed loading Supabase places:", error);
+          setLineGems((prev) => ({
+            ...prev,
+            [activeLine]: STRICT_SUPABASE_MODE ? [] : localStationData.gems,
+          }));
+          setLoadedLines((prev) => ({ ...prev, [activeLine]: true }));
+          if (!hasShownSupabaseFallbackToast.current) {
+            toast.error(
+              STRICT_SUPABASE_MODE
+                ? "Supabase places failed to load. DB-only mode is enabled (no local fallback)."
+                : "Supabase places failed to load. Using local data."
+            );
+            hasShownSupabaseFallbackToast.current = true;
+          }
+        }
+      } finally {
+        if (!isCancelled) setIsLoadingLineGems(false);
+      }
+    };
+
+    loadLineGems();
+    return () => {
+      isCancelled = true;
+    };
+  }, [activeLine, loadedLines, localStationData.gems]);
+
+  const selectedLineGems = loadedLines[activeLine]
+    ? lineGems[activeLine]
+    : (STRICT_SUPABASE_MODE ? [] : localStationData.gems);
+
+  const lineCenter = useMemo(() => {
+    if (selectedLineGems.length === 0) return localStationData.location;
+
+    const sums = selectedLineGems.reduce(
+      (acc, gem) => {
+        acc.lat += gem.lat;
+        acc.lng += gem.lng;
+        return acc;
+      },
+      { lat: 0, lng: 0 }
+    );
+
+    return {
+      lat: sums.lat / selectedLineGems.length,
+      lng: sums.lng / selectedLineGems.length,
+    };
+  }, [selectedLineGems, localStationData.location]);
+
+  const stationLocation = allStationsData[resolvedStationName]?.location || lineCenter;
+
+  const stationScopedGems = useMemo(() => {
+    const targetStationKey = normalizeStationKey(resolvedStationName);
+    const hasNearestStationData = selectedLineGems.some((gem) => Boolean(gem.nearestStation));
+
+    // Prefer exact station matches from Supabase when the column exists.
+    if (hasNearestStationData) {
+      const matchedByNearestStation = selectedLineGems.filter((gem) => {
+        if (!gem.nearestStation) return false;
+        return normalizeStationKey(gem.nearestStation) === targetStationKey;
+      });
+
+      if (matchedByNearestStation.length > 0) {
+        return matchedByNearestStation;
+      }
+    }
+
+    if (!stationLocation) return selectedLineGems;
+
+    return selectedLineGems.filter((gem) => {
+      const distance = haversineDistance(stationLocation.lat, stationLocation.lng, gem.lat, gem.lng);
+      return distance <= CARD_NEARBY_RADIUS_METERS;
+    });
+  }, [resolvedStationName, selectedLineGems, stationLocation]);
+
+  const currentStationData = useMemo(() => {
+    return {
+      ...localStationData,
+      name: currentStationName,
+      location: stationLocation,
+      gems: stationScopedGems,
+    };
+  }, [currentStationName, localStationData, stationLocation, stationScopedGems]);
 
   // Dynamic Gems Mapping
   const displayedAttractions = currentStationData.gems
@@ -153,6 +298,9 @@ export default function App() {
 
                 <div className="px-6 py-6">
                   <h2 className="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-4">Nearby Gems</h2>
+                  {isLoadingLineGems && (
+                    <p className="text-xs text-gray-400 mb-4">Loading places from Supabase...</p>
+                  )}
                   <div className="mb-4">
                     <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
                   </div>
