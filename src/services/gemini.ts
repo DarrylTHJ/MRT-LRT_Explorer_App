@@ -18,7 +18,7 @@ const MODEL_ROSTER = [
 ];
 
 export interface AIRecommendation {
-  recommendedGemIds: number[]; // <--- CHANGED TO ARRAY
+  recommendedGemIds: number[]; 
   reason: string;
 }
 
@@ -82,6 +82,48 @@ export const askRailRonda = async (
     return JSON.parse(cleanText);
   } catch (error) {
     console.error("🧠 JSON Parse Error:", error);
+    return null;
+  }
+};
+
+// DTO for Global Search
+export interface GlobalGem {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  stationName: string;
+}
+
+export const askGlobalRailRonda = async (query: string, allGems: GlobalGem[]) => {
+  // Compress data to save tokens
+  const compressedGems = allGems.map(g => `${g.id}|${g.name}|${g.category}|${g.stationName}`).join('\n');
+  
+  const prompt = `
+    You are RailRonda, an expert transit and local food guide in Kuala Lumpur.
+    A user asked: "${query}"
+    
+    Here is a list of ALL locations across ALL stations in the format ID|Name|Category|Station:
+    ${compressedGems}
+    
+    Find the absolute best 10 matches for the user's query. 
+    Return ONLY a raw JSON object (no markdown, no backticks) with this exact structure:
+    {
+      "recommendedGemIds": [id1, id2, id3...],
+      "reason": "A short, friendly sentence explaining why you picked these places."
+    }
+  `;
+
+  // 🔴 NOW USES THE FALLBACK ROSTER
+  const rawText = await generateWithFallback(prompt);
+
+  if (!rawText) return null;
+
+  try {
+    const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+    return JSON.parse(cleanText);
+  } catch (error) {
+    console.error("Global Gemini JSON Parse Error:", error);
     return null;
   }
 };
