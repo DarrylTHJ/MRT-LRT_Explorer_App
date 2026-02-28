@@ -12,7 +12,7 @@ if (!API_KEY) {
 
 // --- INITIALIZE CLIENTS ---
 const genAI = new GoogleGenerativeAI(API_KEY);
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- AI MODEL ROSTER ---
 const MODEL_ROSTER = [
@@ -67,23 +67,16 @@ export const askRailRonda = async (
   
   const prompt = `
     You are RailRonda, a smart travel companion for KL public transport.
-    
-    CONTEXT DATA (Places near the user):
-    ${JSON.stringify(availableGems)}
-
+    CONTEXT DATA: ${JSON.stringify(availableGems)}
     USER REQUEST: "${userQuery}"
 
     INSTRUCTIONS:
-    1. Analyze the User Request against the Context Data.
-    2. Select ALL matching locations (e.g. if user asks for 'coffee', return all cafes).
-    3. Return ONLY a raw JSON object (no markdown).
-    4. Format: { "recommendedGemIds": [101, 102], "reason": "Short summary of why these were picked" }
-    5. If nothing fits perfectly, return an empty array [] and a polite reason.
-    6. STRICTLY NO MARKDOWN. Just the JSON string.
+    1. Select ALL matching locations.
+    2. Format exactly: { "recommendedGemIds": [101, 102], "reason": "Short summary" }
+    3. STRICTLY NO MARKDOWN.
   `;
 
   const rawText = await generateWithFallback(prompt);
-
   if (!rawText) return null;
 
   try {
@@ -99,9 +92,9 @@ export const askRailRonda = async (
 export const askSupabaseRailRonda = async (
   query: string, 
   currentStationName: string
-): Promise<AIRecommendation | null> => {
+) => {
   try {
- // 1. Run the GLOBAL Full-Text Search across ALL stations
+    // 1. Run the GLOBAL Full-Text Search across ALL stations
     let { data: matchedReviews, error } = await supabase.rpc('search_global_reviews', {
       search_query: query
     });
@@ -117,84 +110,86 @@ export const askSupabaseRailRonda = async (
       const { data: fallbackReviews } = await supabase
         .from('reviews')
         .select('location_id, location_name, review_text, rating, station_name')
-        .ilike('review_text', `%${query}%`) // Searches everywhere
-        .limit(20);
+        .ilike('review_text', `%${query}%`)
+        .limit(30);
         
       matchedReviews = fallbackReviews;
     }
 
-    // If there is still absolutely no data (e.g., station has no reviews seeded yet)
-    if (!matchedReviews || matchedReviews.length === 0) {
-        console.warn(`No review data available for ${currentStationName}.`);
-        return null;
-    }
+    if (!matchedReviews || matchedReviews.length === 0) return null;
 
-    // 3. Compress the reviews into a neat context block for Gemini
-    const contextData = matchedReviews.map((r: any) => 
-      `ID: ${r.location_id} | Name: ${r.location_name} | Rating: ${r.rating}⭐ | Review: "${r.review_text}"`
-    ).join('\n');
+    // 3. Get the unique location IDs the reviews belong to
+    const locationIds = [...new Set(matchedReviews.map((r: any) => r.location_id))];
 
-    // 4. Ask Gemini to make the final decision based ON THE REVIEWS
+    // 4. Fetch the full location details from your mrt_kajang_line_2 table
+    const { data: locations } = await supabase
+      .from('mrt_kajang_line_2')
+      .select('*')
+      .in('id', locationIds);
+
+    if (!locations || locations.length === 0) return null;
+
+    // 5. Bundle Reviews + Name + Category + Distance for Gemini to analyze
+    const contextData = locations.map(loc => {
+      const locReviews = matchedReviews?.filter((r: any) => r.location_id === loc.id) || [];
+      const combinedReviews = locReviews.map((r: any) => `"${r.review_text}" (${r.rating}⭐)`).join(' | ');
+      return {
+        id: loc.id,
+        name: loc.name,
+        category: loc.category,
+        station: loc.nearestStation,
+        distance: loc.distance,
+        reviews: combinedReviews
+      };
+    });
+
+    // 6. Ask Gemini to evaluate and return ALL relevant matches
     const prompt = `
-      You are RailRonda, an AI Transit & Food Guide.
-      A user at [${currentStationName} Station] asked: "${query}"
+      You are RailRonda, an AI Transit Guide in Kuala Lumpur.
+      User Request: "${query}"
+      User's Current Station: "${currentStationName}"
 
-      Here are authentic Google Reviews from places near that station:
-      ---
-      ${contextData}
-      ---
+      Here are places from our database that match the keywords, including their Google Reviews:
+      ${JSON.stringify(contextData, null, 2)}
 
       INSTRUCTIONS:
-      1. Read the reviews to find the locations that best fit the user's request.
-      2. Return a raw JSON object (no markdown, no backticks).
-      3. Format EXACTLY like this:
-      { 
-        "recommendedGemIds": ["id1", "id2"], 
-        "reason": "Explain your picks. You MUST reference what the specific Google Reviews or star ratings said!" 
-      }
-      4. DO NOT limit the count. If 4 places fit perfectly, return all 4 IDs.
+      1. Analyze the reviews, categories, and names to find the best matches.
+      2. Return AS MANY locations as you think are highly relevant. DO NOT LIMIT TO 10.
+      3. Sort them strictly by RELEVANCE to the user's query (best match first).
+      4. Return ONLY a raw JSON array exactly in this format (no markdown):
+      [
+        { "id": "the_id", "reason": "Short explanation referencing the reviews/category." }
+      ]
     `;
 
-    // 5. Generate with Fallback Roster
     const rawText = await generateWithFallback(prompt);
-    
     if (!rawText) return null;
 
     const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
-    return JSON.parse(cleanText);
+    const aiSelections = JSON.parse(cleanText);
+
+    // 7. Map AI choices back to the database objects to send to App.tsx
+    const finalResults = aiSelections.map((selection: any) => {
+       const dbGem = locations.find(loc => loc.id === selection.id);
+       if (!dbGem) return null;
+       
+       return {
+         gem: {
+           id: dbGem.id,
+           name: dbGem.name,
+           category: dbGem.category || 'gem',
+           lat: dbGem.lat,
+           lng: dbGem.lng,
+           stationName: dbGem.nearestStation
+         },
+         reason: selection.reason
+       };
+    }).filter(Boolean);
+
+    return finalResults;
 
   } catch (error) {
     console.error("RAG Pipeline Error:", error);
     return null;
-  }
-  
-};
-
-// --- 3. FETCH EXACT LOCATIONS FOR THE UI (100% DATABASE ONLY) ---
-export const fetchLocationsByIds = async (ids: (string | number)[]) => {
-  try {
-    const stringIds = ids.map(String);
-    const { data, error } = await supabase
-      .from('mrt_kajang_line_2')
-      .select('*')
-      .in('id', stringIds);
-
-    if (error) {
-       console.error("Supabase fetch error:", error);
-       return [];
-    }
-
-    return (data || []).map((row: any) => ({
-      id: row.id,
-      name: row.name,
-      category: row.category || 'gem',
-      lat: row.lat,
-      lng: row.lng,
-      stationName: row.nearestStation,
-      dbDistance: row['Distance (m)'] || 400 // 🔴 Pulling straight from your DB!
-    }));
-  } catch (error) {
-    console.error("Error fetching missing location coordinates:", error);
-    return [];
   }
 };
