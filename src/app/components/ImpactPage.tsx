@@ -14,8 +14,9 @@ import {
    CONFIG / CONSTANTS
 ===================== */
 const CO2_PER_KM = 0.192; // kg CO2 per km
-const XP_PER_KM = 10;
-const XP_PER_LEVEL = 500;
+//const XP_PER_KM = 10;
+const KM_PER_LEVEL = 20;
+const POINTS_PER_KM = 10;
 
 /* Level badges */
 const levelBadges = [
@@ -42,17 +43,17 @@ interface ImpactPageProps {
 ===================== */
 export default function ImpactPage({ onBack, stats }: ImpactPageProps) {
   const baseData: ImpactStats = stats ?? {
-    distanceTravelled: 300,
-    points: 0,
+    distanceTravelled: 161,
+    points: 141 * POINTS_PER_KM,
   };
 
   // Derived values
-  const totalXP = Math.floor(baseData.distanceTravelled * XP_PER_KM);
-  const level = Math.floor(totalXP / XP_PER_LEVEL);
-  const currentXP = totalXP % XP_PER_LEVEL;
+  const totalKM = Math.floor(baseData.distanceTravelled);
+  const level = Math.floor(totalKM / KM_PER_LEVEL);
+  const currentKM = totalKM % KM_PER_LEVEL;
 
   const co2Saved = Number((baseData.distanceTravelled * CO2_PER_KM).toFixed(2));
-  const progressPercent = Math.min((currentXP / XP_PER_LEVEL) * 100, 100);
+  const progressPercent = Math.min((currentKM / KM_PER_LEVEL) * 100, 100);
 
   const levelTitle =
     level === 0
@@ -79,7 +80,7 @@ export default function ImpactPage({ onBack, stats }: ImpactPageProps) {
   ====================== */
   const [animatedDistance, setAnimatedDistance] = useState(0);
   const [animatedCO2, setAnimatedCO2] = useState(0);
-  const [animatedXP, setAnimatedXP] = useState(0);
+  //const [animatedKM, setAnimatedKM] = useState(0);
   const [animatedPoints, setAnimatedPoints] = useState(0);
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [prevLevel, setPrevLevel] = useState(0);
@@ -92,14 +93,14 @@ export default function ImpactPage({ onBack, stats }: ImpactPageProps) {
 
     const distanceStep = baseData.distanceTravelled / steps;
     const co2Step = co2Saved / steps;
-    const xpStep = totalXP / steps;
+    //const xpStep = totalXP / steps;
     const pointsStep = baseData.points / steps;
 
     const interval = setInterval(() => {
       start++;
       setAnimatedDistance((prev) => Math.min(prev + distanceStep, baseData.distanceTravelled));
       setAnimatedCO2((prev) => Math.min(prev + co2Step, co2Saved));
-      setAnimatedXP((prev) => Math.min(prev + xpStep, totalXP));
+      //setAnimatedXP((prev) => Math.min(prev + distanceStep, totalKM));
       setAnimatedPoints((prev) => Math.min(prev + pointsStep, baseData.points));
 
       if (start >= steps) {
@@ -114,7 +115,7 @@ export default function ImpactPage({ onBack, stats }: ImpactPageProps) {
     }, stepTime);
 
     return () => clearInterval(interval);
-  }, [baseData, co2Saved, totalXP, level, prevLevel]);
+  }, [baseData, co2Saved, totalKM, level, prevLevel]);
 
   return (
     <motion.div
@@ -173,21 +174,21 @@ export default function ImpactPage({ onBack, stats }: ImpactPageProps) {
           {/* XP BAR */}
           <div className="mt-4">
             <div className="flex justify-between text-xs font-semibold mb-1 text-green-100">
-              <span>{Math.floor(animatedXP)} XP</span>
-              <span>{XP_PER_LEVEL} XP</span>
+              <span>{Math.floor(animatedDistance % KM_PER_LEVEL)} KM</span>
+              <span>{KM_PER_LEVEL} KM</span>
             </div>
 
             <div className="h-2.5 w-full bg-green-900/30 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-gradient-to-r from-green-400 to-green-500 shadow-lg"
                 initial={{ width: 0 }}
-                animate={{ width: `${(currentXP / XP_PER_LEVEL) * 100}%` }}
+                animate={{ width: `${(currentKM / KM_PER_LEVEL) * 100}%` }}
                 transition={{ duration: 1 }}
               />
             </div>
 
             <p className="text-[10px] text-green-200 mt-1 text-right">
-              {XP_PER_LEVEL - currentXP} XP to next level
+              {KM_PER_LEVEL - currentKM} XP to next level
             </p>
           </div>
         </div>

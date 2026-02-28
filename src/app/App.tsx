@@ -315,7 +315,7 @@ export default function App() {
                         <Leaf className="w-5 h-5 text-[#4ade80]" fill="currentColor" />
                         <div className="flex flex-col items-center leading-none">
                             <span className="text-[8px] text-green-200 uppercase font-bold tracking-wider">LVL</span>
-                            <span className="text-sm font-bold text-white">5</span>
+                            <span className="text-sm font-bold text-white">6</span>
                         </div>
                     </div>
                   </button>
