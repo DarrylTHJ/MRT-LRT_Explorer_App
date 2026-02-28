@@ -8,7 +8,7 @@ import { Leaf, MapPin, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { allStationsData, type Gem } from "../data/stationData";
 import { toast, Toaster } from "sonner";
-import { askGlobalRailRonda } from "../services/gemini";
+import { askSupabaseRailRonda, fetchLocationsByIds } from "../services/gemini";
 import { fetchGemsForLine } from "../services/supabasePlaces";
 import RealMap from "./components/RealMap"; 
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
@@ -221,51 +221,56 @@ export default function App() {
     setCurrentStationName(stationName);
   };
 
-  // 2. 🔴 NEW: The function attached to the Confirm button that fires the AI
-  const handleConfirmOrigin = async () => {
+const handleConfirmOrigin = async () => {
     if (!pendingGlobalQuery) return;
     
     const query = pendingGlobalQuery;
-    setPendingGlobalQuery(null); // Clear pending state (Hides banner)
+    setPendingGlobalQuery(null); 
     setIsThinking(true);
 
-    // Flatten ALL gems across ALL stations
-    const allGems = Object.values(allStationsData).flatMap(station => 
-      station.gems.map(gem => ({
-        ...gem,
-        stationName: station.name,
-        stationLat: station.location.lat,
-        stationLng: station.location.lng
-      }))
-    );
-
-    // Ask AI
-    const recommendation = await askGlobalRailRonda(query, allGems);
+    // 1. Ask the AI
+    const recommendation = await askSupabaseRailRonda(query, currentStationName);
     
     if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
       
-      // Map AI Results to UI Data + Route Math
-      const results = recommendation.recommendedGemIds.map((id: number) => {
-        const gemData = allGems.find(g => g.id === id);
-        if (!gemData) return null;
+      // 2. Fetch 100% of the details straight from Supabase
+      const recommendedPlaces = await fetchLocationsByIds(recommendation.recommendedGemIds);
+      
+// 3. Format them for your sheet perfectly
+      const results = recommendedPlaces.map(gemData => {
         
-        const route = calculateRoute(
-          currentStationName, // User's tapped starting station
-          gemData.stationName, // Destination station
-          gemData.lat, gemData.lng,
-          gemData.stationLat, gemData.stationLng
-        );
+        const distance = Math.round(gemData.dbDistance || 400); 
+        const walkTime = Math.max(1, Math.ceil(distance / 80)); 
+        
+        // If it's a different station, add transit time
+        const isSameStation = currentStationName === gemData.stationName;
+        const transitMins = isSameStation ? 0 : 12;
 
-        return { gem: gemData, route };
-      }).filter(Boolean);
+        return { 
+          gem: gemData, 
+          route: { 
+            startStation: currentStationName,
+            endStation: gemData.stationName || currentStationName,
+            totalTransitMins: transitMins,
+            walkDistanceMeters: distance,
+            walkMins: walkTime,
+            totalMins: transitMins + walkTime,
+            steps: [] 
+          } 
+        };
+      });
 
-      setGlobalResults(results as GlobalSearchResult[]);
-      setIsGlobalSheetOpen(true);
-      toast.success(`Found top matches based on ${currentStationName}!`, { description: recommendation.reason });
-
+      if (results.length > 0) {
+        setGlobalResults(results as unknown as GlobalSearchResult[]);
+        setIsGlobalSheetOpen(true);
+        toast.success(`Scanned entire MRT Line based on ${currentStationName}!`, { description: recommendation.reason });
+      } else {
+        toast.error("Locations found, but failed to load their details for the list.");
+      }
     } else {
       toast.error("RailRonda couldn't find a match. Try a different query!");
     }
+    
     setIsThinking(false);
   };
 
@@ -421,4 +426,3 @@ export default function App() {
     </div>
   );
 }
-
