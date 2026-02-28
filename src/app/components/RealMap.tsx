@@ -6,6 +6,7 @@ interface Gem {
   id: number;
   name: string;
   category: string;
+  subcategory: string;
   lat: number;
   lng: number;
   description: string;
@@ -25,9 +26,9 @@ interface RealMapProps {
 }
 
 const CATEGORIES = {
-  "Amenity": ["Restaurant","Cafe","Fast Food","Food Court","Cinema","Theatre","Arts Centre","Nightclub","Community Centre"],
-  "Tourism": ["Museum","Gallery","Attraction","Theme Park","Viewpoint"],
-  "Leisure": ["Bowling Alley","Amusement Arcade","Water Park"]
+  "Amenity": ["Restaurant", "Cafe", "Fast Food", "Food Court", "Cinema", "Theatre", "Arts Centre", "Nightclub", "Community Centre"],
+  "Tourism": ["Museum", "Gallery", "Attraction", "Theme Park", "Viewpoint"],
+  "Leisure": ["Bowling Alley", "Amusement Arcade", "Water Park"]
 };
 
 // --- Helper: Haversine Distance ---
@@ -107,35 +108,37 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
 
   // --- FILTER LOGIC ---
   const visibleGems = useMemo(() => {
-  if (!station?.gems) return [];
-  let gems = station.gems;
+    if (!station?.gems) return [];
+    let gems = station.gems;
 
-  if (highlightedGemIds.length > 0) {
-    gems = gems.filter(g => highlightedGemIds.includes(g.id));
-  } else {
-    // New Multi-tier Filtering
+    // 1. Distance filter (Always apply this first or last)
+    gems = gems.filter(gem => {
+      const dist = haversineDistance(station.location.lat, station.location.lng, gem.lat, gem.lng);
+      return dist <= radius;
+    });
+
+    // 2. AI Search Mode Logic
+    if (highlightedGemIds.length > 0) {
+      return gems.filter(g => highlightedGemIds.includes(g.id));
+    }
+
+    // 3. Category & Subcategory Filter Logic
     if (activeMainCat !== "all") {
-      // 1. Filter by Main Category logic
-      if (activeMainCat === "Food & Drinks") {
-        gems = gems.filter(g => ['food', 'cafe', 'fast_food', 'restaurant'].includes(g.category));
-      } else {
-        // Fallback: match by description keywords for other categories
-        gems = gems.filter(g => g.description.toLowerCase().includes(activeMainCat.split(' ')[0].toLowerCase()));
-      }
+      gems = gems.filter(g =>
+        // Match "Amenity", "Tourism", etc. (Case insensitive)
+        g.category.toLowerCase() === activeMainCat.toLowerCase()
+      );
 
-      // 2. Filter by Subtype
       if (activeSubtype !== "all") {
-        gems = gems.filter(g => g.description.toLowerCase().includes(activeSubtype.toLowerCase()));
+        gems = gems.filter(g =>
+          // Match "Restaurant", "Cafe", etc. (Case insensitive)
+          g.subcategory.toLowerCase() === activeSubtype.toLowerCase()
+        );
       }
     }
-  }
 
-  // Distance filter (keep your original)
-  return gems.filter(gem => {
-    const dist = haversineDistance(station.location.lat, station.location.lng, gem.lat, gem.lng);
-    return dist <= radius;
-  });
-}, [activeMainCat, activeSubtype, station, highlightedGemIds, radius]);
+    return gems;
+  }, [activeMainCat, activeSubtype, station, highlightedGemIds, radius]);
 
   const isAIMode = highlightedGemIds.length > 0;
 
@@ -295,7 +298,7 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
           </AdvancedMarker>
         ))}
 
-{/* Info Window */}
+        {/* Info Window */}
         {selectedGem && (
           <InfoWindow
             position={{ lat: selectedGem.lat, lng: selectedGem.lng }}
@@ -305,26 +308,26 @@ export default function RealMap({ station, onBack, highlightedGemIds = [] }: Rea
             <div className="min-w-[160px] p-1">
               <h3 className="font-bold text-sm text-gray-900">{selectedGem.name}</h3>
               <p className="text-xs text-gray-500 capitalize mb-2">{selectedGem.category.replace('_', ' ')}</p>
-              
+
               <div className="flex items-center justify-between mt-2">
-                 <div className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded">
-                    <span>🌱 {selectedGem.co2Saved} CO2</span>
-                 </div>
-                 
-                 {/* 🔴 UPDATED: Navigation Button with correct Google Maps URL */}
-                 <button 
-                    onClick={() => {
-                      const origin = `${station.location.lat},${station.location.lng}`;
-                      const destination = `${selectedGem.lat},${selectedGem.lng}`;
-                      const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
-                      window.open(url, '_blank');
-                    }}
-                    className="p-2 rounded-full bg-gray-100 hover:bg-blue-100 text-blue-600 transition-colors flex items-center justify-center shadow-sm"
-                    title="Get Walking Directions"
-                 >
-                    <Navigation className="w-4 h-4" />
-                 </button>
-                 
+                <div className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded">
+                  <span>🌱 {selectedGem.co2Saved} CO2</span>
+                </div>
+
+                {/* 🔴 UPDATED: Navigation Button with correct Google Maps URL */}
+                <button
+                  onClick={() => {
+                    const origin = `${station.location.lat},${station.location.lng}`;
+                    const destination = `${selectedGem.lat},${selectedGem.lng}`;
+                    const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
+                    window.open(url, '_blank');
+                  }}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-blue-100 text-blue-600 transition-colors flex items-center justify-center shadow-sm"
+                  title="Get Walking Directions"
+                >
+                  <Navigation className="w-4 h-4" />
+                </button>
+
               </div>
             </div>
           </InfoWindow>
