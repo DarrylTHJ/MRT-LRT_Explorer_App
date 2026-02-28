@@ -6,6 +6,7 @@ export type TransitLine = "kajang" | "kelana";
 
 const SUPABASE_URL = (import.meta as any).env.VITE_SUPABASE_URL?.trim();
 const SUPABASE_ANON_KEY = (import.meta as any).env.VITE_SUPABASE_ANON_KEY?.trim();
+const SUPABASE_PAGE_SIZE = 1000;
 
 class SupabaseHttpError extends Error {
   status: number;
@@ -120,6 +121,25 @@ async function queryRows(url: URL): Promise<GenericRow[]> {
   return Array.isArray(payload) ? (payload as GenericRow[]) : [];
 }
 
+async function queryAllRows(baseUrl: URL): Promise<GenericRow[]> {
+  const allRows: GenericRow[] = [];
+  let offset = 0;
+
+  while (true) {
+    const pagedUrl = new URL(baseUrl.toString());
+    pagedUrl.searchParams.set("limit", String(SUPABASE_PAGE_SIZE));
+    pagedUrl.searchParams.set("offset", String(offset));
+
+    const pageRows = await queryRows(pagedUrl);
+    allRows.push(...pageRows);
+
+    if (pageRows.length < SUPABASE_PAGE_SIZE) break;
+    offset += SUPABASE_PAGE_SIZE;
+  }
+
+  return allRows;
+}
+
 export async function fetchGemsForLine(line: TransitLine): Promise<Gem[]> {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     throw new Error("VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY is missing.");
@@ -134,7 +154,7 @@ export async function fetchGemsForLine(line: TransitLine): Promise<Gem[]> {
     primaryUrl.searchParams.set("select", "*");
 
     try {
-      const rows = await queryRows(primaryUrl);
+      const rows = await queryAllRows(primaryUrl);
       return rows
         .map((row) => normalizeGem(row, line))
         .filter((gem): gem is Gem => gem !== null);
@@ -143,7 +163,7 @@ export async function fetchGemsForLine(line: TransitLine): Promise<Gem[]> {
       const fallbackUrl = new URL(endpoint);
       fallbackUrl.searchParams.set("select", "*");
       try {
-        const fallbackRows = await queryRows(fallbackUrl);
+        const fallbackRows = await queryAllRows(fallbackUrl);
         return fallbackRows
           .map((row) => normalizeGem(row, line))
           .filter((gem): gem is Gem => gem !== null);

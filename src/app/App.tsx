@@ -36,6 +36,27 @@ function normalizeStationKey(stationName: string): string {
   return resolved.replace(/[^a-z0-9]/g, "");
 }
 
+function stripStationCodePrefix(stationLabel: string): string {
+  const noBracketText = stationLabel.replace(/\([^)]*\)/g, " ").trim();
+  // Example: "AG7 SP7 KJ13 Masjid Jamek" -> "Masjid Jamek"
+  const withoutCodes = noBracketText.replace(/^([A-Z]{1,3}\d{1,2}\s+)+/i, "").trim();
+  return withoutCodes || noBracketText;
+}
+
+function isNearestStationMatch(nearestStation: string | undefined, currentStationName: string): boolean {
+  if (!nearestStation) return false;
+
+  const target = normalizeStationKey(currentStationName);
+  const cleanedNearest = normalizeStationKey(stripStationCodePrefix(nearestStation));
+  const rawNearest = normalizeStationKey(nearestStation);
+
+  if (!target || (!cleanedNearest && !rawNearest)) return false;
+  if (cleanedNearest === target || rawNearest === target) return true;
+  if (cleanedNearest && cleanedNearest.includes(target)) return true;
+
+  return false;
+}
+
 function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371e3;
   const toRad = (deg: number) => deg * (Math.PI / 180);
@@ -144,31 +165,52 @@ export default function App() {
     };
   }, [selectedLineGems, localStationData.location]);
 
-  const stationLocation = allStationsData[resolvedStationName]?.location || lineCenter;
+  const knownStationLocation = allStationsData[resolvedStationName]?.location;
 
   const stationScopedGems = useMemo(() => {
-    const targetStationKey = normalizeStationKey(resolvedStationName);
     const hasNearestStationData = selectedLineGems.some((gem) => Boolean(gem.nearestStation));
 
-    // Prefer exact station matches from Supabase when the column exists.
+    // Prefer station mapping from Supabase "Nearest Station" when available.
     if (hasNearestStationData) {
       const matchedByNearestStation = selectedLineGems.filter((gem) => {
-        if (!gem.nearestStation) return false;
-        return normalizeStationKey(gem.nearestStation) === targetStationKey;
+        return isNearestStationMatch(gem.nearestStation, resolvedStationName);
       });
 
-      if (matchedByNearestStation.length > 0) {
-        return matchedByNearestStation;
-      }
+      // Return this directly to avoid incorrect shared fallback clusters.
+      return matchedByNearestStation;
     }
 
-    if (!stationLocation) return selectedLineGems;
+    if (!knownStationLocation) return selectedLineGems;
 
     return selectedLineGems.filter((gem) => {
-      const distance = haversineDistance(stationLocation.lat, stationLocation.lng, gem.lat, gem.lng);
+      const distance = haversineDistance(
+        knownStationLocation.lat,
+        knownStationLocation.lng,
+        gem.lat,
+        gem.lng
+      );
       return distance <= CARD_NEARBY_RADIUS_METERS;
     });
-  }, [resolvedStationName, selectedLineGems, stationLocation]);
+  }, [knownStationLocation, resolvedStationName, selectedLineGems]);
+
+  const stationLocation = useMemo(() => {
+    if (knownStationLocation) return knownStationLocation;
+    if (stationScopedGems.length === 0) return lineCenter;
+
+    const sums = stationScopedGems.reduce(
+      (acc, gem) => {
+        acc.lat += gem.lat;
+        acc.lng += gem.lng;
+        return acc;
+      },
+      { lat: 0, lng: 0 }
+    );
+
+    return {
+      lat: sums.lat / stationScopedGems.length,
+      lng: sums.lng / stationScopedGems.length,
+    };
+  }, [knownStationLocation, lineCenter, stationScopedGems]);
 
   const currentStationData = useMemo(() => {
     return {
