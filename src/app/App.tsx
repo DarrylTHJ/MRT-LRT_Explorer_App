@@ -8,7 +8,7 @@ import { Leaf, MapPin, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { allStationsData, type Gem } from "../data/stationData";
 import { toast, Toaster } from "sonner";
-import { askSupabaseRailRonda, fetchLocationsByIds } from "../services/gemini";
+import { askSupabaseRailRonda } from "../services/gemini";
 import { fetchGemsForLine } from "../services/supabasePlaces";
 import RealMap from "./components/RealMap"; 
 import { KELANA_JAYA_LINE, KAJANG_LINE } from "./data/lines"; 
@@ -34,27 +34,6 @@ function resolveStationName(stationName: string): string {
 function normalizeStationKey(stationName: string): string {
   const resolved = resolveStationName(stationName).toLowerCase();
   return resolved.replace(/[^a-z0-9]/g, "");
-}
-
-function stripStationCodePrefix(stationLabel: string): string {
-  const noBracketText = stationLabel.replace(/\([^)]*\)/g, " ").trim();
-  // Example: "AG7 SP7 KJ13 Masjid Jamek" -> "Masjid Jamek"
-  const withoutCodes = noBracketText.replace(/^([A-Z]{1,3}\d{1,2}\s+)+/i, "").trim();
-  return withoutCodes || noBracketText;
-}
-
-function isNearestStationMatch(nearestStation: string | undefined, currentStationName: string): boolean {
-  if (!nearestStation) return false;
-
-  const target = normalizeStationKey(currentStationName);
-  const cleanedNearest = normalizeStationKey(stripStationCodePrefix(nearestStation));
-  const rawNearest = normalizeStationKey(nearestStation);
-
-  if (!target || (!cleanedNearest && !rawNearest)) return false;
-  if (cleanedNearest === target || rawNearest === target) return true;
-  if (cleanedNearest && cleanedNearest.includes(target)) return true;
-
-  return false;
 }
 
 function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
@@ -103,8 +82,6 @@ export default function App() {
 
   useEffect(() => {
     let isCancelled = false;
-
-    // Keep per-line cache so switching back is instant.
     if (loadedLines[activeLine]) return;
 
     const loadLineGems = async () => {
@@ -138,9 +115,7 @@ export default function App() {
     };
 
     loadLineGems();
-    return () => {
-      isCancelled = true;
-    };
+    return () => { isCancelled = true; };
   }, [activeLine, loadedLines, localStationData.gems]);
 
   const selectedLineGems = loadedLines[activeLine]
@@ -149,68 +124,37 @@ export default function App() {
 
   const lineCenter = useMemo(() => {
     if (selectedLineGems.length === 0) return localStationData.location;
-
     const sums = selectedLineGems.reduce(
-      (acc, gem) => {
-        acc.lat += gem.lat;
-        acc.lng += gem.lng;
-        return acc;
-      },
+      (acc, gem) => { acc.lat += gem.lat; acc.lng += gem.lng; return acc; },
       { lat: 0, lng: 0 }
     );
-
     return {
       lat: sums.lat / selectedLineGems.length,
       lng: sums.lng / selectedLineGems.length,
     };
   }, [selectedLineGems, localStationData.location]);
 
-  const knownStationLocation = allStationsData[resolvedStationName]?.location;
+  const stationLocation = allStationsData[resolvedStationName]?.location || lineCenter;
 
   const stationScopedGems = useMemo(() => {
+    const targetStationKey = normalizeStationKey(resolvedStationName);
     const hasNearestStationData = selectedLineGems.some((gem) => Boolean(gem.nearestStation));
 
-    // Prefer station mapping from Supabase "Nearest Station" when available.
     if (hasNearestStationData) {
       const matchedByNearestStation = selectedLineGems.filter((gem) => {
-        return isNearestStationMatch(gem.nearestStation, resolvedStationName);
+        if (!gem.nearestStation) return false;
+        return normalizeStationKey(gem.nearestStation) === targetStationKey;
       });
-
-      // Return this directly to avoid incorrect shared fallback clusters.
-      return matchedByNearestStation;
+      if (matchedByNearestStation.length > 0) return matchedByNearestStation;
     }
 
-    if (!knownStationLocation) return selectedLineGems;
+    if (!stationLocation) return selectedLineGems;
 
     return selectedLineGems.filter((gem) => {
-      const distance = haversineDistance(
-        knownStationLocation.lat,
-        knownStationLocation.lng,
-        gem.lat,
-        gem.lng
-      );
+      const distance = haversineDistance(stationLocation.lat, stationLocation.lng, gem.lat, gem.lng);
       return distance <= CARD_NEARBY_RADIUS_METERS;
     });
-  }, [knownStationLocation, resolvedStationName, selectedLineGems]);
-
-  const stationLocation = useMemo(() => {
-    if (knownStationLocation) return knownStationLocation;
-    if (stationScopedGems.length === 0) return lineCenter;
-
-    const sums = stationScopedGems.reduce(
-      (acc, gem) => {
-        acc.lat += gem.lat;
-        acc.lng += gem.lng;
-        return acc;
-      },
-      { lat: 0, lng: 0 }
-    );
-
-    return {
-      lat: sums.lat / stationScopedGems.length,
-      lng: sums.lng / stationScopedGems.length,
-    };
-  }, [knownStationLocation, lineCenter, stationScopedGems]);
+  }, [resolvedStationName, selectedLineGems, stationLocation]);
 
   const currentStationData = useMemo(() => {
     return {
@@ -220,6 +164,7 @@ export default function App() {
       gems: stationScopedGems,
     };
   }, [currentStationName, localStationData, stationLocation, stationScopedGems]);
+
   const displayedAttractions = currentStationData.gems
     .filter((gem) => activeFilter === "all" || gem.category === activeFilter)
     .map((gem) => ({
@@ -238,9 +183,7 @@ export default function App() {
 
   const handleTrainClick = () => {
     setViewState("zooming"); 
-    setTimeout(() => {
-      setViewState("map");   
-    }, 800);
+    setTimeout(() => setViewState("map"), 800);
   };
 
   const handleLineSwitch = (line: "kelana" | "kajang") => {
@@ -249,7 +192,6 @@ export default function App() {
       else setCurrentStationName("Kajang");
   };
 
-  // 🔴 INITIATE GLOBAL SEARCH
   const handleAISearch = (userQuery: string) => {
     setPendingGlobalQuery(userQuery);
     toast("Select your starting station on the map above", {
@@ -258,57 +200,54 @@ export default function App() {
     });
   };
 
- // 1. Just changes the visual station, DOES NOT fire AI yet
   const handleStationSelect = (stationName: string) => {
     setCurrentStationName(stationName);
   };
 
-const handleConfirmOrigin = async () => {
+  // 🔴 FIRING AI WITH CLEAN DATA SEPARATION
+  const handleConfirmOrigin = async () => {
     if (!pendingGlobalQuery) return;
-    
     const query = pendingGlobalQuery;
     setPendingGlobalQuery(null); 
     setIsThinking(true);
 
-    // 1. Ask the AI
-    const recommendation = await askSupabaseRailRonda(query, currentStationName);
-    
-    if (recommendation && recommendation.recommendedGemIds && recommendation.recommendedGemIds.length > 0) {
-      
-      // 2. Fetch 100% of the details straight from Supabase
-      const recommendedPlaces = await fetchLocationsByIds(recommendation.recommendedGemIds);
-      
-// 3. Format them for your sheet perfectly
-      const results = recommendedPlaces.map(gemData => {
-        
-        const distance = Math.round(gemData.dbDistance || 400); 
-        const walkTime = Math.max(1, Math.ceil(distance / 80)); 
-        
-        // If it's a different station, add transit time
-        const isSameStation = currentStationName === gemData.stationName;
-        const transitMins = isSameStation ? 0 : 12;
+    const recommendations = await askSupabaseRailRonda(query, currentStationName);
 
-        return { 
-          gem: gemData, 
-          route: { 
-            startStation: currentStationName,
-            endStation: gemData.stationName || currentStationName,
-            totalTransitMins: transitMins,
-            walkDistanceMeters: distance,
-            walkMins: walkTime,
-            totalMins: transitMins + walkTime,
-            steps: [] 
-          } 
-        };
+    if (recommendations && recommendations.length > 0) {
+      
+      const results = recommendations.map((item: any) => {
+        const gemData = item.gem;
+        let route = null;
+
+        try {
+          // Clean the code prefix so the route calculator recognizes it (e.g., "KG16 Pasar Seni" -> "Pasar Seni")
+          const rawStation = gemData.stationName || currentStationName;
+          const cleanStationName = rawStation.replace(/^[A-Z0-9-]+\s+/, '').trim();
+          const resolvedStation = resolveStationName(cleanStationName);
+
+          // Get the REAL station coords from local data to run the math
+          const stationCoords = allStationsData[resolvedStation] || allStationsData[currentStationName];
+
+          route = calculateRoute(
+            currentStationName, 
+            resolvedStation, 
+            gemData.lat, 
+            gemData.lng,
+            stationCoords.location.lat, 
+            stationCoords.location.lng 
+          );
+        } catch (error) {
+          console.warn(`Route math failed for ${gemData.name}, skipping crash.`, error);
+          route = { distance: 400, duration: 5, steps: [] }; 
+        }
+
+        return { gem: gemData, route, reason: item.reason };
       });
 
-      if (results.length > 0) {
-        setGlobalResults(results as unknown as GlobalSearchResult[]);
-        setIsGlobalSheetOpen(true);
-        toast.success(`Scanned entire MRT Line based on ${currentStationName}!`, { description: recommendation.reason });
-      } else {
-        toast.error("Locations found, but failed to load their details for the list.");
-      }
+      setGlobalResults(results as GlobalSearchResult[]);
+      setIsGlobalSheetOpen(true);
+      toast.success(`Found top matches for ${query}!`);
+      
     } else {
       toast.error("RailRonda couldn't find a match. Try a different query!");
     }
@@ -319,7 +258,6 @@ const handleConfirmOrigin = async () => {
   return (
     <div className="relative h-[100dvh] w-full bg-[#F5F5F7] overflow-hidden flex justify-center">
       <div className="w-full max-w-[393px] h-full bg-[#F5F5F7] relative shadow-2xl overflow-hidden flex flex-col">
-        
         <Toaster position="top-center" richColors />
         
         <AnimatePresence mode="popLayout">
@@ -377,7 +315,6 @@ const handleConfirmOrigin = async () => {
                   </h1>
                 </header>
 
-                {/* 🔴 NEW PENDING QUERY OVERLAY WITH CONFIRM BUTTON */}
                 {pendingGlobalQuery && (
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
@@ -393,7 +330,6 @@ const handleConfirmOrigin = async () => {
                       </button>
                     </div>
                     
-                    {/* THE RESTORED BUTTON */}
                     <button 
                       onClick={handleConfirmOrigin}
                       className="w-full py-2.5 bg-white hover:bg-gray-50 text-blue-600 text-sm font-extrabold rounded-xl shadow-sm transition-transform active:scale-95 flex justify-center items-center gap-2"
@@ -406,7 +342,7 @@ const handleConfirmOrigin = async () => {
                 <RouteMap 
                   stations={currentLineData}
                   currentStation={currentStationName}
-                  onStationSelect={handleStationSelect} // 🔴 Routes clicks here now
+                  onStationSelect={handleStationSelect} 
                   themeColor={themeColor}
                 />
 
@@ -415,7 +351,7 @@ const handleConfirmOrigin = async () => {
                     isZooming={viewState === "zooming"} 
                     currentStation={currentStationName}
                     stationsList={currentLineData}
-                    onStationChange={handleStationSelect} // 🔴 And here
+                    onStationChange={handleStationSelect} 
                     themeColor={themeColor}
                   />
                 </div>
@@ -448,14 +384,13 @@ const handleConfirmOrigin = async () => {
           )}
         </AnimatePresence>
 
-        {/* 🔴 NEW BOTTOM SHEETS */}
         <GlobalSearchResults 
           isOpen={isGlobalSheetOpen}
           onClose={() => setIsGlobalSheetOpen(false)}
           results={globalResults}
           onNavigate={(result) => {
-             setIsGlobalSheetOpen(false);
-             setActiveNavigationRoute(result);
+              setIsGlobalSheetOpen(false);
+              setActiveNavigationRoute(result);
           }}
         />
 
@@ -463,7 +398,6 @@ const handleConfirmOrigin = async () => {
           result={activeNavigationRoute}
           onClose={() => setActiveNavigationRoute(null)}
         />
-
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Navigation, MapPin, Clock, Search, ExternalLink } from "lucide-react";
+import { X, Navigation, MapPin, Clock, Search, ExternalLink, Sparkles } from "lucide-react";
 import { RouteResult } from "../../utils/routeCalculator";
 
 export interface GlobalSearchResult {
   gem: any; 
   route: RouteResult;
+  reason?: string; // 🔴 ADDED: We tell TypeScript to expect the AI's reason here
 }
 
 interface Props {
@@ -20,12 +21,12 @@ export function GlobalSearchResults({ isOpen, onClose, results, onNavigate }: Pr
 
   if (!isOpen) return null;
 
-// Sorting Logic + The UI Limit (slice)
+  // Sorting Logic + The UI Limit (slice)
   const sortedResults = [...results].sort((a, b) => {
     if (sortBy === "fastest") return a.route.totalTimeMins - b.route.totalTimeMins;
     if (sortBy === "nearest") return a.route.walkDistanceMeters - b.route.walkDistanceMeters;
-    return 0; // "best" respects the AI's original semantic matching order
-  }).slice(0, 10); // 🔴 This limits the UI to ONLY show the Top 10 AFTER sorting!
+    return 0; 
+  }).slice(0, 10); 
 
   const generateSearchLink = (name: string, platform: 'google' | 'tiktok' | 'ig') => {
     const encoded = encodeURIComponent(name + " KL");
@@ -88,6 +89,14 @@ export function GlobalSearchResults({ isOpen, onClose, results, onNavigate }: Pr
                   <p className="text-xs text-gray-500 capitalize">{item.gem.category.replace('_', ' ')}</p>
                 </div>
               </div>
+
+              {/* 🔴 NEW: AI Reason & Review Highlight Box */}
+              {item.reason && (
+                <div className="mt-2 mb-3 bg-pink-50/50 text-pink-900 text-[11px] p-2.5 rounded-lg leading-relaxed border border-pink-100 flex gap-2 items-start">
+                  <Sparkles className="w-3.5 h-3.5 text-pink-500 shrink-0 mt-0.5" />
+                  <span className="italic">"{item.reason}"</span>
+                </div>
+              )}
 
               {/* Metrics */}
               <div className="flex items-center gap-4 my-3 text-xs font-medium text-gray-600">
